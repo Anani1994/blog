@@ -7,17 +7,30 @@
                 a.dropdown-item(href="#") Action
                 a.dropdown-item(href="#") Another action
                 a.dropdown-item(href="#") Something else here
+        br
+        pre(v-highlight)
+            code.js // something
+        p
+            button.btn.btn-default(@click="getData()") 获取数据
+        p
+            font-awesome-icon(icon="coffee")
 </template>
 
 <script>
+import { getThemeIndex } from '../../api/cnode.js';
+import Cookies from 'js-cookie';
 export default {
+    name: 'Main',
     data() {
         return {
             test: this.$store.state.count
         }
     },
+    methods: {
+        getData: () => getThemeIndex(),
+    },
     created() {
-        console.log(this);
+        console.log($);
     }
 }
 </script>

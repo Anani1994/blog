@@ -98,7 +98,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(jpg|png|gif|svg|jpeg|woff|woff2|eot|ttf|otf)$/,
+                test: /\.(jpg|png|gif|svg|jpeg|woff|woff2|eot|ttf|otf|ico)$/,
                 use: [{
                     loader: 'url-loader',
                     // 配置参数

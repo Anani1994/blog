@@ -21,6 +21,9 @@ Vue.use(defineSubassemblies);
 // 代码高亮
 import highLight from './highlight/index';
 
+// 创建自己的 custom.less 书写通用组件样式
+import './styles/custom.less';
+
 // 引入 Bootstrap 样式文件
 // 创建自己的 custom.scss 并使用它来覆盖内置的自定义变量
 // import "custom";

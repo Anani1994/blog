@@ -1,3 +1,32 @@
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+.layout .layout-header[data-v-063de322] {
+  width: 100%;
+  height: 60px;
+}
+.layout .layout-body[data-v-063de322] {
+  width: 100%;
+  height: calc(100% - 90px);
+  overflow: hidden;
+}
+.layout .layout-body .layout-content[data-v-063de322] {
+  width: calc(100% + 17px);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.layout .layout-footer[data-v-063de322] {
+  width: 100%;
+  height: 30px;
+}
+
 /*
 
 Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
@@ -81,6 +110,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs-meta {
   color: #75715e;
 }
+
 
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)

@@ -1,0 +1,96 @@
+// Steps、Step 组件的步骤条样式
+ul.steps {
+    list-style-type: none;
+    counter-reset: step;
+    li {
+        position: relative;
+        padding-bottom: .5rem;
+        .content {
+            padding-left: 25px;
+            margin-top: -23px;
+            .title {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            .detail {
+                color: @detail-color;
+                font-size: .8rem;
+            }
+        }
+        &::before {
+            display: block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            content: counter(step);
+            counter-increment: step;
+            text-align: center;
+            color: @step-color;
+            border-radius: 50%;
+            background-color: @step-done;
+        }
+        &:not(:last-child)::after {
+            z-index: -1;
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 10px;
+            // transform: translateX(-50%);
+            content: '';
+            width: 1px;
+            background-color: @step-done;
+        }
+        &.active::before {
+            background-color: @step-active;
+        }
+        &.active::after {
+            background-color: @step-todo;
+        }
+        &.active ~ li::before,
+        &.active ~ li::after {
+            background-color: @step-todo;
+        }
+    }
+    ul.steps {
+        margin-top: 3px;
+        padding-left: 0;
+    }
+}
+// 使用格式(可嵌套)
+// ul.steps
+//     li
+//         .content
+//             .title
+//             .detail
+//     li.active
+//         .content
+//             .title
+//             .detail
+//     li
+//         .content
+//             .title
+//             .detail
+
+// -------------------------------------------------------------------------------------------------------
+// 横线
+.divider-line {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: @dark;
+}
+
+// -------------------------------------------------------------------------------------------------------
+// 重写 pre 标签样式
+.custom-pre {
+    display: inline-block;
+    margin: 0;
+    padding: .5rem;
+    text-indent: 0;
+    color: @white;
+    border-radius: .5rem;
+    background: @dark;
+  }

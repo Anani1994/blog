@@ -6,10 +6,13 @@ const message = {
     cnblogs: 'Cnblogs',
     item_demo: 'Project Demo',
     shop_mall: ' Shopping Site',
-    old_blog: 'Old Blog',
     bo_wen: 'Bowen',
     language: 'Language',
-    others: 'Others'
+    others: 'Others',
+    article_type: 'Classification',
+    article_label:'Label',
+    article_date: 'History',
+    article_search: 'Search'
 };
 
 export default message;

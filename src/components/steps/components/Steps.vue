@@ -1,5 +1,5 @@
 <template lang="pug">
-    ul.steps
+    ul.steps.pl-1
         slot
 </template>
 

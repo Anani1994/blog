@@ -29,6 +29,7 @@ import './styles/custom.less';
 // import "custom";
 import 'bootstrap/scss/bootstrap.scss';
 // 按需引入 bootstrap 插件
+import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
 
 // 引入动画

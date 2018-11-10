@@ -1,9 +1,10 @@
 <template lang="pug">
     .container.h-100.px-0
         layout
-            .navbar.navbar-expand-lg.navbar-light(slot="header")
-                a.navbar-brand(href="#") {{ $t("message.basic_title") }}
+            #app-nav.navbar.navbar-expand-lg.fixed-top.container.navbar-light.border-bottom(slot="header")
+                a.navbar-brand(href="/") {{ $t("message.basic_title") }}
                 button.navbar-toggler(type="button"
+                                    @click="addBgColor()"
                                     data-toggle="collapse"
                                     data-target="#appNavbar"
                                     aria-controls="appNavbar"
@@ -13,9 +14,9 @@
                 #appNavbar.collapse.navbar-collapse.justify-content-end
                     ul.navbar-nav
                         li.nav-item.active
-                            a.nav-link(href="") GitHub
+                            a.nav-link(href="https://github.com/Anani1994") GitHub
                         li.nav-item.active
-                            a.nav-link(href="") {{ $t("message.cnblogs") }}
+                            a.nav-link(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarDropdown"
@@ -25,10 +26,8 @@
                                                     aria-expanded="false") {{ $t("message.item_demo") }}
                             .dropdown-menu(aria-labelledby="appNavbarDropdown")
                                 a.dropdown-item(href="#") {{ $t("message.shop_mall") }}
-                                .dropdown-devider
-                                a.dropdown-item(href="#") {{ $t("message.old_blog") }}
                         li.nav-item.active
-                            a.nav-link(href="") {{ $t("message.bo_wen") }}
+                            a.nav-link(href="#") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarLangDropdown"
@@ -38,13 +37,13 @@
                                                     aria-expanded="false") {{ $t("message.language") }}
                             .dropdown-menu(style="left: auto;right: 0;"
                                            aria-labelledby="appNavbarLangDropdown")
-                                a.dropdown-item.text-right(href="#"
+                                a.dropdown-item.text-md-right(href="#"
                                                            @click="changeLanguage('cn-US')") English
-                                .dropdown-devider
-                                a.dropdown-item.text-right(href="#"
+                                .dropdown-divider
+                                a.dropdown-item.text-md-right(href="#"
                                                            @click="changeLanguage('zh-CN')") 简体中文
                         li.nav-item.active
-                            a.nav-link(href="") {{ $t("message.others") }}
+                            a.nav-link(href="#") {{ $t("message.others") }}
             .w-100.h-100(slot="body")
                 router-view
             .w-100.h-100(slot="footer")
@@ -53,6 +52,11 @@
                         span Copyright © 2018-2018 {{ $t("message.author") }}
                         span.border-right.mx-2
                         span#app-footer-time
+                        span.border-right.mx-2.d-none.d-md-inline
+                        span.d-none.d-md-inline
+                            font#busuanzi_container_site_uv 您是本站的第 
+                            font#busuanzi_value_site_uv
+                            font  位访问者。
 </template>
 
 
@@ -61,16 +65,27 @@ export default {
     name: 'App',
     data() {
         return {
+            isShow: false
         }
     },
     methods: {
-         changeLanguage: function(lang) {
+         changeLanguage: function (lang) {
             this.$i18n.locale = lang;
             let newTitle = this.$t("message.basic_title") + ' - ' + this.$t((`message.${this.$route.meta.title.key}`));
             window.document.title = newTitle;
+        },
+        // 在手机模式打开顶部下拉 navbar 菜单添加背景颜色
+        addBgColor: function () {
+            if (this.isShow) {
+                $('#app-nav').removeClass('app-nav');
+            } else {
+                $('#app-nav').addClass('app-nav');
+            }
+            this.isShow = !this.isShow;
         }
     },
     mounted() {
+        // 底部显示的时间
         setInterval(() => { 
             let time = this.$util.formatDate();
             $('#app-footer-time').html(time);

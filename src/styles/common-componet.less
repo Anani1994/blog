@@ -1,3 +1,28 @@
+// 布局
+.layout {
+    .layout-header {
+        width: 100%;
+        height: 60px;
+    }
+    // 可拆开使用
+    .layout-body {
+        width: 100%;
+        height: calc(100% - 90px);
+        overflow: hidden;
+        .layout-content {
+            width: calc(100% + 17px);
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    }
+    .layout-footer {
+        width: 100%;
+        height: 30px;
+    }
+}
+
+// -------------------------------------------------------------------------------------------------------
 // Steps、Step 组件的步骤条样式
 ul.steps {
     list-style-type: none;
@@ -5,6 +30,7 @@ ul.steps {
     li {
         position: relative;
         padding-bottom: .5rem;
+        cursor: pointer;
         .content {
             padding-left: 25px;
             margin-top: -23px;
@@ -13,7 +39,6 @@ ul.steps {
                 font-weight: 600;
             }
             .detail {
-                color: @detail-color;
                 font-size: .8rem;
             }
         }
@@ -25,9 +50,7 @@ ul.steps {
             content: counter(step);
             counter-increment: step;
             text-align: center;
-            color: @step-color;
             border-radius: 50%;
-            background-color: @step-done;
         }
         &:not(:last-child)::after {
             z-index: -1;
@@ -39,17 +62,6 @@ ul.steps {
             // transform: translateX(-50%);
             content: '';
             width: 1px;
-            background-color: @step-done;
-        }
-        &.active::before {
-            background-color: @step-active;
-        }
-        &.active::after {
-            background-color: @step-todo;
-        }
-        &.active ~ li::before,
-        &.active ~ li::after {
-            background-color: @step-todo;
         }
     }
     ul.steps {
@@ -80,7 +92,6 @@ ul.steps {
     width: 100%;
     height: 1px;
     margin: 20px 0;
-    background-color: @dark;
 }
 
 // -------------------------------------------------------------------------------------------------------
@@ -90,7 +101,129 @@ ul.steps {
     margin: 0;
     padding: .5rem;
     text-indent: 0;
-    color: @white;
     border-radius: .5rem;
-    background: @dark;
-  }
+    vertical-align: middle;
+}
+
+// 禁用
+.forbidden {
+    pointer-events: none;
+    user-select: none;
+    cursor: no-drop;
+}
+
+// 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// -------------------------------------------------------------------------------------------------------
+// 绝对居中
+.position-absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.position-absolute-centerX {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.position-absolute-centerY {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// 配合绝对定位
+.top-0 {
+    top: 0;
+}
+.left-0 {
+    left: 0;
+}
+.bottom-0 {
+    bottom: 0;
+}
+.right-0 {
+    right: 0;
+}
+
+// 边距
+.m-sm {
+    margin: 5px !important;
+}
+.ml-sm {
+    margin-left: 5px !important;
+}
+.mr-sm {
+    margin-right: 5px !important;
+}
+.mt-sm {
+    margin-top: 5px !important;
+}
+.mb-sm {
+    margin-bottom: 5px !important;
+}
+.p-sm {
+    padding: 5px !important;
+}
+.pl-sm {
+    padding-left: 5px !important;
+}
+.pr-sm {
+    padding-right: 5px !important;
+}
+.pt-sm {
+    padding-top: 5px !important;
+}
+.pb-sm {
+    padding-bottom: 5px !important;
+}
+.m-p-0 {
+    p {
+        margin: 0;
+    }
+}
+
+// 网格布局
+.d-grid {
+    display: grid !important;
+}
+.d-inline-grid {
+    display: inline-grid !important;
+}
+
+// -------------------------------------------------------------------------------------------------------
+// 手机模式下的
+@media (max-width: 768px) {
+    // 绝对定位  !important 覆盖col的position
+    .position-md-relative {
+        position: relative !important;
+    }
+    .position-md-absolute {
+        position: absolute !important;
+    }
+    .position-md-fixed {
+        position: fixed !important;
+    }
+    //
+    .p-md-0 {
+        padding: 0 !important;
+    }
+    .m-md-0 {
+        margin: 0 !important;
+    }
+    // 布局
+    .layout {
+        .layout-body {
+            .layout-content {
+                width: 100%;
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
+            }
+        }
+    }
+}

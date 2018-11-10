@@ -45,9 +45,12 @@ util.debounce = function (method, context, event, delay) {
 }
 
 // this fun is created for a block named steps
-util.toTop = function (ele, eleParent, n = 0) {
+util.toTop = function (ele, n = 0, eleParent) {
+    let parent = document.querySelector('#bo-wen .layout-content'); // 兼容二代
+    if (eleParent) {
+        parent = document.querySelector(eleParent);
+    }
     let target = document.querySelector(ele);
-    let parent = document.querySelector(eleParent);
     $(target).css({
         opacity: 0
     });

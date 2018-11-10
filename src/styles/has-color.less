@@ -1,0 +1,63 @@
+// Steps、Step 组件的步骤条样式
+ul.steps {
+    li {
+        .content {
+            .detail {
+                color: @detail-color;
+            }
+        }
+        &::before {
+            color: @step-color;
+            background-color: @step-done;
+        }
+        &:not(:last-child)::after {
+            background-color: @step-done;
+        }
+        &.active::before {
+            background-color: @step-active;
+        }
+        &.active::after {
+            background-color: @step-todo;
+        }
+        &.active ~ li::before,
+        &.active ~ li::after {
+            background-color: @step-todo;
+        }
+    }
+}
+// 重写 pre 标签样式
+.custom-pre {
+    color: @white;
+    background: @dark;
+}
+
+// 横向
+.divider-line {
+    background-color: @dark;
+}
+
+// 禁用
+.forbidden {
+    color: @text-muted;
+}
+
+// 激活状态的按钮
+.bg-active {
+    background: @gray-400 !important;
+}
+
+// 手机模式下的目录背景
+@media (max-width: 768px) {
+    // app.vue
+    .app-nav {
+        background: @catalog-bg;
+    }
+    // 目录
+    .catalog-switch {
+        background: @catalog-button;
+        color: @catalog-color;
+    }
+    .catalog {
+        background: rgba(248, 249, 250, .9);
+    }
+}

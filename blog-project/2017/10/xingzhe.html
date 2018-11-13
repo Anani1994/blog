@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viwport" content="width=device-width,initial-scale=1.0">
+<meta name="keywords" content="行者，旅行，去哪儿，旅行计划">
+<meta name="description" content="公司致力于打造最安全、最舒服、最实惠的旅行计划。针对不同顾客的不同想法，每一个旅行计划皆为每一个顾客量身制定，以顾客的满意为最高旨意，让顾客度过每一段旅程。">
+<meta name="author" content="Anani">
+<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+<title>行者_您的旅行伴侣</title>
+<!--加载meta IE兼容文件-->  
+<!--[if lt IE 9]>  
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>  
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
+<![endif]--> 
+<style>
+/*前端命名方法尚在学习中*/
+	html {
+	    font-family: sans-serif;font-size:1em;width:100%;overflow-x:hidden;height: 100%;
+	 } 
+	* {
+	    margin:0;padding:0;transition: all 1s;
+	 }
+	img {
+	    max-width: 100%;
+	 }
+	#diva {
+	    background-color:transparent;height:75px;width:100%;position:fixed;z-index:999;top:0;
+	 }
+	.divb {
+	    width:100%;height:700px;
+	 }
+	#divbimga {
+	    position:fixed;z-index:-1;
+	 }
+	.divg {
+	    z-index:1;padding-top:200px;width:100%;
+	 }
+	.divba {
+	    text-align:center;
+		font-weight:bold;
+		font-size:3.125em;
+		color:#ffffff;
+	 }
+	.cartoon1 {
+		animation:cartoon1 1s;
+		-webkit-animation:cartoon1 1s; /* Safari and Chrome */
+	 }
+	@keyframes cartoon1 {
+	    from {opacity:0;transform: translate(0px,100px);}
+		to {opacity:1;transform: translate(0px,0px);}
+	 }
+	@-webkit-keyframes cartoon1 {
+	    from {opacity:0;transform: translate(0px,100px);}
+		to {opacity:1;transform: translate(0px,0px);}
+	 }
+	.cartoon2 {
+		animation:cartoon2 2s;
+		-webkit-animation:cartoon2 2s; /* Safari and Chrome */
+	 }
+	@keyframes cartoon2 {
+	    0% {opacity:0;transform: translate(0px,40px);}
+		50% {opacity:0;transform: translate(0px,40px);}
+		100% {opacity:1;transform: translate(0px,0px); }
+	 }
+	@-webkit-keyframes cartoon2 {
+	    0% {opacity:0;transform: translate(0px,40px);}
+		50% {opacity:0;transform: translate(0px,20px);}
+		100% {opacity:1;transform: translate(0px,0px); }
+	 }
+	.cartoon3 {
+	    animation:cartoon3 1s;
+		animation-iteration-count:infinite;
+		animation-direction:alternate;
+		-webkit-animation:cartoon3 1s; /* Safari and Chrome */
+		-webkit-animation-iteration-count:infinite; /* Safari and Chrome */
+		-webkit-animation-direction:alternate; /* Safari and Chrome */
+	 }
+	@keyframes cartoon3 {
+	    from {padding-top:0;}
+		to {padding-top:10px;}
+	 }
+	@-webkit-keyframes cartoon3 {
+	    from {padding-top:0;}
+		to {padding-top:10px;}
+	 }
+	.cartoon4 {
+		animation:cartoon4 2s;
+		animation-timing-function:ease-in;
+		-webbit-animation-timing-function:ease-in;
+		-webkit-animation:cartoon4 2s; /* Safari and Chrome */
+	 }
+	@keyframes cartoon4 {
+	    0% {opacity:0;transform: translate(0px,40px);}
+	    25% {opacity:0;transform: translate(0px,40px);}
+		50% {opacity:0;transform: translate(0px,40px);}
+		75% {opacity:0;transform: translate(0px,40px);}
+		100% {opacity:1;transform: translate(0px,0px);}
+	 }
+	@-webkit-keyframes cartoon4 {
+	    0% {opacity:0;transform: translate(0px,40px);}
+	    25% {opacity:0;transform: translate(0px,40px);}
+		50% {opacity:0;transform: translate(0px,40px);}
+		75% {opacity:0;transform: translate(0px,40px);}
+		100% {opacity:1;transform: translate(0px,0px);}
+	 }
+	.divbb {
+	    text-align:center;margin-top:35px;color:#ffffff;opacity:1;
+	 }
+	.divbc {
+	    margin-top:35px;text-align:center;color:#ffffff;opacity:1;
+	 }
+	.divbd {
+	    -webkit-transform: translate(0px,75px);transform: translate(0px,75px);text-align:center;color:#ffffff;opacity:1;
+	 }
+	.buttona {
+	    margin:auto;background-color:transparent;width:7.3206442%;height:50px;color:white;font-weight:bold;border:2px solid #ffffff;cursor:pointer;
+	 }
+	.buttonb {
+	    margin:auto;background-color:#ff6666;width:7.3206442%;height:50px;color:white;font-weight:bold;border:0;cursor:pointer;
+	 }
+	.buttonc {
+	    margin:auto;background-color:transparent;width:100%;height:60px;color:#000000;font-weight:bold;font-size:1.25em;border:2px solid #000000;cursor:pointer;
+	 }
+	.buttond {
+	    margin:auto;background-color:transparent;width:150px;height:50px;color:#ffffff;font-weight:bold;font-size:1.25em;border:2px solid #ffffff;cursor:pointer;
+	 }
+	.buttone {
+	    margin:auto;background-color:#ff6666;width:100%;height:50px;color:white;font-weight:bold;font-size:1.25em;cursor:pointer;
+	 }
+	.aa {
+	    text-decoration:none;color:#000000;
+	 }
+	.ab {
+	    text-decoration:none;color:#ffffff;
+	 }
+	.buttona:hover {
+	    background-color:#ffffff;color:#000000;
+	 }
+	.buttonb:hover {
+	    background-color:#000000;
+	 }
+	.buttonc:hover {
+	    background-color:#000000;color:#ffffff;
+	 }
+	.buttond:hover {
+	    background-color:#ffffff;color:#000000;
+	 }
+	.buttone:hover {
+	    background-color:#000000;
+	 }
+	.divc {
+	    width:100%;height:750px;background-color:#ffffff;
+	 }
+	.divca {
+	    margin-top:80px;margin-right:9.1508052%;float:right;height:445px;width:81.6983894%;
+	 }
+	.divcaa {
+	    float:right;width:26.8817204%;height:445px;
+	 }
+	.divcaaa {
+	    height:250px;width:100%;margin:0 auto;
+	 }
+	.divcaab {
+	    text-align:center;margin-top:40px;width:100%;
+	 }
+	.divcaac {
+	    text-align:center;margin-top:20px;width:100%;
+	 }
+	.divcab {
+	    float:right;margin-right:8.7685734%;width:26.8817204%;height:445px;
+	 }
+	.divcb {
+	    float:right;margin-right:42.6793557%;margin-top:75px;height:60px;width:14.6412884%;
+	 }
+	.divd {
+	    width:100%;height:700px;background-color:transparent;
+	 }
+	.divda {
+	    margin-left:8.784773%;margin-top:120px;width:32.9428989%;height:460px;float:left;border:1px solid #000000;
+	 }
+	.divdb {
+	    margin-left:4.0263543%;margin-top:120px;width:45.4612005%;height:460px;float:left;color:#ffffff;
+	 }
+	.divdba {
+	    margin-top:75px;font-weight:bold;font-size:1.5625em;width:100%;
+	 }
+	.divdbb {
+	    margin-top:40px;width:100%;
+	 }
+	.dive {
+	    width:100%;height:700px;background-color:#ffffff;
+	 }
+	.divea {
+	    width:100%;height:150px;
+	 }
+	.diveaa {
+	    float:right;margin-right:45.9736456%;margin-top:60px;height:50px;width:7.3206442%;font-weight:bold;text-align:center;
+	 }
+	.diveb {
+	    height:350px;width:100%;
+	 }
+	.diveba {
+	    width:18.3016105%;height:350px;margin-right:5.1244509%;float:right;
+	 }
+	.divebba {
+	    width:100%;height:200px;
+	 }
+	.divebbb {
+	    width:100%;height:150px;text-align:center;
+	 }
+	.divec {
+	    margin:auto;height:200px;width:100%;
+	 }
+	.diveca {
+	    float:right;margin-right:41.2152269%;margin-top:85px;height:50px;width:14.6412884%;
+	 }
+	.divf {
+	    width:100%;height:200px;background-color:#888;
+	 }
+	.divfa {
+	    float:right;margin:0;width:32.9428989%;height:200px;border-color:transparent transparent transparent #ffffff;border-style:solid;border-width:1px;
+	 }
+	.divfaa {
+	    width:34.6666666%;height:155px;margin-left:32.6666666%;margin-top:10px;
+	 }
+	.divfab {
+	    width:34.6666666%;height:16px;margin-left:32.6666666%;margin-top:10px;text-align:center;
+	 }
+	.imga {
+	    opacity:0.4;
+	 }
+	.ula {
+	    list-style-type:none;
+	 }
+	.lia {
+	    float:right;padding-right:3.6603221%;display:inline-block;text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.75);padding-top:30px;
+	 }
+	.lib {
+	    float:right;padding-right:7.3206442%;display:inline-block;text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.75);padding-top:30px;
+	 }
+	.lia a,.lib a {
+	    text-decoration:none;color:#ffffff;font-weight:bold;text-align:center;
+	 }
+	.lia a:hover,.lib a:hover,.drop-content ul li a:hover {
+	    transform: scale(1.7);color:#ff4500;
+	 }
+	.h3a {
+	    font-size:1.9375em;text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.75);font-weight:bold;color:#ffffff;padding-top:16px;padding-left:7.3206442%;float:left;
+	 }
+	.drop-button {
+	    position: absolute;float: right;right: 3%;padding-top: 16px;height: 100%;font-size: 2em;color: #fff;cursor: pointer;display: none;
+	 }
+	.drop-content {
+	    display:none;position: absolute;width:100%;background-color:#000000;opacity:0.9;padding-bottom: 70px;
+	 }
+	.drop-content-hidden {
+	    float: right;padding-right: 3.6603221%;font-size: 2em;padding-top:16px;color:#ffffff;cursor:pointer;
+	 }
+	.drop-content ul {
+	    list-style-type:none;text-align:center;
+	 }
+	.drop-content ul li {
+	    display:inline-block;width:100%;padding-top:20px;padding-bottom:20px;
+	 }
+.drop-content ul li a {
+    text-decoration:none;color:#ffffff;font-weight:bold;
+ }
+@media screen and (max-width: 768px) {
+	.h3a {
+	    padding-top:17px;padding-left:3.6603221%;float:left;
+	 }
+	.ula,#divbimga,.divba,.divfa,.divbd {
+	    display: none;
+	 }
+	.divcb,.divca,.diveaa,.diveba,.diveca,.buttonc,.buttone {
+	    width: 100%;
+	 }
+	.buttona,.buttonb,.buttond {
+	    width: 80%;margin: auto;
+	 }
+	.buttonb {
+	    margin-top: 35px;
+	 }
+	.buttone {
+	    margin-bottom: 35px;
+	 }
+	.divbb {
+	    margin-top: 0;
+	 }
+	.divc {
+	    height: 1545px;
+	 }
+	.divd {
+	    height: 1000px;
+	 }
+	.dive {
+	    height: 1625px;
+	 }
+	.diveaa,.diveba,.diveca {
+	    width: 80%;margin-right: 8.7685734%;
+	 }
+	.diveca {
+	    margin-top: 0;
+	 }
+	.divda {
+	    margin-top: 60px;width: 80%;margin-left: 8.7685734%;
+	 }
+	.divdb {
+	    margin-top: 0;width: 80%;margin-left: 8.7685734%;
+	 }
+	.divca {
+	    margin: 0;height: 1410px;
+	 }
+	.divcb {
+	    margin-top: 0;width: 80%;margin-right: 8.7685734%;
+	 }
+	.divcaa {
+	    margin-top: 80px;width:80%;margin-right: 8.7685734%;
+	 }
+	.divcab {
+	    margin-top: 0px;width: 80%;
+	 }
+	.divd {
+	    background-color: #707070;
+	 }
+	.divdba,#divdbb2 {
+	    text-align: center;
+	 }
+	.divb {
+		background-color: #5687dc;
+		height: 500px;
+	 }
+	.drop-button {
+	 	display: block;
+	 }
+ }
+</style>
+</head>
+<body onload="functiona();functionc()">
+<header>
+    <div id="diva">
+        <a href="#"><h3 class="h3a">行者</h3></a>
+		<ul class="ula">
+		    <li class="lib"><a href="#" title="其它" target="_blank">其它</a></li>
+		    <li class="lia"><a href="#" title="安徽" target="_blank">安徽</a></li>
+		    <li class="lia"><a href="#" title="北京" target="_blank">北京</a></li>
+		    <li class="lia"><a href="#" title="郑州" target="_blank">郑州</a></li>
+		    <li class="lia"><a href="#" title="重庆" target="_blank">重庆</a></li>
+		    <li class="lia"><a href="#" title="首页">首页</a></li>
+	    </ul>
+		<div id="drop-button" class="drop-button">
+		    <span id="span1" onclick="displayMemu()"><i id="i1" class="fa fa-navicon"></i></span>
+		</div>
+		<div id="drop-content" class="drop-content">
+		    <div class="drop-content-hidden">
+			    <span id="span2" onclick="hiddenMemu()"><i id="i2" class="fa fa-close"></i></span>
+			</div>
+		    <ul>
+			    <li><a href="#" title="首页" target="_blank">首页</a></li>
+				<li><a href="#" title="重庆" target="_blank">重庆</a></li>
+				<li><a href="#" title="郑州" target="_blank">郑州</a></li>
+				<li><a href="#" title="北京" target="_blank">北京</a></li>
+				<li><a href="#" title="安徽" target="_blank">安徽</a></li>
+		        <li><a href="#" title="其它" target="_blank">其它</a></li>  
+		    </ul>
+		</div>
+    </div>
+</header>
+<section>
+    <div class="divb">
+        <img id="divbimga" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/138-140F2100439.jpg" width="100%" height="100%"/>
+        <div class="divg">  
+		    <div class="cartoon1">
+                <div class="divba" style="text-shadow:#111 0 0 5px">我从来不问你 我们要去哪里</div>
+	            <div class="divbb">行者-您的旅行伴侣</div>
+			</div>
+	            <div class="divbc">
+					<a class="ab" href="#"><button class="buttona cartoon2" value="去哪儿呢">去哪儿呢</button></a>
+		            <a class="ab" href="#"><button class="buttonb cartoon4" value="关于我们">关于我们</button></a>
+	            </div>
+			<div class="divbd">
+			    <a href="javascript:" onclick="functione()" style="text-decoration:none;color:#ffffff"><span id="span3"><i id="i3" class="fa fa-chevron-down cartoon3" style="font-size:2em;padding-top:0"></i></span></a>
+			</div>
+	    </div>
+    </div>
+</section>
+<section>
+    <div id="divc" class="divc">
+        <div class="divca">
+	        <div class="divcaa">
+		        <div class="divcaaa">
+			    <img id="image1" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe6.jpg" height="250px" width="100%"/>
+			    </div>
+			    <div class="divcaab">
+			    <h2>穷游-一种时尚的旅游方式</h2>
+			    </div>
+			    <div class="divcaac">
+			    <p>如果你愿意,一场说走就走的旅行,不是为穷而穷,而是一种不同以往的行走方式。</p>
+			    </div>
+		    </div>
+		    <div class="divcab">
+		        <div class="divcaaa">
+			    <img id="image2" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe20.jpg" height="250px" width="100%"/>
+			    </div>
+			    <div class="divcaab">
+			    <h2>国际旅行-风景一直都是在路上</h2>
+			    </div>
+			    <div class="divcaac">
+			    <p>人之所以爱旅行，不是为了抵达目的地，而是为了享受旅途中的乐趣</p>
+			    </div>
+		    </div>
+		    <div class="divcab">
+		        <div class="divcaaa">
+			    <img id="image3" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe9.jpg" height="250px" width="100%"/>
+			    </div>
+			    <div class="divcaab">
+			    <h2>旅游咨询-行者最实用的旅游媒体</h2>
+			    </div>
+			    <div class="divcaac">
+			    <p>最即时的旅游新闻资讯 ,不止包括酒店资讯、景点资讯、演出资讯、度假资讯;让您足不出户即可知天下旅游动态。</p>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="divcb">
+	        <a class="aa" href="#"><button class="buttonc" value="导游服务">导游服务</button></a>
+	    </div>
+    </div>
+</section>
+<section>
+    <div class="divd">
+        <div class="divda">
+	        <img id="image4" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe14a.jpg" width="100%" height="460px"/>
+	    </div>
+	    <div class="divdb">
+	        <div class="divdba">
+		    <h2>行者</h2>
+		    </div>
+		    <div id="divdbb1" class="divdbb">
+		    <p>行者网涵盖团游、自助游、邮轮旅游、自驾游、定制旅游计划以及景点门票预订、机票预订、火车票预订服务,更有牛人专线、首付出发旅游等品质高端、价格实惠的旅游。</p>
+		    </div>
+		    <div id="divdbb1" class="divdbb">
+		    <p>公司致力于打造最安全、最舒服、最实惠的旅行计划。针对不同顾客的不同想法，每一个旅行计划皆为每一个顾客量身制定，以顾客的满意为最高旨意，让顾客度过每一段旅程。<p>
+		    </div>
+		    <div id="divdbb2" class="divdbb">
+		    <a class="ab" href="#"><button class="buttond" value="了解细节">了解细节</button></a>
+		    </div>
+	    </div>
+    </div>
+</section>
+<section>
+    <div class="dive">
+        <div class="divea">
+	        <div class="diveaa">
+	            <h2>旅游资讯</h2>
+		    </div>
+	    </div>
+	    <div class="diveb">
+	        <div class="diveba">
+		        <div class="divebba">
+			        <a href="#"><img id="image5" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe10.jpg" width="100%" height="200px"/></a>
+			    </div>
+			    <div class="divebbb">
+			        <a href="#"><h3>种树-以色列的全民宗教</h3></a>
+			    	<br/>
+			    	<p style="color:#b8b8b8">以色列是一个有故事的地方，几乎处处都有遗迹，一草一木都有来历。在全国上下，被保护的树木赫赫有名。游客最常见的是橄榄树。</p>
+		    	</div>
+	    	</div>
+	    	<div class="diveba">
+	    	    <div class="divebba">
+		    	    <a href="#"><img id="image6" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe16.jpg" width="100%" height="200px"/></a>
+		    	</div>
+	    		<div class="divebbb">
+		    	    <a href="#"><h3>赴台陆客人数断崖式下跌</h3></a>
+		    		<br/>
+		    	    <p style="color:#b8b8b8">据台当局“移民署”统计，大陆游客个人游入境人数较去年同期减少上万人次，减幅14.39%，大陆旅游团人数跌幅高达六成。</p>
+		    	</div>
+	    	</div>
+	    	<div class="diveba">
+		        <div class="divebba">
+		    	    <a href="#"><img id="image7" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe21.jpg" width="100%" height="200px"/></a>
+		    	</div>
+		    	<div class="divebbb">
+		    	    <a href="#"><h3>唐伯虎“桃花坞”地名要被注销?</h3></a>
+			    	<br/>
+		    		<p style="color:#b8b8b8">苏州市民政局发布重大地名注销、命名方案公示。根据合并方案，桃花坞街道、石路街道、金阊街道区域合并设立为“金阊街道”。</p>
+		    	</div>
+		    </div>
+	    	<div class="diveba">
+		        <div class="divebba">
+		    	    <a href="#"><img id="image8" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe18.jpg" width="100%" height="200px"/></a>
+		    	</div>
+		    	<div class="divebbb">
+		    	    <a href="#"><h3>黄山-中国十大名山之一、5A级旅游景区</h3></a>
+		    		<br/>
+		    		<p style="color:#b8b8b8">五岳归来不看山，黄山归来不看岳。景区内有名可数的景点800多处，因峰岩青黑，遥望苍黛而名。仿佛穿梭在人间与仙境。</p>
+		    	</div>
+		    </div>
+	    </div>
+	    <div class="divec">
+	        <div class="diveca">
+	    	    <a class="ab" href="#"><button class="buttone" value="查看更多">查看更多</button></a>
+	    	</div>
+	    </div>
+    </div>
+</section>
+<footer>
+    <div class="divf">
+        <div class="divfa">
+	        <div class="divfaa">
+		        <img id="image9" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xilouyibei.jpg" width="100%" height="155px"/>
+	        </div>
+		    <div class="divfab">
+		        <p style="color:#ffffff">关注我们</p>
+		    </div>
+	    </div>
+	    <div class="divfa" style="color:#ffffff">
+	        <div style="margin-top:45px;width:100%;height:20px">
+		        <h6 style="text-indent:38.8888888%;font-size:1.25em">站点信息</h6>
+	    	</div>
+	    	<div style="margin-top:10px;width:100%;height:75px">
+	    		<ul style="list-style-type:none">
+			    	<li style="text-indent:47.1111111%"><a href="#" class="ab">关于我们</a></li>
+			    	<li style="text-indent:47.1111111%"><a href="#" class="ab">文章归档</a></li>
+			    	<li style="text-indent:47.1111111%"><a href="#" class="ab">免责说明</a></li>
+			    	<li style="text-indent:47.1111111%"><a href="#" class="ab">意见反馈</a></li>
+		    	</ul>
+	    	</div>
+	    </div>
+	        <div style="margin-left:3.2942898%;padding-top:30px">
+		        <nav>
+		    	    <a class="ab" href="#">最新更新</a>
+		    		<a class="ab" href="#">合作加盟</a>
+			    	<a class="ab" href="#">联系我们</a>
+		    	</nav>
+	    	</div>
+	    	<div style="margin-top:30px;margin-left:3.2942898%">
+		        <p style="color:#ffffff">Copyright © 行者官网 川ICP备12345678号-1</p>
+		    	<br/>
+		    	<p style="color:#ffffff">四川行者旅行有限公司</p>
+		    	<br/>
+		    	<p style="color:#ffffff">四川省德阳市广汉市南昌路四段46号</p>
+		    </div>
+    </div>
+</footer>
+<script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script>
+	function functiona() {
+	    var vara;
+		var varb = document.getElementById("divbimga");
+        $(document).ready(function() {
+            vara=$(document).scrollTop();
+			 });//通过jQuery获得滚动条的滚动距离
+		        function functionb() {
+			        if(vara<650) {
+	                    varb.src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/138-140F2100439.jpg";
+				     }
+				    else {
+				        varb.src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-xingzhe/xingzhe22.jpg";
+	                 }
+				 }
+		setTimeout(functiona,100);
+		return functionb();	
+	 }
+</script>
+<script>
+	function functionc() {
+	    var vara = document.getElementById("diva");
+        var	scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop); 
+/*
+*计算当前页面的滚动距离，这个值的获取取决于浏览器。
+*FF、Opera和IE浏览器认为在客户端浏览器展示的页面的内容对应于整个HTML，所以使用document.documentElement来代表，相应的滚动距离则通过document.documentElement.scrollLeft 和 document.documentElement.scrollTop来获取。
+*Safari和Chrome浏览器则认为页面开始于body部分，从而相应的滚动距离用document.body.scrollLeft 和 document.body.scrollTop来获取。
+*针对跨浏览器的解决方案则可简单的用如下代码获取：var scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop); 
+*/
+        function functiond() {
+            if(scrollTop!=0) {
+		        vara.style.backgroundColor="#282828";
+		     }
+		    else {
+		        vara.style.backgroundColor="transparent";
+		     }
+		 }
+		setTimeout(functionc,100);
+		return functiond();
+	 }
+</script>
+<script>
+    function functione() {
+	    var scrollTop_top = $(".divc").offset();//得到divc这个div层的offset，包含两个值，top和left 
+	    var scrollTop_top_top = scrollTop_top.top - 70;
+        $("body,html").animate({ scrollTop:scrollTop_top_top},1000); //让body的scrollTop等于divc的top，就实现了滚动
+	 }
+</script>
+<script>
+    function displayMemu() {
+	    var a = document.getElementById("drop-content");
+		a.style.display="block";
+	 }
+</script>
+<script>
+    function hiddenMemu() {
+	    var a = document.getElementById("drop-content");
+		a.style.display="none";
+	 }
+</script>
+</body>
+</html>

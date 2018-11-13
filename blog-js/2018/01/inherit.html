@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="keywords" content="Anani,博客园,IT,github,inherit,继承,原型链">
+		<meta name="author" content="Anani">
+		<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+		<!-- 引入 font-awesome -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+		<!-- 引入 Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap.min.css"/>
+		<!-- 引入 syntaxhighlighter -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shThemeDefault.css"/>
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<title>详解 JavaScript 中的继承</title>
+		<style type="text/css">
+			/*全局样式*/
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			body {
+			    display: block;
+			    margin: 0 1%;
+			    min-height: 101%;
+			    font-size: 16px;
+			    font-family: 'PingFang SC','Helvetica Neue','Helvetica','Arial',sans-serif;
+			    color: #000;
+			}
+
+			img {
+			    max-width: 100%;
+			}
+			/*home和头部元素开始*/
+			#header {
+			    padding-bottom: 5px;
+			    margin-top: 30px;
+			}
+
+			#blogTitle {
+			    height: 60px;
+			    clear: both;
+			}
+
+			    #blogTitle h1 {
+			        padding-left: 1em;
+			        font-size: 2.25em;
+			        font-weight: bold;
+			        line-height: 0;
+			    }
+
+			        #blogTitle h1 a {
+			            color: #515151;
+			        }
+
+			            #blogTitle h1 a:hover {
+			                color: #FF0000;
+			            }
+
+			    #blogTitle h2 {
+			        float: left;
+			        padding-left: 6em;
+			        font-weight: normal;
+			        font-size: 1em;
+			        line-height: 1.875;
+			        color: #757575;
+			    }
+
+				#nav {
+					background-color: #000;
+				}
+					#nav ul li a {
+						color: #FFF;
+					}
+					#nav ul li a:hover {
+						color: #f00;
+					}
+
+			/*博文的显示框样式*/
+			.bowen-content {
+				margin: 0 auto;
+				width: 95%;
+				min-height: 450px;
+			}
+
+	        .bowen {
+	            float: left;
+	            padding-top: 20px;
+	            padding-bottom: 20px;
+	            margin: 0;
+	            width: 100%;
+	            text-align: center;
+	            font-weight: bold;
+	            background-color: #ccc;
+	        }
+
+	        .bowen-title {
+	        	float: left;
+	            width: 100%;
+	            padding: 20px 0 20px 15px;
+	            margin-top: 0;
+	            font-weight: bold;
+	            border-left: 15px solid #058bf5;
+	            background-color: #dff;
+	        }
+
+	        .bowen-body {
+	        	float: left;
+	        	margin-left: 10%;
+	            width: 80%;
+	        }
+	        .bowen-body p {
+	               text-indent:7%;
+	            }
+
+			/*底部浮标*/
+			.footer-page {
+				float: left;
+            	padding-top: 20px;
+           		padding-bottom: 20px;
+           		width: 100%;
+           	 	text-align: center;
+				background-color: #494949;
+				color: #fff;
+	        }
+
+	        .list-inline a {
+	        	color: #fff;
+	        }
+	        	.list-inline a:hover {
+	        		text-decoration:none;
+	      		}
+
+	      	.vertical-line {
+	      		border-style: solid;
+	      		border-width: 0 0 0 1px;
+	      		border-color: #fff;
+	      	}
+
+	        #buoy {
+	            position: fixed;
+	            right: 0;
+	            bottom: 20px;
+	            z-index: 999;
+	            width:40px; 
+	            height:80px;
+	            background-color: rgba(181, 164, 164, 0.53);
+	        }
+
+	        .u-icon-arr {
+	            position: absolute;
+	            right: 14px;
+	            width: 25px;
+	            height: 25px;
+	            border-style: solid;
+	            border-width: 10px 10px 0 0;
+	            border-color: #fff;
+	            -webkit-transform-origin: 75% 25%;
+	            -webkit-transform: rotateZ(45deg);
+	            -webkit-transition: 100ms ease-in .1s;
+	            transition: 100ms ease-in .1s;
+	        }
+
+	        .u-icon-up {
+	            top: 10px;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(-45deg);
+	            -ms-transform: rotateZ(-45deg);
+	            transform: rotateZ(-45deg);
+	        }
+
+	        .u-icon-down {
+	            bottom: 0;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(135deg);
+	            -ms-transform: rotateZ(135deg);
+	            transform: rotateZ(135deg);
+	        }
+
+	        /*参考资料板块*/
+	        .reference-material {
+	        	float: left;
+            	padding-top: 20px;
+           		padding-bottom: 20px;
+           		width: 100%;
+           	 	text-align: right;
+	        }
+
+	        	.reference-material .vertical-line {
+	        		border-style: solid;
+	      			border-width: 0 0 0 1px;
+	      			border-color: inherit;
+	        	}
+
+	        	.reference-material .list-inline a {
+	        		color: inherit;
+	        	}
+	        		.reference-material .list-inline a:hover {
+	        			text-decoration:none;
+	        		}
+
+	         /*当使用手机设备时改变部分板块的显示样式*/
+	        @media screen and (max-width: 768px) {
+	         	#buoy {
+	         		display: none;
+	         	}
+	         	#blogTitle h1 {
+              		padding-left: 0.4em;
+           		}
+            	#blogTitle h2 {
+              		padding-left: 3.4em;
+           		}
+           		.bowen-body {
+           			width: 100%;
+           			margin-left: 0;
+           		}
+           		.bowen-content {
+           			width: 100%;
+           			margin: 0;
+           			margin-top: 20px;
+           		}
+	        }
+		</style>
+    </head>
+	<body>
+	<header>
+		<div id="header">
+			<div id="blogTitle">
+				<h1><a id="Header1_HeaderTitle" href="/anani1994.github.io/blog/projects/old-blog/index.html">Anani</a></h1>
+				<h2>代码改变世界，坚持铸就未来。</h2>
+			</div>
+			<nav id="nav" class="navbar navbar-default" role="navigation">
+		        <div class="container-fluid">
+		            <div class="navbar-header">
+		               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar-collapse">
+		                  <span class="sr-only">切换导航</span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		               </button>
+		            </div>
+		            <div id="primary-navbar-collapse" class="collapse navbar-collapse">
+		               <ul class="nav navbar-nav navbar-right">
+		                   <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">首页</a></li>
+		                   <li><a href="https://github.com/Anani1994">Github</a></li>
+		                   <li><a href="http://www.cnblogs.com/anani/">博客园</a></li>
+		                   <li class="disabled"><a href="">留言板</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </nav>
+		</div>
+	</div>
+	</header>
+	<section>
+	    <div class="bowen-content">
+	    	<div><h3 class="bowen">详解 javascrip 中的继承</h3></div>
+            <h4 class="bowen-title">关于继承</h4>
+            <div class="bowen-body">
+             	<p>继承是 00语言 中的一个最为人津津乐道的概念。许多 00语言 都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。</p>
+            </div>
+            <h4 class="bowen-title">原型链</h4>
+            <div class="bowen-body">
+             	<div>每个构造函数都有一个原型对象（prototype），原型对象都包含一个指向构造函数的指针。</div>
+             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-0.png"></p>
+             	<div>原型既然作为对象，属性的集合，自然可以自定义许多属性。比如对象的原型：</div>
+             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-1.png"></p>
+             	<div>当然我们也可以自己在原型对象上自定义方法或新增自己的属性，比如：</div>
+             	<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				function superType() {
+         					superType.prototype.name = 'Anani';
+         					superType.prototype.getYear = function() {
+         						console.log(2018);
+         					}
+         				}
+         			</pre>
+             	</div>
+             	<div>结果就变成这样了：</div>
+             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-2.jpg"></p>
+             	<p>而实例都包含一个指向原型对象的内部指针。当我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应地，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原型的链条。这就是原型链的基本概念。</p>
+             	<p>原型链存在的问题：1、包含引用类型值的原型属性会被所有实例共享。2、在创建子类型的实例时，不能向超类型的构造函数中传递参数（其实是有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数）。</p>
+            </div>
+            </div>
+            <h4 class="bowen-title">继承</h4>
+	            <div class="bowen-body">
+	            	<div>ECMAScript 中描述了原型链的概念，并将原型链作为实现继承的主要方法。</div>
+	             	<div>用具体的代码来讲：</div>
+	             	<div>
+	         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+	         				function SuperType() {
+	         					this.property = 'something';
+	         				}
+	         				SuperType.prototype.getSuperValue = function() { return this.property; };
+
+	         				function SubType() {
+	         					this.subProperty = 'other something';
+	         				}
+	         				SubType.prototype = new SuperType();
+	         				SubType.prototype.getSubValue = function() { return this.subProperty; };
+
+	         				var instance = new SubType();
+	         				alert(instance.getSuperValue());
+	         			</pre>
+	             	</div>
+	             	<div>以上的代码：通过创建 SuperType 的实例，并将该实例赋给 SubType.prototype，使得 SubType 继承了 SuperType，实现的本质是重写原型对象（没有使用 SubType 默认提供的原型，而是给它换了一个新原型），代之以一个新类型的实例。最终结果就是这样的：instance 指向 SubType 的原型，SubType 的原型又指向 SuperType 的原型。getSuperValue() 方法仍然还在 SuperType.prototype 中，但 property 则位于 SubType.prototype 中。这是因为 property 是一个实例属性（SubType.prototype 现在是 SuperType 的实例），而 getSuperValue() 则是一个原型方法。另外 instance.constructor 现在指向的是 SuperType，这是因为原来 SubType.prototype 中的 constructor 被重写了的缘故。</div>
+	             	<br/>
+	             	<div>通过实现原型链，本质上扩展了原型搜索机制。当以读取模式访问一个实例属性时，首先会在实例中搜索该属性。如果没有找到该属性，则会继续搜索实例的原型。在通过原型链实现继承的情况下，搜索过程就得以沿着原型链继续向上。就上面的例子来说，调用 instance.getSuperValue() 会经历三个搜索步骤：1）搜索实例；2）搜索 SubType.prototype；3）搜索 SuperType.prototype，最后一步才会找到该方法。在找不到属性或方法的情况下，搜索过程总是要一环一环地前行直到原型链末端。</div>
+	            </div>
+            <h4 class="bowen-title">默认的原型</h4>
+            <div class="bowen-body">
+             	<p>所有引用类型默认都继承了 Object，而这个继承也是通过原型链实现的。需要注意的是：所有函数的默认原型都是 Object 的实例，因此默认原型都会包含一个内部指针，指向 Object.prototype 。这也正是所有自定义类型都会继承 toString()、valueOf() 等默认方法的根本原因。</p>
+             	<p>每个对象都有一个隐藏的属性：__proto__，可称为隐式原型，其指向创建该对象的函数的 prototype。<span class="text-danger">但是 Object.prototype 是一个特例——它的 __proto__ 指向的是 null。</span></p>
+            </div>
+            <h4 class="bowen-title">确定原型和实例的关系</h4>
+            <div class="bowen-body">
+             	<div>在检测数据类型时，我们可以通过 typeof 判断，当遇到 string/number/boolean/undefined 都很顺利。但是如果这个值是对象或 null，返回"object"。如果这个值是函数，返回"function"。此时我们需要用到 instanceof 操作符。在此我们也用 instanceof 操作符来判断原型和实例的关系，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回true。以下几行代码就说明了这一点：</div>
+             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-3.png"></p>
+             	<div>另外我们也可以使用 isPrototypeOf() 方法。同样，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此 isPrototypeOf() 方法也会返回 true。</div>
+            </div>
+	    </div>
+	</section>
+	<section>
+		<div class="reference-material text-warning text-right">
+			<ul class="list-inline">
+				<li><b>参考资料：</b></li>
+				<li><span class="vertical-line"></span></li>
+				<li>Javascript 高级程序设计（第三版）</li>
+				<li><span class="vertical-line"></span></li>
+				<li>部分资料来源于网络</li>
+			</ul>
+		</div>
+	</section>
+	<footer id="footer">
+   	<div class="footer-page">
+      <ul class="list-inline">
+      	<li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+      	<li><span class="vertical-line"></span></li>
+      	<li><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how" style="text-decoration:none;">联系我</a></li>
+      </ul>
+   	</div>
+   	<div id="buoy">
+      <a onclick="toTop()" title="回到顶部"><span class="u-icon-arr u-icon-up"></span></a>
+      <a onclick="toBottom()" title="移到底部"><span class="u-icon-arr u-icon-down"></span></a>
+  	</div>
+	</footer>
+    </body>
+    <!-- jQuery -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+    <!-- 包括所有已编译的 bootstrap 插件 -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap.min.js"></script>
+    <!-- 包括所有已编译的 syntaxhighlighter 插件 -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shCore.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shBrushJScript.js"></script>
+    <!-- 设置 syntaxhighlighter 插件 -->
+    <script type="text/javascript">
+    	SyntaxHighlighter.all();
+	</script>
+    <script type="text/javascript">
+      // 设置点击底部浮标到顶、底部的函数
+      function toTop() {
+         $('body,html').animate({scrollTop:0},1000);
+      }
+      function toBottom() {
+         var bottom = $("body,html").height();
+         $('body,html').animate({scrollTop:bottom},1000);
+      }
+   </script>
+</html>

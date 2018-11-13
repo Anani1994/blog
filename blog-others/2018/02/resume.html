@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+    <!-- 优先使用最先版的 IE 和 chrome 内核 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 指定双核浏览器以 Webkit 内核渲染本网站 -->
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!-- SEO 优化 -->
+    <title>Anani的前端简历</title>
+    <meta name="author" content="Anani,dongwhchn@163.com" />
+    <meta name="description" content="一个热爱前端开发的求职者，Anani的个人简历。" />
+    <meta name="keywords" content="Anani,简历" />
+    <!-- 引入 font-awesome -->
+    <link rel="stylesheet" type="text/css" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css" />
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap-4/bootstrap.min.css" />
+    <!-- IOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="shortcut icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/favicon.ico" type="image/x-icon" />
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5 元素和媒体查询 -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	<style type="text/css">
+	/*全局样式*/
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	header, section, footer, aside, nav, main, article, figure {
+    	display: block; 
+	}
+	/*主页板块*/
+	.main-page-container {
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+	}
+	.main-page-inside {
+		position: fixed;
+		z-index: -99;
+		width: 100%;
+		height: 100%;
+		background-image: -webkit-linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.1)),url('/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-resume/background-0.jpg');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		-webkit-animation: backgroundScale 6s linear 0s infinite alternate;
+		animation: backgroundScale 6s linear 0s infinite alternate;
+	}
+	@-webkit-keyframes backgroundScale {
+		from {-webkit-transform: scale(1);}
+		to {-webkit-transform: scale(1.1);}
+	}
+	@keyframes backgroundScale {
+		from {transform: scale(1);}
+		to {transform: scale(1.1);}
+	}
+	.main-page-content {
+		display: none;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		font-family: "Comic Sans MS", cursive, sans-serif;
+	}
+	.main-page-body {
+		padding-top: 35px;
+	}
+	/*个人信息板块*/
+	.imformation-container {
+		padding: 120px 0;
+		background-color: #a29971;
+	}
+	.imformation-img {
+		padding-top: 30px;
+	}
+	.imformation-body {
+		padding: 0 270px;
+		opacity: 0;
+	}
+	.imformation-body p {
+		font-size: 14px;
+		text-indent: 32px;
+	}
+	/*技术掌握板块*/
+	.technology-container {
+		padding: 120px 0;
+		background-color: #4d5e8f;
+	}
+	.technology-content {
+		margin: 0 auto;
+		padding-top: 65px;
+	}
+	.technology-header {
+		padding-top: 35px;
+	}
+		.technology-header div {
+			padding: 16px;
+			text-align: center;
+			border-radius: 50%;
+		}
+	.circle-container {
+		display: inline-block;
+		position: relative;
+		margin: auto;
+		width: 45%;
+		vertical-align: top;
+	}
+	.out-circle {
+		position: relative;
+		margin: 0 auto;
+		width: 250px;
+		height: 250px;
+		font-size: 12px;
+		border: 4px dashed #999;
+		border-radius: 50%;
+	}
+	.out-circle li {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		border-radius: 50%;
+	}
+	.out-circle li:nth-child(1) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) 0s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) 0s infinite alternate;
+	}
+	.out-circle li:nth-child(2) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -6s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -2s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -6s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -2s infinite alternate;
+	}
+	.out-circle li:nth-child(3) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate;
+	}
+	.out-circle li:nth-child(4) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -10s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -6s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -10s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -6s infinite alternate;
+	}
+	.out-circle li:nth-child(5) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate;
+	}
+	.out-circle li:nth-child(6) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -14s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -10s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -14s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -10s infinite alternate;
+	}
+	.out-circle li:nth-child(7) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -16s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -16s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate;
+	}
+	.out-circle li:nth-child(8) {
+		-webkit-animation: outX 8s cubic-bezier(.36,0,.64,1) -18s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -14s infinite alternate;
+		animation: outX 8s cubic-bezier(.36,0,.64,1) -18s infinite alternate,outY 8s cubic-bezier(.36,0,.64,1) -14s infinite alternate;
+	}
+	@-webkit-keyframes outX {
+		from {left: -27px;}
+		to {left: 217px;}
+	}
+	@keyframes outX {
+		from {left: -27px;}
+		to {left: 217px;}
+	}
+	@-webkit-keyframes outY {
+		from {top: -27px;}
+		to {top: 217px;}
+	}
+	@keyframes outY {
+		from {top: -27px;}
+		to {top: 217px;}
+	}
+	.inner-circle {
+		position: absolute;
+		margin: 0 auto;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		width: 150px;
+		height: 150px;
+		font-size: 10px;
+		border: 4px dashed #999;
+		border-radius: 50%;
+	}
+	.inner-circle li {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 50%;
+	}
+	.inner-circle li:nth-child(1) {
+		-webkit-animation: innerX 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) 0s infinite alternate;
+		animation: innerX 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) 0s infinite alternate;
+	}
+	.inner-circle li:nth-child(2) {
+		-webkit-animation: innerX 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate;
+		animation: innerX 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -4s infinite alternate;
+	}
+	.inner-circle li:nth-child(3) {
+		-webkit-animation: innerX 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate;
+		animation: innerX 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -8s infinite alternate;
+	}
+	.inner-circle li:nth-child(4) {
+		-webkit-animation: innerX 8s cubic-bezier(.36,0,.64,1) -16s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate;
+		animation: innerX 8s cubic-bezier(.36,0,.64,1) -16s infinite alternate,innerY 8s cubic-bezier(.36,0,.64,1) -12s infinite alternate;
+	}
+	@-webkit-keyframes innerX {
+		from {left: -22px;}
+		to {left: 122px;}
+	}
+	@keyframes innerX {
+		from {left: -22px;}
+		to {left: 122px;}
+	}
+	@-webkit-keyframes innerY {
+		from {top: 122px;}
+		to {top: -22px;}
+	}
+	@keyframes innerY {
+		from {top: 122px;}
+		to {top: -22px;}
+	}
+	.bar-container {
+		display: inline-block;
+		margin: auto;
+		width: 35%;
+		vertical-align: top;
+	}
+	.bar-body {
+		margin: 0 auto;
+		padding-top: 5px;
+		padding-left: 10px;
+		width: 100%;
+		height: 15px;
+		background-color: #fff;
+		border: 1px solid #000;
+		box-shadow: 10px 5px 0px #c0c0c0 inset, 10px -1px 0px 4px #c0c0c0 inset;
+	}
+	.bar-item {
+		width: 0;
+		height: 5px;
+		background-color: #000;
+	}
+	.bar-htmlCss {
+		width: 90%;
+		-webkit-animation: slideWidthOne .9s;
+		animation: slideWidthOne .9s;
+	}
+	@-webkit-keyframes slideWidthOne {
+		from {width: 0;}
+		to {width: 90%;}
+	}
+	@keyframes slideWidthOne {
+		from {width: 0;}
+		to {width: 90%;}
+	}
+	.bar-javascript {
+		width: 85%;
+		-webkit-animation: slideWidthTwo .9s;
+		animation: slideWidthTwo .9s;
+	}
+	@-webkit-keyframes slideWidthTwo {
+		from {width: 0;}
+		to {width: 85%;}
+	}
+	@keyframes slideWidthTwo {
+		from {width: 0;}
+		to {width: 85%;}
+	}
+	.bar-php {
+		width: 65%;
+		-webkit-animation: slideWidthThree .9s;
+		animation: slideWidthThree .9s;
+	}
+	@-webkit-keyframes slideWidthThree {
+		from {width: 0;}
+		to {width: 65%;}
+	}
+	@keyframes slideWidthThree {
+		from {width: 0;}
+		to {width: 65%;}
+	}
+	.bar-mysql {
+		width: 80%;
+		-webkit-animation: slideWidthFour .9s;
+		animation: slideWidthFour .9s;
+	}
+	@-webkit-keyframes slideWidthFour {
+		from {width: 0;}
+		to {width: 80%;}
+	}
+	@keyframes slideWidthFour {
+		from {width: 0;}
+		to {width: 80%;}
+	}
+
+	/*main板块-文章板块*/
+	.article {
+		padding: 120px 0;
+		background-color: #87b0a5;
+	}
+    .article-header {
+        padding-bottom: 65px;
+    }
+    .card-img-container {
+    	position: relative;
+    	height: 200px;
+        overflow: hidden;
+    }
+	    .card-img-container img {
+	    	position: absolute;
+	    	top: 0;
+	    }
+    .article-footer {
+        padding-top: 55px;
+    }
+    .hover-slide-0 {
+        transition: top 7s linear;
+        -webkit-transition: top 7s linear;
+    }
+        .card-img-container:hover .hover-slide-0 {
+           top: -950px;
+        }
+    .hover-slide-1 {
+        transition: top 10s linear;
+        -webkit-transition: top 10s linear;
+    }
+        .card-img-container:hover .hover-slide-1 {
+           top: -1210px;
+        }
+    .hover-slide-2 {
+        transition: top 4s linear;
+        -webkit-transition: top 4s linear;
+    }
+        .card-img-container:hover .hover-slide-2 {
+           top: -290%;
+        }
+
+    /*联系模块*/
+    .contact {
+    	padding: 120px 0;
+    	background-color: #4b85a0;
+    }
+    .contact-body {
+    	padding: 35px 0;
+    }
+    .contact-icon-container {
+    	width: 40px;
+    	height: 40px;
+    	text-align: center;
+    	line-height: 40px;
+    	border: 1px solid #fff;
+    	border-radius: 50%; 
+    }
+    .contact .nav li {
+    	background-color: rgba(255,255,255,.1);
+    	-webkit-transition: -webkit-transfrom ease-out .1s;
+    	transition: transfrom ease-out .1s;
+    }
+    .contact .nav li:hover {
+    	opacity: .9;
+    	-webkit-transform: scale(.9);
+    	transform: scale(.9);
+    }
+
+	/*底部模块*/
+    .footer-page {
+    	position: relative;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        background-color: #494949;
+    }
+    .vertical-line {
+        border-style: solid;
+        border-width: 0 0 0 1px;
+        border-color: #fff;
+    }
+    .to-top {
+    	z-index: 9;
+    	position: absolute;
+    	top: -15px;
+    	left: 50%;
+    	-webkit-transform: translate(-50%) rotate(45deg);
+    	transform: translate(-50%) rotate(45deg);
+    	border: 15px solid #494949;
+    	cursor: pointer;
+    }
+
+    /*媒体查询板块*/
+	@media screen and (max-width: 768px) {
+		.main-page-content h1 {
+			font-size: 28px;
+		}
+		.main-page-content h2 {
+			font-size: 16px;
+		}
+		.main-page-content a {
+			font-size: 14px;
+		}
+		.imformation-body {
+			padding: 50px 5px 0 5px;
+		}
+		.circle-container,.bar-container {
+			display: block;
+			width: 90%;
+		}
+		.bar-container {
+			padding-top: 65px;
+		}
+	}
+	</style>
+</head>
+<body data-spy="scroll" data-target="#navbar">
+	<nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+		<a class="navbar-brand" href="/anani1994.github.io/blog/projects/old-blog/index.html"><span class="fa fa-angle-double-left"></span> 博客</a>
+		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#primary-navbar">
+			<span class="fa fa-navicon"></span>
+		</button>
+		<div id="primary-navbar" class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#main-page-container">首页</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#imformation-container">关于我</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#technology-container">技术掌握</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#article">作品集</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#contact">联系我</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<section id="main-page-container" class="main-page-container">
+			<div class="main-page-inside"></div>
+			<div class="main-page-content text-center">
+				<h1 class="display-2">Hello，I'm Anani</h1>
+				<h2>一个钟爱前端的求职者</h2>
+				<div class="main-page-body">
+					<a class="btn btn-outline-light btn-lg" href="#imformation-container" role="button">关于我</a>
+					<a class="btn btn-primary btn-lg" href="#" role="button">作品集</a>
+				</div>
+			</div>
+		</section>
+		<section id="imformation-container" class="imformation-container">
+			<h1 class="text-center">关于我</h1>
+			<div class="imformation-img">
+				<div class="text-center"><img class="rounded-circle" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-resume/people-author.jpg" alt="author" width="200px" height="200px;"></div>
+			</div>
+			<div class="imformation-body">
+				<p>董万宏，男，23岁，籍贯重庆，一名前端爱好者。</p>
+				<p>就读于中国民用航空飞行学院，本科。前端是一博大精深的行业，我并不是计算机专业出生，但自从学前端以来，一直保持着对前端的热情，遇到问题不畏惧，不逃避，通过查询、询问步步为营，攻克每个难题。</p>
+				<p>沟通适应能力较强，能吃苦，虚心上进、思维活跃，经常有对工作有利的想法并会努力付诸实践。</p>
+				<p>学习永无止境，在前端要走的路还有很长，希望能够和更多志同道合的朋友学习、交流，一起进步。</p>
+			</div>
+		</section>
+		<section id="technology-container" class="technology-container">
+			<h1 class="text-center">技术掌握</h1>
+			<div class="container">
+				<div class="row technology-header">
+					<div class="col-md-4 col-sm-6 col-xs-12 border border-primary"><div><small>0、熟练掌握HTML、CSS、JavaScript、jQuery等Web开发技能。</small></div></div>
+					<div class="col-md-4 col-sm-6 col-xs-12 border border-primary"><div><small>1、了解并能使用服务器编程语言PHP以及Mysql数据库。并有接触nodeJs。</small></div></div>
+					<div class="col-md-4 col-sm-6 col-xs-12 border border-primary"><div><small>2、熟悉前端开发常用技术AJAX，能够使用jQuery、Bootstrap前端开发框架。</small></div></div>
+				</div>
+			</div>
+			<div class="technology-content">
+				<div class="circle-container">
+					<ul class="out-circle list-unstyled">
+						<li style="background-color: rgba(121,100,102,0.8);">jQuery</li>
+						<li style="background-color: rgba(49,65,82,0.8);">Bootstrap</li>
+						<li style="background-color: rgba(70,165,2,0.8);">PHP</li>
+						<li style="background-color: rgba(121,100,102,0.8);">Mysql</li>
+						<li style="background-color: rgba(149,65,82,0.8);">AJAX</li>
+						<li style="background-color: rgba(100,5,200,0.8);">Node.js</li>
+						<li style="background-color: rgba(70,15,180,0.8);">css.sprites</li>
+						<li style="background-color: rgba(170,165,2,0.8);">ps</li>
+					</ul>
+					<ul class="inner-circle list-unstyled">
+						<li style="background-color: rgba(221,100,102,0.8);">html</li>
+						<li style="background-color: rgba(249,165,82,0.8);">css</li>
+						<li style="background-color: rgba(270,165,92,0.8);">js</li>
+						<li style="background-color: rgba(121,100,202,0.8);">git</li>
+					</ul>
+				</div>
+				<div class="bar-container text-white">
+					<div class="d-flex justify-content-between"><span>HTML/CSS</span><span>90%</span></div>
+					<div class="bar-body">
+						<div class="bar-item"></div>
+					</div>
+					<br/>
+					<div class="d-flex justify-content-between"><span>Javascript</span><span>85%</span></div>
+					<div class="bar-body">
+						<div class="bar-item"></div>
+					</div>
+					<br/>
+					<div class="d-flex justify-content-between"><span>PHP</span><span>65%</span></div>
+					<div class="bar-body">
+						<div class="bar-item"></div>
+					</div>
+					<br/>
+					<div class="d-flex justify-content-between"><span>Mysql</span><span>80%</span></div>
+					<div class="bar-body">
+						<div class="bar-item"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="article" class="article">
+            <div class="container">
+	            <div class="article-header text-center">
+	               <h2>Previous articles</h2>
+	               <div class="font-italic font-weight-light">这里有我学习中收集整理的一些笔记，或是一些有感而发的随笔。</div>
+	            </div>
+            	<div class="row">
+	                <div class="col-md-4 col-sm-6 col-xs-12">
+	                    <div class="card">
+	                    <div class="card-img-container border"><img class="card-img-top hover-slide-0" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-resume/closure.jpg" alt="photo-closure" height="1150px"></div>
+	                    <div class="card-body">
+	                        <h5 class="card-title">JavaScript 闭包</h5>
+	                        <div class="card-text">闭包（closure）是 Javascript语言 的一个难点，也是它的特色，很多高级应用都需要依靠闭包实现。有不少的开发人员总是分不清匿名函数和闭包这两个的概念......</div>
+	                    </div>
+	                    <div class="card-footer">
+	                        <a class="btn btn-primary" href="/anani1994.github.io/blog/projects/old-blog/blog-js/2017/10/closure.html">详细内容 <span class="fa fa-angle-double-right"></span></a>
+	                    </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-4 col-sm-6 col-xs-12">
+	                    <div class="card">
+	                    <div class="card-img-container border"><img class="card-img-top  hover-slide-1" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-resume/dom.jpg" alt="photo-dom" height="1410px"></div>
+	                    <div class="card-body">
+	                        <h5 class="card-title">HTML DOM</h5>
+	                        <div class="card-text">HTML DOM是专门适用于HTML/XHTML的文档对象模型，它将网页中的各个元素都看作一个个对象，从而使网页中的元素也可以被计算机语言获取或者编辑。DOM是......</div>
+	                    </div>
+	                    <div class="card-footer">
+	                        <a class="btn btn-primary" href="/anani1994.github.io/blog/projects/old-blog/blog-html/2017/10/html-dom.html">详细内容 <span class="fa fa-angle-double-right"></span></a>
+	                    </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-4 col-sm-6 col-xs-12">
+	                    <div class="card">
+	                    <div class="card-img-container border"><img class="card-img-top  hover-slide-2" src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-resume/inherit.jpg" alt="photo-inherit" height="780px"></div>
+	                    <div class="card-body">
+	                        <h5 class="card-title">Javascrip 中的继承</h5>
+	                        <div class="card-text">继承是 00语言 中的一个最为人津津乐道的概念。许多 00语言 都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法......</div>
+	                    </div>
+	                    <div class="card-footer">
+	                        <a class="btn btn-primary" href="/anani1994.github.io/blog/projects/old-blog/blog-js/2018/01/inherit.html">详细内容 <span class="fa fa-angle-double-right"></span></a>
+	                    </div>
+	                    </div>
+	                </div>
+	            </div>
+            	<div class="article-footer text-center"><a class="btn btn-primary" href="/anani1994.github.io/blog/projects/old-blog/blog-others/2018/02/article-list.html">查看更多 <span class="fa fa-angle-double-right"></span></a></div>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+      	    <h1 class="text-center">联系我</h1>
+      	    <div class="contact-body text-center">
+      	    	<p>喜欢新事物，敢于去尝试</p>
+      	    	<p>热爱前端开放，注重开发效率</p>
+      	    	<p>前端即兴趣，兴趣即动力</p>
+      	    	<p>带上我吧，携良师益友</p>
+      	    	<p>用代码改变世界，以坚持铸就未来</p>
+      	    </div>
+      	    <ul class="nav justify-content-center">
+      	    	<li class="nav-item">
+      	    		<a class="nav-link" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how" title="邮箱"><div class="contact-icon-container"><span class="fa fa-envelope text-white"></span></div></a>
+      	    	</li>
+      	    	<li class="nav-item">
+      	    		<a class="nav-link" href="https://github.com/Anani1994" title="Github"><div class="contact-icon-container"><span class="fa fa-github text-white"></span></div></a>
+      	    	</li>
+      	    	<li class="nav-item">
+      	    		<a class="nav-link" href="https://weibo.com/dongwanhong?is_all=1" title="weibo"><div class="contact-icon-container"><span class="fa fa-weibo text-white"></span></div></a>
+      	    	</li>
+      	    	<li class="nav-item">
+      	    		<a class="nav-link" href="/anani1994.github.io/blog/projects/old-blog/index.html" title="blog"><div class="contact-icon-container"><span class="fa fa-user text-white"></span></div></a>
+      	    	</li>
+      	    </ul>
+        </section>
+	</main>
+	<footer>
+		<div class="footer-page text-white">
+            <ul class="nav justify-content-center">
+               <li class="nav-item"><a class="nav-link text-white" href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+               <li class="nav-item"><span class="nav-link"><span class="vertical-line"></span></li></span>
+               <li class="nav-item"><a class="nav-link text-white" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how">联系我</a></li>
+            </ul>
+            <p class="text-center copyright-year"></p>
+            <div class="to-top" data-toggle="tooltip" data-placement="bottom" title="回到顶部"></div>
+        </div>
+	</footer>
+</body>
+<!-- jQuery -->
+<script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+<!-- 包括所有已编译的 bootstrap 插件 -->
+<script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap-4/popper.min.js"></script>
+<script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap-4/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//.main-page-content板块滑出
+		$('.main-page-content').slideDown(2000);
+		//为window添加scroll,load事件改变导航栏背景颜色
+        $(window).scroll(function() {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop>=10) {
+                $('#navbar').addClass('bg-dark');
+            }
+            else {
+                $('#navbar').removeClass('bg-dark');
+            }
+        });
+        $(window).one('load',function() {
+        	var scrollTop = $(window).scrollTop();
+            if (scrollTop>=10) {
+                $('#navbar').addClass('bg-dark');
+            }
+            else {
+                $('#navbar').removeClass('bg-dark');
+            }
+        });
+        //为.imformation-body添加scroll，load事件产生动画
+        $(window).scroll(function() {
+        	var scrollTop = $(window).scrollTop();
+        	var top = $('.imformation-body').offset().top-scrollTop-document.documentElement.clientHeight;
+        	if (top <= -10) {
+        		$('.imformation-body').animate({opacity:'1'},3000);
+        	}
+        });
+        $(window).one('load',function() {
+        	var scrollTop = $(window).scrollTop();
+        	var top = $('.imformation-body').offset().top-scrollTop-document.documentElement.clientHeight;
+        	if (top <= -10) {
+        		$('.imformation-body').animate({opacity:'1'},3000);
+        	}
+        })
+        //为.bar-item创建过渡
+        $(window).scroll(function() {
+        	var scrollTop = $(window).scrollTop();
+        	var top = $('.bar-item').eq(0).offset().top-scrollTop-document.documentElement.clientHeight;
+        	if (top <= -3) {
+        		if (!$('.bar-item').eq(0).hasClass('bar-htmlCss')) {
+        			$('.bar-item').eq(0).addClass('bar-htmlCss')
+        		}
+        		if (!$('.bar-item').eq(1).hasClass('bar-javascript')) {
+        			$('.bar-item').eq(1).addClass('bar-javascript')
+        		}
+        		if (!$('.bar-item').eq(2).hasClass('bar-php')) {
+        			$('.bar-item').eq(2).addClass('bar-php')
+        		}
+        		if (!$('.bar-item').eq(3).hasClass('bar-mysql')) {
+        			$('.bar-item').eq(3).addClass('bar-mysql')
+        		}
+        	}
+		});
+        //添加onload事件获取年份
+        $(window).on('load',function() {
+        	var date = new Date();
+        	$('.copyright-year').text('copyright@ 2018-' + date.getFullYear());
+        });
+        // 设置点击底部浮标到顶、底部的函数
+	    $(function(){
+	     	$('.to-top').click(function(){
+	     		$('body,html').animate({scrollTop:0},1000);
+	     	})
+	    })
+	});
+</script>
+</html>

@@ -1,0 +1,47 @@
+.field-container {
+  @height: calc(100% - 90px);
+  height: @height;
+  ul {
+    color: #fff;
+  }
+  .field-header {
+    padding: 3rem 3rem 1rem 3rem;
+    height: 90px;
+    line-height: 26px;
+  }
+  .field-content {
+    padding: 0 3rem 3rem 3rem;
+    &:extend(.field-container);
+  }
+  .outer-container {
+    overflow: hidden;
+    width: 240px;
+    height: 100%;
+  }
+  .inner-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 257px;
+    height: 100%;
+  }
+  .inner-container::-webkit-scrollbar {
+    display: none;
+  }
+  .ivu-table-wrapper,.ivu-table,.ivu-table-body {
+    height: 100%!important;
+  }
+  .ivu-table-body {
+    margin-right: -17px;
+  }
+  .ivu-table-row-hover,.ivu-menu-item:hover,.ivu-menu-submenu-title:hover {
+    background-color: gray;
+  }
+  .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
+    background: gray;
+  }
+  .ivu-table-wrapper,.ivu-table,.ivu-table:after,.ivu-table::before,.ivu-table td {
+    color: #fff;
+    background: transparent;
+    border: none;
+  }
+}

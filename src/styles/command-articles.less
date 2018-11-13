@@ -1,0 +1,34 @@
+.command-articles {
+    h1 {
+        text-align: center;
+        &+p {
+            text-indent: 0;
+            text-align: center;
+            color: #999;
+        }
+    }
+    h3 {
+        margin-bottom: 1rem;
+    }
+    p {
+        text-indent: 2rem;
+    }
+    ul {
+        margin-left: 2rem;
+        list-style-position: inside;
+        li {
+            p {
+                text-indent: 0;
+            }
+        }
+    }
+    .des-text::after {
+        content: ':';
+        margin-left: 2px;
+        margin-right: 5px;
+    }
+    img {
+        width: 100%;
+        max-width: 768px;
+    }
+}

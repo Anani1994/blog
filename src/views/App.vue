@@ -25,7 +25,7 @@
                                                     aria-haspopup="true"
                                                     aria-expanded="false") {{ $t("message.item_demo") }}
                             .dropdown-menu(aria-labelledby="appNavbarDropdown")
-                                a.dropdown-item(href="#") {{ $t("message.shop_mall") }}
+                                a.dropdown-item(href='http://dongwh.coding.me/blog/#/build/items/vue-market/index.html') {{ $t("message.shop_mall") }}
                         li.nav-item.active
                             a.nav-link(href="#") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown

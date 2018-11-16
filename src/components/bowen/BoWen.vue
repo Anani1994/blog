@@ -56,6 +56,7 @@ p {
 }
 li {
     text-indent: 0;
+    list-style-position: inside;
 }
 .catalog {
     transition: all 1s;

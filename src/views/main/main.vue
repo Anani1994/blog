@@ -25,12 +25,13 @@ export default {
             selectorBy: 'articleType',
             selectorInfo: '',
             articleType: [
-                {id: 1, name: 'HTML/CSS'},
-                {id: 2, name: 'JavaScript'},
+                {id: 1, name: 'JavaScript'},
+                {id: 2, name: 'HTML/CSS'},
                 {id: 3, name: 'VueJS'},
                 {id: 4, name: 'AngularJS'},
                 {id: 5, name: 'Git'},
-                {id: 6, name: 'othMixed'}
+                {id: 6, name: 'othMixed'},
+                {id: 7, name: 'computer'}
             ],
             tags: [
                 {id: 1, name: 'HTML'},
@@ -47,7 +48,8 @@ export default {
                 {id: 12, name: 'issue'},
                 {id: 13, name: 'iview'},
                 {id: 14, name: 'router'},
-                {id: 15, name: 'windows'}
+                {id: 15, name: 'windows'},
+                {id: 16, name: 'computer'}
             ],
             dateDivider: [
                 {id: 1, name: '2018-8'},

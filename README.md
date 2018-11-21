@@ -3,8 +3,9 @@
 <p>Here are some notes on daily learning and some erroneous records.</p>
 <p>Of course, there are some projects that I do,and show and introduce some projects.Welcome to exchange and discussion.</p>
 
-<code>node v8.11.0</code> &nbsp; <code>yarn v1.7.0</code> &nbsp; <code>[view online][1]</code>
+<code>node v8.11.0</code> &nbsp; <code>yarn v1.7.0</code>
 
+#### 查看博客 : [View online][1]
 #### Contact me ：[Send Email][2]
 
 [1]: http://dongwh.coding.me/blog/#/

@@ -1,5 +1,5 @@
 <template lang="pug">
-    .container.h-100.px-0
+    .container.h-100.px-0.app
         layout
             #app-nav.navbar.navbar-expand-lg.fixed-top.container.navbar-light.border-bottom(slot="header")
                 a.navbar-brand(href="/") {{ $t("message.basic_title") }}
@@ -57,6 +57,15 @@
                             font#busuanzi_container_site_uv 您是本站的第 
                             font#busuanzi_value_site_uv
                             font  位访问者。
+        template
+            .search-container
+                .search-content
+                    input.w-100.px-3.py-1(type="text")
+                    .search-result-container
+                        .search-result
+                            li(v-for="item in filteredQuestionArticlesInfo" :key="item.id")
+                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)") {{item.command}}
+                                font.text-white.pl-2 {{item.title}}
 </template>
 
 
@@ -65,7 +74,13 @@ export default {
     name: 'App',
     data() {
         return {
-            isShow: false
+            isShow: false,
+            filteredQuestionArticlesInfo: [{
+                id: 111,
+                pathNam: 'sa',
+                command: 'git',
+                title: '握手一些测试的内容'
+            }]
         }
     },
     methods: {
@@ -100,4 +115,47 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
+.search-container {
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .search-content {
+        width: 50%;
+        height: 100%;
+        margin: 90px auto 0;
+        input {
+            border: none;
+            outline:none; // 解决点击后产生边框
+            border-radius: 18px;
+        }
+        .search-result-container {
+            overflow: hidden;
+            padding-top: 15px;
+            width: 100%;
+            height: calc(100% - 157px);
+            .search-result {
+                overflow-x: hidden;
+                overflow-y: scroll;
+                width: calc(100% + 17px);
+                height: 100%;
+                li {
+                    overflow-x: auto;
+                    margin-bottom: 5px;
+                    list-style-type: none;
+                    &:hover {
+                        border-radius: 5px;
+                    }
+                    pre:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
 </style>

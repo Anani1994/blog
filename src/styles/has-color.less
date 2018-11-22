@@ -46,6 +46,19 @@ ul.steps {
     background: @gray-400 !important;
 }
 
+// app 的全局搜索
+.app {
+    .search-container {
+        background-color: rgba(0, 0, 0, .7);
+    }
+    li:hover {
+        background-color: @dark;
+        pre {
+            border-right: 1px solid @white;
+        }
+    }
+}
+
 // 手机模式下的目录背景
 @media (max-width: 768px) {
     // app.vue

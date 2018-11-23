@@ -11,7 +11,7 @@ export default [
         //分类  - field.vue及路径-所有类型：
         // frontend：HTML, CSS, JS, VueJS, AngularJS, mixed
         // backend： beMixed
-        // others：  demo, Git, notes, othMixed, computer
+        // others：  demo, git, notes, othMixed, computer
         category: 'othMixed',
         //标签-暂未使用: 后期可做全局搜索
         tag: ['template', 'vue'],
@@ -26,6 +26,7 @@ export default [
         // 文章组件位置，主要区别在于后两位: field + englishName
         component: () => import('./othMixed/TestTemp.vue')
     },
+    // ....................................................................................................................others/computer
     {
         id: 20181116,
         name: '操作系统',
@@ -50,4 +51,17 @@ export default [
         pathName: 'ComputerSystem',
         component: () => import('./computer/ComputerSystem.vue')
     },
+    // ....................................................................................................................others/git
+    {
+        id: 20180918, 
+        name: 'Could not restore untracked files from stash',
+        field: 'others',
+        category: 'Git',
+        tag: ['Git', 'issue'],
+        abstract: '分析解决如题所示问题的原因和解决方法。',
+        postTime: '2018-09-18 22:21:18',
+        path: '/articles/others/Git/IssueOne',
+        pathName: 'IssueOne',
+        component: () => import('./git/IssueOne.vue')
+    }
 ];

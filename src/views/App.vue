@@ -57,30 +57,27 @@
                             font#busuanzi_container_site_uv 您是本站的第 
                             font#busuanzi_value_site_uv
                             font  位访问者。
-        template
+        template(v-if="showSearch")
             .search-container
                 .search-content
-                    input.w-100.px-3.py-1(type="text")
+                    input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开，最后一项为 0 时表示精确匹配")
                     .search-result-container
                         .search-result
-                            li(v-for="item in filteredQuestionArticlesInfo" :key="item.id")
-                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)") {{item.command}}
-                                font.text-white.pl-2 {{item.title}}
+                            li(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")
+                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)") {{item.name}}
+                                font.text-white.pl-2 {{item.abstract}}
 </template>
 
-
 <script>
+import javascriptData from './articles/frontend/data-javascript.js';
+import othersData from './articles/others/data-others.js';
 export default {
     name: 'App',
     data() {
         return {
             isShow: false,
-            filteredQuestionArticlesInfo: [{
-                id: 111,
-                pathNam: 'sa',
-                command: 'git',
-                title: '握手一些测试的内容'
-            }]
+            showSearch: false, // 全局搜索
+            searchValues: '',
         }
     },
     methods: {
@@ -99,12 +96,54 @@ export default {
             this.isShow = !this.isShow;
         }
     },
-    mounted() {
+    mounted () {
         // 底部显示的时间
         setInterval(() => { 
             let time = this.$util.formatDate();
             $('#app-footer-time').html(time);
         }, 1000);
+    },
+    created () {
+        document.onkeyup = (event) => {
+            if (event.ctrlKey && 32 === event.keyCode) {
+                if (!this.showSearch) {
+                    this.showSearch = !this.showSearch;
+                }
+            }
+            if (27 === event.keyCode) {
+                if (this.showSearch) {
+                    this.showSearch = !this.showSearch;
+                }
+            }
+        }
+    },
+    computed: {
+        filteredQuestionArticlesInfo: function () {
+            let data = [].concat(javascriptData, othersData);
+            let filteredData;
+            let searchArr = this.searchValues.split(" ");
+            // 精确搜索
+            // filteredData = data.filter((item1) => {
+            //     let result = false;
+            //     if (searchArr.findIndex((item2) => {
+            //         item1.name.includes(item2) && item1.tag.includes(item2) && item1.abstract.includes(item2);
+            //     })) {
+            //         result = true;
+            //     }
+            //     return true;
+            // });
+            filteredData = data.filter((item1) => {
+                let result = false;
+                var index = searchArr.findIndex((item2) => {
+                    return item1.name.includes(item2) || item1.tag.includes(item2) || item1.abstract.includes(item2);
+                });
+                if (!index) {
+                    result = true;
+                }
+                return result;
+            });
+            return filteredData;
+        }
     }
 }
 </script>
@@ -157,5 +196,4 @@ html, body {
         }
     }
 }
-
 </style>

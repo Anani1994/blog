@@ -64,8 +64,11 @@
                     .search-result-container
                         .search-result
                             li(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")
-                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)") {{item.name}}
-                                font.text-white.pl-2 {{item.abstract}}
+                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)", v-html="highLightKeyword(item.name)")
+                                span.text-white.pl-2 {{highLightKeyword(item.abstract)}}
+                                span.float-right.d-block
+                                    font.content-colon 标签
+                                    font.ml-1(v-for="(item2, index2) in item.tag" :key="index2") /{{item2}}
 </template>
 
 <script>
@@ -77,7 +80,7 @@ export default {
         return {
             isShow: false,
             showSearch: false, // 全局搜索
-            searchValues: '',
+            searchValues: ''
         }
     },
     methods: {
@@ -94,6 +97,10 @@ export default {
                 $('#app-nav').addClass('app-nav');
             }
             this.isShow = !this.isShow;
+        },
+        searchToPage: function (pathName) {
+            this.$util.toPage(pathName, {}, this);
+            this.showSearch = false;
         }
     },
     mounted () {
@@ -118,20 +125,11 @@ export default {
         }
     },
     computed: {
+        // 根据全局搜索输入框的值筛选文章
         filteredQuestionArticlesInfo: function () {
             let data = [].concat(javascriptData, othersData);
             let filteredData;
             let searchArr = this.searchValues.split(" ");
-            // 精确搜索
-            // filteredData = data.filter((item1) => {
-            //     let result = false;
-            //     if (searchArr.findIndex((item2) => {
-            //         item1.name.includes(item2) && item1.tag.includes(item2) && item1.abstract.includes(item2);
-            //     })) {
-            //         result = true;
-            //     }
-            //     return true;
-            // });
             filteredData = data.filter((item1) => {
                 let result = false;
                 var index = searchArr.findIndex((item2) => {
@@ -143,6 +141,34 @@ export default {
                 return result;
             });
             return filteredData;
+        },
+        // 高亮搜索结果中的关键字
+        highLightKeyword () {
+            return function (content) {
+                if ('undefined' === typeof content) {
+                    return;
+                }
+                let searchArr = this.searchValues.split(" ");
+                // 过滤空元素
+                searchArr = searchArr.filter((item) => {
+                    return Boolean(item);
+                });
+                let result = content;
+                searchArr.forEach((item) => {
+                    let pattern;
+                    try {
+                        pattern = new RegExp(item, 'gi');
+                    } catch (e) {
+                        return result;
+                    }
+                    if (result) {
+                        result = result.replace(pattern, `<span class="mark">${item}</span>`);
+                    } else {
+                        result = content.replace(pattern, `<span class="mark">${item}</span>`);
+                    }
+                });
+                return result;
+            };
         }
     }
 }

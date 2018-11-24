@@ -47,16 +47,22 @@ ul.steps {
 }
 
 // app 的全局搜索
-.app {
-    .search-container {
-        background-color: rgba(0, 0, 0, .7);
+.search-container {
+    background-color: rgba(0, 0, 0, .7);
+    .custom-pre {
+        background: @searchPre;
     }
     li:hover {
-        background-color: @dark;
+        background-color: @searchLi;
         pre {
             border-right: 1px solid @white;
         }
     }
+}
+
+// 高亮搜索结果中的关键字
+.mark {
+    color: @mark;
 }
 
 // 手机模式下的目录背景

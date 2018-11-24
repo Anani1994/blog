@@ -14,11 +14,14 @@ util.title = function (title, vm) {
  * @param {string} nameStr 路由名称
  * @param {object} dataObj 路由参数
  */
-util.toPage = function (nameStr, dataObj) {
+util.toPage = function (nameStr, dataObj, context) {
     let obj = {
         name: nameStr,
         params: dataObj,
     };
+    if (context) {
+        return context.$router.push(obj);
+    }
     this.$router.push(obj);
 }
 

@@ -60,7 +60,7 @@
         template(v-if="showSearch")
             .search-container
                 .search-content
-                    input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开，最后一项为 0 时表示精确匹配")
+                    input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开")
                     .search-result-container
                         .search-result
                             li(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")

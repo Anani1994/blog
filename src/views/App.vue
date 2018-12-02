@@ -72,8 +72,6 @@
 </template>
 
 <script>
-import javascriptData from './articles/frontend/data-javascript.js';
-import othersData from './articles/others/data-others.js';
 export default {
     name: 'App',
     data() {
@@ -127,7 +125,7 @@ export default {
     computed: {
         // 根据全局搜索输入框的值筛选文章
         filteredQuestionArticlesInfo: function () {
-            let data = [].concat(javascriptData, othersData);
+            let data = this.$store.state.articles.list;
             let filteredData;
             let searchArr = this.searchValues.split(" ");
             filteredData = data.filter((item1) => {

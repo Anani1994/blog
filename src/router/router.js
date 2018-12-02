@@ -1,21 +1,8 @@
-import othersArticlesInfo from '../views/articles/others/data-others';
-import frontendArticlesInfo from '../views/articles/frontend/data-javascript';
+import articles from '../store/articles/data';
 
 let articlesPage = [];
 
-othersArticlesInfo.forEach((cur) => {
-    let pathObj = {
-        path: cur.path,
-        name: cur.pathName,
-        meta: {
-            title: cur.name
-        },
-        component: cur.component,
-    };
-    articlesPage.push(pathObj);
-});
-
-frontendArticlesInfo.forEach((cur) => {
+articles.forEach((cur) => {
     let pathObj = {
         path: cur.path,
         name: cur.pathName,

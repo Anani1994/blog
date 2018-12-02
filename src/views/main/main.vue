@@ -14,24 +14,21 @@
 import PersonalInfo from './components/PersonalInfo.vue';
 import ArticlesInfo from './components/ArticlesInfo.vue';
 import ArticlesList from './components/ArticleList.vue';
-import frontArticlesListOri from '../articles//frontend/data-javascript.js';
-import othersArticlesListOri from '../articles/others/data-others.js';
 export default {
     data() {
-        let totalArticles = [].concat(frontArticlesListOri, othersArticlesListOri);
         return {
-            totalArticles: totalArticles,
             sourceBy: [0],
             selectorBy: 'articleType',
             selectorInfo: '',
             articleType: [
-                {id: 1, name: 'JavaScript'},
-                {id: 2, name: 'HTML/CSS'},
+                {id: 1, name: 'HTML/CSS'},
+                {id: 2, name: 'JavaScript'},
                 {id: 3, name: 'VueJS'},
                 {id: 4, name: 'AngularJS'},
                 {id: 5, name: 'Git'},
                 {id: 6, name: 'othMixed'},
-                {id: 7, name: 'computer'}
+                {id: 7, name: 'computer'},
+                {id: 8, name: 'canvas'}
             ],
             tags: [
                 {id: 1, name: 'HTML'},
@@ -49,7 +46,8 @@ export default {
                 {id: 13, name: 'iview'},
                 {id: 14, name: 'router'},
                 {id: 15, name: 'windows'},
-                {id: 16, name: 'computer'}
+                {id: 16, name: 'computer'},
+                {id: 17, name: 'canvas'}
             ],
             dateDivider: [
                 {id: 1, name: '2018-8'},
@@ -87,7 +85,7 @@ export default {
             return this.selectorInfo;
         },
         getArticlesList: function () {
-            let totalArticles = this.totalArticles;
+            let totalArticles = this.$store.state.articles.list;
             let totalArticlesFiltered;
             if (this.selectorBy === 'articleType') {
                 totalArticlesFiltered = totalArticles.filter((item1) => {

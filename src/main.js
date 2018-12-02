@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import App from './views/App.vue';
 
+// 存储
+import store from './store/store';
+
 // 路由
 import {
     router
 } from './router/index';
-// 存储
-import store from './store/store';
+
 // 国际化
 import i18n from './i18n/index';
 

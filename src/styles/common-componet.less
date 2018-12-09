@@ -200,6 +200,22 @@ ul.steps {
     display: inline-grid !important;
 }
 
+// 滚动条
+// 滚动条整体样式
+.an-scrollbar::-webkit-scrollbar {
+    // 高宽分别对应横竖滚动条的尺寸
+    width: 4px;     
+    height: 4px;
+}
+// 滚动条里面小方块
+.an-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+// 滚动条里面轨道
+.an-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 // -------------------------------------------------------------------------------------------------------
 // 手机模式下的
 @media (max-width: 768px) {

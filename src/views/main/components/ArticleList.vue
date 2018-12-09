@@ -1,6 +1,6 @@
 <template lang="pug">
     .container-fluid
-        .py-3.bg-white.position-sticky.top-0.border-bottom
+        .py-3.position-sticky.top-0.border-bottom.article-list-badge-container.an-scrollbar
             span.badge.badge-pill.badge-light.p-2.border.mr-sm.mt-sm(v-for="(item, index) in selector"
                                                                      :key="item.id"
                                                                      @click="changeSourceBy(index)"
@@ -66,3 +66,12 @@ export default {
     }
 }
 </script>
+
+<style lang="less">
+.article-list-badge-container {
+    width: 100%;
+    max-height: 80px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+</style>

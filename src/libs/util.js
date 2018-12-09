@@ -104,17 +104,17 @@ const localUtil = class localUtil {
     };
 
     /**
-     * 函数节流
+     * 防抖动函数
      * @param {function} 回调函数
      * @param {this} 上下文环境
-     * @param {} 传入的时间
+     * @param {only} 传入的参数
      * @param {number} 延迟(ms)
      * @Returns undefined
      */
-    debounce (method, context, event, delay) {
+    debounce (method, context, args, delay = 500) {
         clearTimeout(method.tId);
         method.tId = setTimeout(() => {
-            method.call(context, event);
+            method.call(context, args);
         }, delay);
     }
 
@@ -164,8 +164,8 @@ const localUtil = class localUtil {
             if (source.hasOwnProperty(key)) {
                 if (typeof (prop) === "object") {
                     result[key] = this.isArray(prop) ? [] : {};
-                    // arguments.callee指向拥有该arguments的函数对象
-                    arguments.callee(prop, result[key]);
+                    // arguments.callee指向拥有该arguments的函数对象，但在严格模式下会报错
+                    this.deepClone(prop, result[key]);
                 } else {
                     result[key] = prop;
                 }
@@ -360,6 +360,24 @@ const localUtil = class localUtil {
      */
     isRegExp (value) {
         return toString.call(value) === '[object RegExp]';
+    }
+
+    // =============================================================== 其它函数 ===============================================================
+    /*
+     * 对传入的值与最大值和最小值进行比较
+     * 大于最大取最大，小于最小取最小，否则返回原值
+     * @parmas {number} 传入的值
+     * @parmas {number} 最小值
+     * @parmas {number} 最大值
+     */
+    clamp (value, min, max) {
+        if (value < min) {
+            return min;
+        }
+        if (value > max) {
+            return max;
+        }
+        return value;
     }
 }
 

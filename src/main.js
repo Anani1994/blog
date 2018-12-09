@@ -14,7 +14,9 @@ import i18n from './i18n/index';
 
 // 全局使用工具函数
 import util from './libs/util';
+import canvas from './libs/canvas';
 Vue.prototype.$util = util;
+Vue.prototype.$canvas = canvas;
 
 // 自定义全局组件
 import defineSubassemblies from './components/defineSubassembly.js';

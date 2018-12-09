@@ -47,6 +47,7 @@
             .w-100.h-100(slot="body")
                 router-view
             .w-100.h-100(slot="footer")
+                canvas#app-bg.position-fixed.top-0.left-0 Sorry,There is a drawing about a clock,But your browser does not support Canvas.
                 p.m-0.py-1.text-center
                     small
                         span Copyright © 2018-2018 {{ $t("message.author") }}
@@ -107,6 +108,10 @@ export default {
             let time = this.$util.formatDate();
             $('#app-footer-time').html(time);
         }, 1000);
+        // 背景动画
+        this.$nextTick(() => {
+            this.$canvas.createStarrySky(document.querySelector('#app-bg'));
+        });
     },
     created () {
         document.onkeyup = (event) => {
@@ -177,6 +182,10 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+canvas#app-bg {
+    opacity: .1;
+    z-index: -9999;
 }
 .search-container {
     z-index: 9999;

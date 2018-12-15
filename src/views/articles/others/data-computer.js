@@ -29,7 +29,7 @@ export default [
         component: () => import('./computer/OperatingSystem.vue')
     },
     {
-        id: 20181116,
+        id: 20181117,
         name: '计算机系统',
         field: 'others',
         category: 'computer',
@@ -39,5 +39,17 @@ export default [
         path: '/articles/others/computer/ComputerSystem',
         pathName: 'ComputerSystem',
         component: () => import('./computer/ComputerSystem.vue')
+    },
+    {
+        id: 20181215,
+        name: 'Linux 系统(Ubuntu)安装',
+        field: 'others',
+        category: 'computer',
+        tag: ['computer', 'Linux'],
+        abstract: 'Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。',
+        postTime: '2018-12-15 11:07:23',
+        path: '/articles/others/computer/LinuxSystemInstallation',
+        pathName: 'LinuxSystemInstallation',
+        component: () => import('./computer/LinuxSystemInstallation.vue')
     }
 ];

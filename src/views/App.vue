@@ -110,7 +110,7 @@ export default {
         }, 1000);
         // 背景动画
         this.$nextTick(() => {
-            this.$canvas.createStarrySky(document.querySelector('#app-bg'));
+            // this.$canvas.createStarrySky(document.querySelector('#app-bg'));
         });
     },
     created () {

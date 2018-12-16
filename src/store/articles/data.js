@@ -7,5 +7,6 @@ import canvasData from '../../views/articles/frontend/data-canvas';
 import othersMixedData from '../../views/articles/others/data-othersMixed';
 import gitData from '../../views/articles/others/data-git';
 import computerData from '../../views/articles/others/data-computer';
+import commandData from '../../views/articles/others/data-command';
 
-export default [].concat(javascriptData, angularData, requireData, canvasData, othersMixedData, gitData, computerData);
+export default [].concat(javascriptData, angularData, requireData, canvasData, othersMixedData, gitData, computerData, commandData);

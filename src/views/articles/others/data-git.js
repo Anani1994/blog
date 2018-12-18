@@ -27,5 +27,17 @@ export default [
         pathName: 'IssueOne',
         // 文章组件位置，主要区别在于后两位: field + englishName
         component: () => import('./git/IssueOne.vue')
-    }
+    },
+    {
+        id: 20181217,
+        name: 'Git 学习笔记',
+        field: 'others',
+        category: 'Git',
+        tag: ['Git'],
+        abstract: '对学习和工作中遇到的 Git 相关的零散知识进行的记录。',
+        postTime: '2018-12-17 17:13:22',
+        path: '/articles/others/git/GitNote',
+        pathName: 'GitNote',
+        component: () => import('./git/GitNote.vue')
+    },
 ];

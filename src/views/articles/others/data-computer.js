@@ -51,5 +51,17 @@ export default [
         path: '/articles/others/computer/LinuxSystemInstallation',
         pathName: 'LinuxSystemInstallation',
         component: () => import('./computer/LinuxSystemInstallation.vue')
+    },
+    {
+        id: 20181218,
+        name: '搭建 Linux(ubuntu) 系统开发环境（一）',
+        field: 'others',
+        category: 'computer',
+        tag: ['computer', 'Linux'],
+        abstract: '简单记录如何在 Linux(ubuntu) 系统中搭建基本开发环境。',
+        postTime: '2018-12-18 17:46:00',
+        path: '/articles/others/computer/LinuxDev',
+        pathName: 'LinuxDev',
+        component: () => import('./computer/LinuxDev.vue')
     }
 ];

@@ -63,5 +63,17 @@ export default [
         path: '/articles/others/computer/LinuxDev',
         pathName: 'LinuxDev',
         component: () => import('./computer/LinuxDev.vue')
+    },
+    {
+        id: 20181219,
+        name: '搭建 Linux(ubuntu) 系统开发环境（二）',
+        field: 'others',
+        category: 'computer',
+        tag: ['computer', 'Linux'],
+        abstract: '简单记录如何在 Linux(ubuntu) 系统中搭建基本开发环境。',
+        postTime: '2018-12-18 17:46:00',
+        path: '/articles/others/computer/LinuxDevTwo',
+        pathName: 'LinuxDevTwo',
+        component: () => import('./computer/LinuxDevTwo.vue')
     }
 ];

@@ -181,6 +181,9 @@
                     // jsformat options
                     "format_on_save": true // 保存时自动格式化
                 }
+        p 解决 Ubuntu下Sublime Text 3 无法输入中文，点击 
+            a(href="https://github.com/lyfeyaj/sublime-text-imfix") 查看
+            font  根据提示进行安装即可。
         p 到这里开发环境的基本搭建就算结束了，如果有时间和新的发现，我会继续在这里更新，以记录和分享开发的点滴。
         FooterDivider
 </template>

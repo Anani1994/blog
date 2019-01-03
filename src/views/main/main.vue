@@ -28,7 +28,8 @@ export default {
                 {id: 5, name: 'Git'},
                 {id: 6, name: 'othMixed'},
                 {id: 7, name: 'computer'},
-                {id: 8, name: 'canvas'}
+                {id: 8, name: 'canvas'},
+                {id: 9, name: 'React'}
             ],
             tags: [
                 {id: 1, name: 'HTML'},
@@ -47,7 +48,8 @@ export default {
                 {id: 14, name: 'router'},
                 {id: 15, name: 'windows'},
                 {id: 16, name: 'computer'},
-                {id: 17, name: 'canvas'}
+                {id: 17, name: 'canvas'},
+                {id: 18, name: 'React'}
             ],
             dateDivider: [
                 {id: 1, name: '2018-8'},

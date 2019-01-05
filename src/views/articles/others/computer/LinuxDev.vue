@@ -48,7 +48,9 @@
         Divider
         p 由于国外源太慢了，所以在我们安装完 Ubuntu 系统后先将 Ubuntu 18.04 修改默认源为国内源。
         p 首先我们对 /etc/apt 下的 sources.list 文件进行备份，以免误操作：
-            kbd cp /etc/apt/sources.list /etc/apt/sources.list.bak
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ cp /etc/apt/sources.list /etc/apt/sources.list.bak
         p 然后 在 /etc/apt/sources.list 文件前面添加如下内容：
         pre.ml-5(v-highlight)
             code.markdown.
@@ -77,9 +79,10 @@
         p 首先安装 Git：
             kbd sudo apt-get install git
         p 然后配置用户信息：
-            kbd git config --global user.name "Your Name"
-            span.px-1
-            kbd git config --global user.email "email@example.com"
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ git config --global user.name "Your Name"
+                $ git config --global user.email "email@example.com"
         p 最后我们来生成和配置Git SSH密钥，在生成密钥之前我们先检测之前是否生成过 SSh 密钥，其原理就是检测家目录下 .ssh 文件是否存在，所以我们可以通过直接切换
             kbd cd ~/.ssh
             font  或者查看家目录 
@@ -96,7 +99,9 @@
         Divider
         p 接下来我们需要安装 Node 和 Npm，在这里我们需要了解一下 Nvm，Nvm 是一个可以让你在同一台机器上安装和切换不同版本 Node 的工具，为了便于对不对版本 Node 的管理，所以这里我们直接安装 Nvm。
         p Ubuntu 下安装：
-            kbd wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
         p.text-warning 安装成功后，需要关闭终端，重新启动。Nvm 才会生效。
         p Nvm 操作 Node 的常用命令：
         ul

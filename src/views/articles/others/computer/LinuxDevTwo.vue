@@ -36,15 +36,19 @@
             font  设置淘宝镜像
         Divider
         p 在使用 nvm 安装时，我们可以通过淘宝镜像进行安装，只需要执行：
-            kbd NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node nvm install &lt;v4.5.0&gt;
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node nvm install &lt;v4.5.0&gt;
         p 当然，这样每次安装都需要输入这么唱的命令比较麻烦，因此我们对此进行设置，因为系统每次启动系统的时候会去执行 nvm.sh 文件，所以我们在 ~/.bashrc 文件的最后加上上面语句中的内容并重启终端：
-            pre.ml-5.mt-2(v-highlight)
-                code.markdown.
-                    export NVM_DIR="/root/.nvm"
-                        // 下面是新加的内容
-                        export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                export NVM_DIR="/root/.nvm"
+                // 下面是新加的内容
+                export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
         p 另外我们也可以通过安装 nrm 来对 npm 源进行有效的管理，这里我们可以 直接通过 npm 来进行安装：
-            kbd npm install nrm -g
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ npm install nrm -g
         p 常用 nrm 命令如下所示：
         table.table.table-hover
             thead
@@ -58,7 +62,9 @@
                     td {{ item.command }}
                     td {{ item.description }}
         p.text-info 也许我们在通过 npm 安装 nrm 时反应就比较慢，甚至无反应，此时我们可以直接通过以下命令来直接设置为淘宝源：
-             kbd npm config set registry https://registry.npm.taobao.org
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ npm config set registry https://registry.npm.taobao.org
         h3#LinuxDev-2-2.ml-1
             Icon(type="logo-buffer")
             font  安装 Google
@@ -66,19 +72,29 @@
         ul
             li
                 font 将下载源加入到系统的源列表：
-                kbd sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
             li
                 font 导入谷歌软件的公钥，用于下面步骤中对下载软件进行验证：
-                kbd wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
             li
                 font 对当前系统的可用更新列表进行更新：
-                kbd sudo apt-get update
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ sudo apt-get update
             li
                 font 执行对谷歌 Chrome 浏览器（稳定版)的安装：
-                kbd sudo apt-get install google-chrome-stable
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ sudo apt-get install google-chrome-stable
             li
                 font 启动谷歌 Chrome 浏览器（固定：在 Launcher 上的图标上右键——“添加到收藏夹”）：
-                kbd /usr/bin/google-chrome-stable
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ /usr/bin/google-chrome-stable
         h3#LinuxDev-2-3.ml-1
             Icon(type="logo-buffer")
             font  安装中文输入法
@@ -117,9 +133,13 @@
                 kbd kbd apt install curl
             li
                 font 在 Debian 或 Ubuntu 上，需要用我们的 Debian 包仓库来安装 Yarn。 首先需要配置仓库：
-                kbd curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
                 span.px-1
-                kbd echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
             li
                 font 最后，更新数据库列表并安装 yarn：
                 kbd sudo apt update && sudo apt install yarn
@@ -140,7 +160,9 @@
             font  其它
         Divider
         p 开启 Ubuntu Dock（位于屏幕左侧的任务栏）点击切换最大和最小化，在终端允许：
-            kbd gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+        pre.mt-1.ml-5(v-highlight)
+            code.bash.
+                $ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
         p
             font.text-info 安装 VSCode，
             font 首先需要去 
@@ -155,17 +177,23 @@
         ul
             li
                 font 安装 GPG 密钥，等待返回 ok：
-                kbd wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
             li
                 font 确保apt已设置为使用https源：
-                kbd sudo apt-get install apt-transport-https
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ sudo apt-get install apt-transport-https
             li
                 font 选择安装稳定版：
-                kbd echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+                pre.mt-1.ml-5(v-highlight)
+                    code.bash.
+                        $ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
             li
                 font 更新仓库列表：
                 kbd sudo apt-get update
-            li
+            li.mt-1
                 font 安装 Sublime Text：
                 kbd sudo apt-get install sublime-text
         p 等到 sublime-text 安装完成后我们可以到应用程序中找到它来使用，或者直接使用命令 subl 来执行。

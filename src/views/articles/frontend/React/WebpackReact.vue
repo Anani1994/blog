@@ -311,7 +311,7 @@
                 code.bash.
                     $ yarn add react react-dom
             p 安装完成之后，再启动项目，会发现刚刚删除的 "Hello world"文本再次出现了，而且是通过 React 来实现的，到此 webpack-react 最基础的开发环境就搭建好了，但是 webpack 方面还有许多配置和一些需要优化的地方，所以我们将在下篇文章里继续记录开发环境的搭建过程，你可以点击 
-                a(href="") 搭建 webpack、react 开发环境（二）
+                a(href="#/articles/frontend/React/webpack-react-two") 搭建 webpack、react 开发环境（二）
                 font  来继续查看。
             p.text-right 参考资料：
                 a(href="https://www.webpackjs.com/") Webpack 中文文档

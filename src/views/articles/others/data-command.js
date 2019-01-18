@@ -27,5 +27,17 @@ export default [
         pathName: 'LS',
         // 文章组件位置，主要区别在于后两位: field + englishName
         component: () => import('./command/LS.vue')
-    }
+    },
+    {
+        id: 20190119,
+        name: 'ls',
+        field: 'others',
+        category: 'computer',
+        tag: ['computer', 'command'],
+        abstract: '囊括目录的增删改查操作命令。',
+        postTime: '2018-01-19 00:15:25',
+        path: '/articles/others/command/dir-manage',
+        pathName: 'dir-manage',
+        component: () => import('./command/DirManage.vue')
+    },
 ];

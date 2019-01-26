@@ -1,0 +1,33 @@
+
+@media (max-width: 768px) {
+.container-fluid[data-v-0958c2c8] {
+    padding: 0;
+}
+.container-fluid .footer-nav[data-v-0958c2c8] {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    background: #FFF;
+}
+.container-fluid .footer-nav a[data-v-0958c2c8] {
+    padding-left: 0;
+}
+}
+
+
+.article-list-badge-container {
+  width: 100%;
+  max-height: 80px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+
+.layout-body[data-v-4bb18f76] {
+  height: calc(100% - 10px);
+}
+

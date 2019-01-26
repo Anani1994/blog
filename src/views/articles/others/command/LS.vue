@@ -20,8 +20,9 @@
             Icon(type="logo-buffer")
             font  命令格式
         Divider
-        p
-            kbd ls [选项] [文件或目录]
+        pre.mt-2(v-highlight)
+            code.bash.
+                $ ls [选项] [文件或目录]
         h3#LS-2.ml-1
             Icon(type="logo-buffer")
             font  常用选项介绍

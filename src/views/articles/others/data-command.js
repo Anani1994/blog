@@ -30,7 +30,7 @@ export default [
     },
     {
         id: 20190119,
-        name: 'ls',
+        name: 'dir',
         field: 'others',
         category: 'computer',
         tag: ['computer', 'command'],
@@ -39,5 +39,17 @@ export default [
         path: '/articles/others/command/dir-manage',
         pathName: 'dir-manage',
         component: () => import('./command/DirManage.vue')
+    },
+    {
+        id: 20190126,
+        name: 'zip',
+        field: 'others',
+        category: 'computer',
+        tag: ['computer', 'command'],
+        abstract: '包括对文件和目录的压缩和解压操作。',
+        postTime: '2018-01-26 14:43:23',
+        path: '/articles/others/command/compress-file',
+        pathName: 'compress-file',
+        component: () => import('./command/CompressFile.vue')
     },
 ];

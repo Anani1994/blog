@@ -14,7 +14,7 @@
                     font-awesome-icon(:icon="['far', 'clock']")
                     font.ml-sm {{$t('message.article_date')}}
             li.nav-item
-                a.nav-link.text-dark.pr-0(href="#", @click="")
+                a.nav-link.text-dark.pr-0(href="#", @click="openSearch")
                     font-awesome-icon(:icon="['fas', 'search']")
                     font.ml-sm {{$t('message.article_search')}}
 
@@ -26,6 +26,9 @@ export default {
     methods: {
         changeSelector: function (arg="articleType") {
             this.$emit('setSelector', arg);
+        },
+        openSearch: function () {
+            this.$store.commit('toggleSearch');
         }
     }
 }

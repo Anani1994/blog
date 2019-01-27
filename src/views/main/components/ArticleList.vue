@@ -69,6 +69,7 @@ export default {
 
 <style lang="less">
 .article-list-badge-container {
+    margin-bottom: 16px;
     width: 100%;
     max-height: 80px;
     overflow-x: hidden;

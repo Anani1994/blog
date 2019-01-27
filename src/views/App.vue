@@ -26,6 +26,8 @@
                                                     aria-expanded="false") {{ $t("message.item_demo") }}
                             .dropdown-menu(aria-labelledby="appNavbarDropdown")
                                 a.dropdown-item(href='http://dongwh.coding.me/blog/build/items/vue-market/index.html#/login') {{ $t("message.shop_mall") }}
+                                a.dropdown-item(href="https://anani1994.github.io/#/") {{ $t("message.blog_two") }}
+                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/blog/projects/old-blog/index.html") {{ $t("message.blog_one") }}
                         li.nav-item.active
                             a.nav-link(href="#") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown
@@ -64,10 +66,10 @@
                     input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开")
                     .search-result-container
                         .search-result
-                            li(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")
-                                pre.custom-pre.pr-2(@click="searchToPage(item.pathName)", v-html="highLightKeyword(item.name)")
-                                span.text-white.pl-2 {{highLightKeyword(item.abstract)}}
-                                span.float-right.d-block
+                            li.border-bottom.rounded-0.pb-2.mb-3(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")
+                                pre.mr-2.pr-2.custom-pre(@click="searchToPage(item.pathName)", v-html="highLightKeyword(item.name)")
+                                .py-1.text-white.text-indent {{highLightKeyword(item.abstract)}}
+                                span.d-block.float-right.mr-2.text-light
                                     font.content-colon 标签
                                     font.ml-1(v-for="(item2, index2) in item.tag" :key="index2") /{{item2}}
 </template>
@@ -78,8 +80,7 @@ export default {
     data() {
         return {
             isShow: false,
-            showSearch: false, // 全局搜索
-            searchValues: ''
+            searchValues : ''
         }
     },
     methods: {
@@ -110,19 +111,19 @@ export default {
         }, 1000);
         // 背景动画
         this.$nextTick(() => {
-            this.$canvas.createStarrySky(document.querySelector('#app-bg'));
+            // this.$canvas.createStarrySky(document.querySelector('#app-bg'));
         });
     },
     created () {
         document.onkeyup = (event) => {
             if (event.ctrlKey && 32 === event.keyCode) {
                 if (!this.showSearch) {
-                    this.showSearch = !this.showSearch;
+                    this.$store.commit('toggleSearch');
                 }
             }
             if (27 === event.keyCode) {
                 if (this.showSearch) {
-                    this.showSearch = !this.showSearch;
+                    this.$store.commit('toggleSearch');
                 }
             }
         }
@@ -172,6 +173,10 @@ export default {
                 });
                 return result;
             };
+        },
+        // 是否打开搜索
+        showSearch() {
+            return this.$store.state.setting.searchIsOpen;
         }
     }
 }
@@ -212,6 +217,7 @@ canvas#app-bg {
             .search-result {
                 overflow-x: hidden;
                 overflow-y: scroll;
+                padding-top: 16px;
                 width: calc(100% + 17px);
                 height: 100%;
                 li {

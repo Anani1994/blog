@@ -42,7 +42,7 @@ export default [
     },
     {
         id: 20190115,
-        name: '搭建 webpack、react 开发环境（二）',
+        name: '搭建 webpack、react 开发环境（三）',
         field: 'frontend',
         category: 'React',
         tag: ['React', 'javascript', 'webpack', 'ES6'],

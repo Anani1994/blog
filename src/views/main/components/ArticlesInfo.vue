@@ -25,7 +25,7 @@ export default {
     name: 'ArticlesInfo',
     methods: {
         changeSelector: function (arg="articleType") {
-            this.$emit('setSelector', arg);
+            this.$store.commit('setSelector', { selectorBy: arg })
         },
         openSearch: function () {
             this.$store.commit('toggleSearch');

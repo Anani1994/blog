@@ -45,7 +45,7 @@
                                 a.dropdown-item.text-md-right(href="#"
                                                            @click="changeLanguage('zh-CN')") 简体中文
                         li.nav-item.active
-                            a.nav-link(href="#") {{ $t("message.others") }}
+                            a.nav-link(href="#") {{ $t("message.app_setting") }}
             .w-100.h-100(slot="body")
                 router-view
             .w-100.h-100(slot="footer")
@@ -55,6 +55,7 @@
                         span Copyright © 2018-2018 {{ $t("message.author") }}
                         span.border-right.mx-2
                         span#app-footer-time
+                    //
                         span.border-right.mx-2.d-none.d-md-inline
                         span.d-none.d-md-inline
                             font#busuanzi_container_site_uv 您是本站的第 
@@ -63,12 +64,12 @@
         template(v-if="showSearch")
             .search-container
                 .search-content
-                    input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开")
+                    input.w-100.p-3(type="text", v-model="searchValues", placeholder="多个关键字使用空格分开或按 Esc 键退出")
                     .search-result-container
                         .search-result
                             li.border-bottom.rounded-0.pb-2.mb-3(v-for="(item, index) in filteredQuestionArticlesInfo" :key="index")
                                 pre.mr-2.pr-2.custom-pre(@click="searchToPage(item.pathName)", v-html="highLightKeyword(item.name)")
-                                .py-1.text-white.text-indent {{highLightKeyword(item.abstract)}}
+                                .py-1.text-white.text-indent(v-html="highLightKeyword(item.abstract)")
                                 span.d-block.float-right.mr-2.text-light
                                     font.content-colon 标签
                                     font.ml-1(v-for="(item2, index2) in item.tag" :key="index2") /{{item2}}

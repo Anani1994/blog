@@ -11,7 +11,8 @@ const message = {
     blog_two: 'Blog V2.0.0',
     bo_wen: 'Bowen',
     language: 'Language',
-    others: 'Others',
+    app_setting: 'setting',
+    // others: 'Others',
     // slide nav
     article_type: 'Classification',
     article_label:'Label',

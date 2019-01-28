@@ -53,7 +53,7 @@ export default [
         component: () => import('./AngularJS/angular-ui-router-1.vue')
     },
     {
-        id: 20181013,
+        id: 20181011,
         name: 'UI-Router for AngularJS (一)',
         field: 'frontend',
         category: 'AngularJS',
@@ -77,7 +77,7 @@ export default [
         component: () => import('./AngularJS/angular-radio.vue')
     },
     {
-        id: 20180922,
+        id: 20180923,
         name: 'AngularJS 的使用笔记',
         field: 'frontend',
         category: 'AngularJS',

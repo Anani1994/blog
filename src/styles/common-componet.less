@@ -1,128 +1,6 @@
-// 布局
-.layout {
-    .layout-header {
-        width: 100%;
-        height: 60px;
-    }
-    // 可拆开使用
-    .layout-body {
-        width: 100%;
-        height: calc(100% - 90px);
-        overflow: hidden;
-        .layout-content {
-            width: calc(100% + 17px);
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: scroll;
-        }
-    }
-    .layout-footer {
-        width: 100%;
-        height: 30px;
-    }
-}
+@text-muted:                  @gray-600 !important;
+@dark:                        @black; 
 
-// -------------------------------------------------------------------------------------------------------
-// Steps、Step 组件的步骤条样式
-ul.steps {
-    list-style-type: none;
-    counter-reset: step;
-    li {
-        position: relative;
-        padding-bottom: .5rem;
-        cursor: pointer;
-        .content {
-            padding-left: 25px;
-            margin-top: -23px;
-            .title {
-                font-size: 1rem;
-                font-weight: 600;
-            }
-            .detail {
-                font-size: .8rem;
-            }
-        }
-        &::before {
-            display: block;
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            content: counter(step);
-            counter-increment: step;
-            text-align: center;
-            border-radius: 50%;
-        }
-        &:not(:last-child)::after {
-            z-index: -1;
-            display: block;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 10px;
-            // transform: translateX(-50%);
-            content: '';
-            width: 1px;
-        }
-    }
-    ul.steps {
-        margin-top: 3px;
-        padding-left: 0;
-    }
-}
-// 使用格式(可嵌套)
-// ul.steps
-//     li
-//         .content
-//             .title
-//             .detail
-//     li.active
-//         .content
-//             .title
-//             .detail
-//     li
-//         .content
-//             .title
-//             .detail
-
-// -------------------------------------------------------------------------------------------------------
-// 横线
-.divider-line {
-    display: block;
-    clear: both;
-    width: 100%;
-    height: 1px;
-    margin: 20px 0;
-}
-
-// -------------------------------------------------------------------------------------------------------
-// 重写 pre 标签样式
-.custom-pre {
-    display: inline-block;
-    margin: 0;
-    padding: .5rem;
-    text-indent: 0;
-    border-radius: .5rem;
-    vertical-align: middle;
-}
-
-// 禁用
-.forbidden {
-    pointer-events: none;
-    user-select: none;
-    cursor: no-drop;
-}
-
-// 冒号
-.content-colon::after {
-    content: '：';
-}
-
-// 鼠标指针放在一个元素边界范围内时所用的光标形状
-.cursor-pointer {
-    cursor: pointer;
-}
-
-// -------------------------------------------------------------------------------------------------------
 // 绝对居中
 .position-absolute-center {
     position: absolute;
@@ -192,19 +70,6 @@ ul.steps {
     }
 }
 
-//
-.text-indent {
-    text-indent: 32px;
-}
-
-// 网格布局
-.d-grid {
-    display: grid !important;
-}
-.d-inline-grid {
-    display: inline-grid !important;
-}
-
 // 滚动条
 // 滚动条整体样式
 .an-scrollbar::-webkit-scrollbar {
@@ -221,35 +86,55 @@ ul.steps {
     background: transparent;
 }
 
-// -------------------------------------------------------------------------------------------------------
-// 手机模式下的
-@media (max-width: 768px) {
-    // 绝对定位  !important 覆盖col的position
-    .position-md-relative {
-        position: relative !important;
-    }
-    .position-md-absolute {
-        position: absolute !important;
-    }
-    .position-md-fixed {
-        position: fixed !important;
-    }
-    //
-    .p-md-0 {
-        padding: 0 !important;
-    }
-    .m-md-0 {
-        margin: 0 !important;
-    }
-    // 布局
-    .layout {
-        .layout-body {
-            .layout-content {
-                width: 100%;
-                &::-webkit-scrollbar {
-                    width: 0;
-                }
-            }
-        }
-    }
+// 横线
+.divider-line {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background-color: @dark;
+}
+
+// 重写 pre 标签样式
+.custom-pre {
+    display: inline-block;
+    margin: 0;
+    padding: .5rem;
+    text-indent: 0;
+    border-radius: .5rem;
+    vertical-align: middle;
+    color: @white;
+    background: @dark;
+}
+
+// 禁用
+.forbidden {
+    pointer-events: none;
+    user-select: none;
+    cursor: no-drop;
+    color: @text-muted;
+}
+
+// 冒号
+.content-colon::after {
+    content: '：';
+}
+
+// 鼠标指针放在一个元素边界范围内时所用的光标形状
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// 首行缩进
+.text-indent {
+    text-indent: 32px;
+}
+
+// 网格布局
+.d-grid {
+    display: grid !important;
+}
+.d-inline-grid {
+    display: inline-grid !important;
 }

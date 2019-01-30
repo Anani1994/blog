@@ -1,0 +1,23 @@
+// 布局
+.layout {
+    .layout-header {
+        width: 100%;
+        height: 60px;
+    }
+    // 可拆开使用
+    .layout-body {
+        width: 100%;
+        height: calc(100% - 90px);
+        overflow: hidden;
+        .layout-content {
+            width: calc(100% + 17px);
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    }
+    .layout-footer {
+        width: 100%;
+        height: 30px;
+    }
+}

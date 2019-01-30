@@ -1,5 +1,7 @@
 // 布局
 import Layout from './layout/Layout.vue';
+// 抽屉
+import Drawer from './drawer/Drawer.vue';
 // 兼容上个版本
 import BoWen from './bowen/BoWen.vue';
 import Steps from './steps/components/Steps.vue';
@@ -12,6 +14,10 @@ export default [
     {
         name: 'Layout',
         component: Layout
+    },
+    {
+        name: 'Drawer',
+        component: Drawer
     },
     // 兼容
     {

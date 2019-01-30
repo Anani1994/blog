@@ -4,7 +4,7 @@
             span.badge.badge-pill.badge-light.p-2.border.mr-sm.mt-sm(v-for="(item, index) in selector"
                                                                      :key="item.id"
                                                                      @click="changeSourceBy(index)"
-                                                                     :class="activeClass(index)")
+                                                                     :class="{ 'bg-active': item.active }")
                 font {{item.name}}
         .shadow.p-3.mb-3.border-top(v-for="item in articleList", :key="item.id")
             .h5 {{item.name}}
@@ -14,7 +14,7 @@
                     small posted @ {{item.postTime}}
                 p.float-right
                     router-link.nav-link.p-0(:to="item.path")
-                        font 阅读全文
+                        font.mr-1 阅读全文
                         font-awesome-icon(:icon="['fas', 'angle-double-right']")
 </template>
 
@@ -30,20 +30,20 @@ export default {
         changeSourceBy: function (arg) {
             this.$store.commit('changeSourceBy', { sourceBy: arg });
         },
-        activeClass: function (arg) {
-            if (arg === 0) {
-                return {
-                    'bg-active': true
-                }
-            } else {
-                return {
-                    'bg-active': false
-                }
-            }
-        }
+        // activeClass: function (arg) {
+        //     if (arg === 0) {
+        //         return {
+        //             'bg-active': true
+        //         }
+        //     } else {
+        //         return {
+        //             'bg-active': false
+        //         }
+        //     }
+        // },
     },
     created() {
-        this.activeClass();
+        // this.activeClass();
     },
     computed: {
         articleList() {

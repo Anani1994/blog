@@ -6,14 +6,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		<meta name="keywords" content="Anani,博客园,IT,github,inherit,继承,原型链">
 		<meta name="author" content="Anani">
-		<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+		<link rel="icon" href="/anani1994.github.io/projects/BlogV1.0.0/photo-blog/logo-blog.jpg" sizes="32x32" />
 		<!-- 引入 font-awesome -->
-		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/projects/BlogV1.0.0/css-blog/font-css/css/font-awesome.min.css"/>
 		<!-- 引入 Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/projects/BlogV1.0.0/css-blog/bootstrap.min.css"/>
 		<!-- 引入 syntaxhighlighter -->
-		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shCore.css"/>
-		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shThemeDefault.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/projects/BlogV1.0.0/css-blog/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/projects/BlogV1.0.0/css-blog/shThemeDefault.css"/>
 		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
 		<!--[if lt IE 9]>
 		   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -234,7 +234,7 @@
 	<header>
 		<div id="header">
 			<div id="blogTitle">
-				<h1><a id="Header1_HeaderTitle" href="/anani1994.github.io/blog/projects/old-blog/index.html">Anani</a></h1>
+				<h1><a id="Header1_HeaderTitle" href="/anani1994.github.io/projects/BlogV1.0.0/index.html">Anani</a></h1>
 				<h2>代码改变世界，坚持铸就未来。</h2>
 			</div>
 			<nav id="nav" class="navbar navbar-default" role="navigation">
@@ -249,7 +249,7 @@
 		            </div>
 		            <div id="primary-navbar-collapse" class="collapse navbar-collapse">
 		               <ul class="nav navbar-nav navbar-right">
-		                   <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">首页</a></li>
+		                   <li><a href="/anani1994.github.io/projects/BlogV1.0.0/index.html">首页</a></li>
 		                   <li><a href="https://github.com/Anani1994">Github</a></li>
 		                   <li><a href="http://www.cnblogs.com/anani/">博客园</a></li>
 		                   <li class="disabled"><a href="">留言板</a></li>
@@ -270,9 +270,9 @@
             <h4 class="bowen-title">原型链</h4>
             <div class="bowen-body">
              	<div>每个构造函数都有一个原型对象（prototype），原型对象都包含一个指向构造函数的指针。</div>
-             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-0.png"></p>
+             	<p><img src="/anani1994.github.io/projects/BlogV1.0.0/photo-blog/blog-inherit/inherit-0.png"></p>
              	<div>原型既然作为对象，属性的集合，自然可以自定义许多属性。比如对象的原型：</div>
-             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-1.png"></p>
+             	<p><img src="/anani1994.github.io/projects/BlogV1.0.0/photo-blog/blog-inherit/inherit-1.png"></p>
              	<div>当然我们也可以自己在原型对象上自定义方法或新增自己的属性，比如：</div>
              	<div>
          			<pre class="brush:javascript;gutter:true;toolbar:false;">
@@ -285,7 +285,7 @@
          			</pre>
              	</div>
              	<div>结果就变成这样了：</div>
-             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-2.jpg"></p>
+             	<p><img src="/anani1994.github.io/projects/BlogV1.0.0/photo-blog/blog-inherit/inherit-2.jpg"></p>
              	<p>而实例都包含一个指向原型对象的内部指针。当我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应地，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原型的链条。这就是原型链的基本概念。</p>
              	<p>原型链存在的问题：1、包含引用类型值的原型属性会被所有实例共享。2、在创建子类型的实例时，不能向超类型的构造函数中传递参数（其实是有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数）。</p>
             </div>
@@ -323,7 +323,7 @@
             <h4 class="bowen-title">确定原型和实例的关系</h4>
             <div class="bowen-body">
              	<div>在检测数据类型时，我们可以通过 typeof 判断，当遇到 string/number/boolean/undefined 都很顺利。但是如果这个值是对象或 null，返回"object"。如果这个值是函数，返回"function"。此时我们需要用到 instanceof 操作符。在此我们也用 instanceof 操作符来判断原型和实例的关系，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回true。以下几行代码就说明了这一点：</div>
-             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-inherit/inherit-3.png"></p>
+             	<p><img src="/anani1994.github.io/projects/BlogV1.0.0/photo-blog/blog-inherit/inherit-3.png"></p>
              	<div>另外我们也可以使用 isPrototypeOf() 方法。同样，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此 isPrototypeOf() 方法也会返回 true。</div>
             </div>
 	    </div>
@@ -342,7 +342,7 @@
 	<footer id="footer">
    	<div class="footer-page">
       <ul class="list-inline">
-      	<li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+      	<li><a href="/anani1994.github.io/projects/BlogV1.0.0/index.html">网站开发者：Anani</a></li>
       	<li><span class="vertical-line"></span></li>
       	<li><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how" style="text-decoration:none;">联系我</a></li>
       </ul>
@@ -354,12 +354,12 @@
 	</footer>
     </body>
     <!-- jQuery -->
-    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/projects/BlogV1.0.0/js-blog/jquery-3.2.0.min.js"></script>
     <!-- 包括所有已编译的 bootstrap 插件 -->
-    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/projects/BlogV1.0.0/js-blog/bootstrap.min.js"></script>
     <!-- 包括所有已编译的 syntaxhighlighter 插件 -->
-    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shCore.js"></script>
-    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/projects/BlogV1.0.0/js-blog/shCore.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/projects/BlogV1.0.0/js-blog/shBrushJScript.js"></script>
     <!-- 设置 syntaxhighlighter 插件 -->
     <script type="text/javascript">
     	SyntaxHighlighter.all();

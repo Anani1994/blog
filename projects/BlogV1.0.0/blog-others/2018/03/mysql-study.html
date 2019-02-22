@@ -1,0 +1,575 @@
+ <!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="keywords" content="个人简历，博客园，作品，IT,行者,七夕,github,HTML,DOM">
+		<meta name="author" content="Anani">
+		<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+		<!-- 引入 font-awesome -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+		<!-- 引入 Bootstrap -->
+		<link href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap.min.css" rel="stylesheet">
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<title>学习MySQL</title>
+		<style type="text/css">
+			/*全局样式*/
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			img {
+			    max-width: 100%;
+			}
+			p {
+				text-indent: 30px;
+			}
+
+			/*内容样式*/
+			.pre-code {
+				padding: 10px 10px .1px 10px;
+				background-color: #f5f5f5;
+				border-left: 5px solid #87f30a;
+			}
+
+			/*底部模块*/
+		    .footer-page {
+		        padding-top: 30px;
+		        padding-bottom: 20px;
+		        text-align: center;
+		        background-color: #494949;
+		    }
+		    .list-inline a {
+		        color: #fff;
+		    }
+		        .list-inline a:hover {
+		           text-decoration:none;
+		           }
+		    .vertical-line {
+		        border-style: solid;
+		        border-width: 0 0 0 1px;
+		        border-color: #fff;
+		    }
+
+		    /*文档右侧浮标模块*/
+	        #buoy {
+		        position: fixed;
+		        right: 0;
+		        bottom: 20px;
+		        z-index: 999;
+		        width:40px; 
+		        height:80px;
+		        background-color: rgba(181, 164, 164, 0.53);
+		    }
+		    .u-icon-arr {
+		        position: absolute;
+		        right: 14px;
+		        width: 25px;
+		        height: 25px;
+		        border-style: solid;
+		        border-width: 10px 10px 0 0;
+		        border-color: #fff;
+		        -webkit-transform-origin: 75% 25%;
+		        -webkit-transform: rotateZ(45deg);
+		        -webkit-transition: 100ms ease-in .1s;
+		        transition: 100ms ease-in .1s;
+		    }
+		    .u-icon-up {
+		        top: 10px;
+		        cursor: pointer;
+		        -webkit-transform: rotateZ(-45deg);
+		        -ms-transform: rotateZ(-45deg);
+		        transform: rotateZ(-45deg);
+		    }
+		    .u-icon-down {
+		        bottom: 0;
+		        cursor: pointer;
+		        -webkit-transform: rotateZ(135deg);
+		        -ms-transform: rotateZ(135deg);
+		        transform: rotateZ(135deg);
+		    }
+	         /*当使用手机设备时改变部分板块的显示样式*/
+	         @media screen and (max-width: 768px) {
+	        }
+		</style>
+    </head>
+	<body>
+	<header>
+		<nav class="navbar navbar-default navbar-inverse container" role="navigation">
+	        <div class="container-fluid">
+	            <div class="navbar-header">
+	               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar-collapse">
+	                  <span class="sr-only">切换导航</span>
+	                  <span class="icon-bar"></span>
+	                  <span class="icon-bar"></span>
+	                  <span class="icon-bar"></span>
+	               </button>
+	            </div>
+	            <div id="primary-navbar-collapse" class="collapse navbar-collapse">
+	               <ul class="nav navbar-nav navbar-right">
+	                   <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">首页</a></li>
+	                   <li><a href="https://github.com/Anani1994">Github</a></li>
+	                   <li><a href="http://www.cnblogs.com/anani/">博客园</a></li>
+	                   <li><a href="/anani1994.github.io/blog/projects/old-blog/blog-others/2018/02/article-list.html">文章列表</a></li>
+	                   <li class="disabled"><a href="">留言板</a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+	</header>
+	<section>
+		<div class="container">
+			<h5><b>1.PHP 服务器组件</b></h5>
+			<p>对于初学者建议使用集成的服务器组件，它已经包含了 PHP、Apache、Mysql 等服务,免去了开发人员将时间花费在繁琐的配置环境过程。</p>
+			<p>Window 系统可以使用 WampServer，下载地址：<a href="http://www.wampserver.com/">wampserver</a>，支持32位和64位系统，根据自己的系统选择版本。</p>
+			<p>XAMPP 支持 Mac OS 和 Window 系统，下载地址：<a href="https://www.apachefriends.org/zh_cn/index.html">apachefriends</a>。</p>
+			<h5><b>2.设置Mysql的密码</b></h5>
+			<p>WAMP（wampserver）安装好后，首先通过WAMP进入Mysql控制台，Mysql默认密码是为空的，提示输入密码时，直接回车。使用 use mysql； 命令进入MySQL数据库，然后输入修改密码的命令语句:update user set authentication_string = password('new password'), password_expired = 'N', password_last_changed = now() where user = 'root';</p>
+			<P>然后输入命令： flush privileges；，否则修改密码的操作不会生效，最后输入命令： exit； 退出。</P>
+			<p>到此mysql密码已经设置成功，需要注意的是以上命令中的分号不能省略。</p>
+			<h5><b>3.用户设置</b></h5>
+			<p>如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。并授予该用户相应的权限。</p>
+			<div class="pre-code">
+			<pre>mysql> use mysql;<br/>Database changed<br/><br/>mysql> INSERT INTO user <br/>        (host, user, password, <br/>        select_priv, insert_priv, update_priv) <br/>        VALUES ('localhost', 'name', <br/>        PASSWORD('new password'), 'Y', 'Y', 'Y');<br/>Query OK, 1 row affected (0.20 sec)<br/><br/>mysql> FLUSH PRIVILEGES;<br/>Query OK, 1 row affected (0.01 sec)</pre>
+			</div>
+			<p>用户权限列表如下：1、Select_priv 2、Insert_priv 3、Update_priv 4、Delete_priv 5、Create_priv 6、Drop_priv 7、Reload_priv 8、Shutdown_priv 9、Process_priv 10、File_priv 11、Grant_priv 12、eferences_priv 13、Index_priv 14、Alter_priv。为用户指定权限，在对应的权限列中，在插入语句中设置为 'Y' 即可。</p>
+			<h5><b>4.管理mysql的基本命令</b></h5>
+			<p>1、SHOW DATABASES: 列出 MySQL 数据库管理系统的数据库列表。</p>
+			<p>2、USE 数据库名 :选择要操作的MySQL数据库，使用该命令后所有Mysql命令都只针对该数据库。与之对应的使用PHP脚本选择MySQL数据库语法：</p>
+			<div class="pre-code">
+			<pre>mysqli_select_db(connection,dbname);</pre>
+			</div>
+			<p>connection：必需。规定要使用的 MySQL 连接。dbname：必需，规定要使用的默认数据库。</p>
+			<p>3、SHOW TABLES:显示指定数据库的所有表，使用该命令前需要使用 use 命令来选择要操作的数据库。</p>
+			<p>4、SHOW TABLE STATUS  FROM DATABASENAME:显示数据库 DATABASENAME 中所有表的信息</p>
+			<p>5、SHOW COLUMNS FROM 数据表:显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其他信息。</p>
+			<p>6、SHOW INDEX FROM 数据表:显示数据表的详细索引信息，包括PRIMARY KEY（主键）。</p>
+			<h5><b>5.mysql php语法</b></h5>
+			<p>PHP提供了多种方式来访问和操作MySQL数据库记录。PHP Mysqli函数格式如下：</p>
+			<div class="pre-code">
+			<pre>mysqli_function(value,value,...);</pre>
+			</div>
+			<p>使用 PHP 脚本连接 MySQL的语法格式如下：</p>
+			<div class="pre-code">
+			<pre>mysqli_connect(host,username,password,dbname,port,socket);</pre>
+			</div>
+			<p>host：可选。规定主机名或 IP 地址。username：可选。规定 MySQL 用户名。
+			password：可选。规定 MySQL 密码。dbname：可选。规定默认使用的数据库。port：可选。规定尝试连接到 MySQL 服务器的端口号。socket：可选。规定 socket 或要使用的已命名 pipe。</p>
+			<p>并能使用PHP的 mysqli_close() 函数来断开与MySQL数据库的链接。
+			该函数只有一个参数为 mysqli_connect() 函数创建连接成功后返回的 MySQL 连接标识符。</p>
+			<h5><b>6.对MySQL数据库的操作</b></h5>
+			<p>PHP 使用 mysqli_query 函数来创建或者删除 MySQL 数据库。该函数有两个参数，在执行成功时返回 TRUE，否则返回 FALSE。语法格式如下：</p>
+			<div class="pre-code">
+			<pre>mysqli_query(connection,query,resultmode);</pre>
+			</div>
+			<p>connection：必需。规定要使用的 MySQL 连接。query：必需，规定查询字符串，在此处插入的值为：'CREATE DATABASE DATABASENAME'。resultmode：可选。一个常量。可以是下列值中的任意一个：MYSQLI_USE_RESULT（如果需要检索大量数据，请使用这个）MYSQLI_STORE_RESULT（默认）</p>
+			<p>使用mysql命令创建数据库：</p>
+			<div class="pre-code">
+			<pre>create database databasename;</pre>
+			</div>
+			<p>使用mysql命令删除数据库：</p>
+			<div class="pre-code">
+			<pre>drop database databasename;</pre>
+			</div>
+			<h5><b>7.MySQL 数据类型</b></h5>
+			<p>MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。</p>
+			<p>1、数值类型:MySQL支持所有标准SQL数值数据类型。这些类型包括严格数值数据类型(INTEGER、SMALLINT、DECIMAL和NUMERIC)，以及近似数值数据类型(FLOAT、REAL和DOUBLE PRECISION)。
+			作为SQL标准的扩展，MySQL也支持整数类型TINYINT、MEDIUMINT和BIGINT。</p>
+			<p>2、日期和时间类型
+			:表示时间值的日期和时间类型为DATETIME、DATE、TIMESTAMP、TIME和YEAR。每个时间类型有一个有效值范围和一个"零"值，当指定不合法的MySQL不能表示的值时使用"零"值。</p>
+			<p>3、字符串类型:字符串类型指CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET。</p>
+			<h5><b>8.对mysql数据表的操作</b></h5>
+			<p>1、通过 mysql> 命令窗口可以很简单的创建MySQL数据表。即使用 SQL 语句 CREATE TABLE 来创建数据表：</p>
+			<div class="pre-code">
+			<pre>mysql> CREATE TABLE table_name(<br/>   -> table_id INT NOT NULL AUTO_INCREMENT,<br/>   -> table_title VARCHAR(100) NOT NULL,<br/>   -> table_author VARCHAR(40) NOT NULL,<br/>   -> submission_date DATE,<br/>   -> PRIMARY KEY ( table_id )<br/>   -> )ENGINE=InnoDB DEFAULT CHARSET=utf8;<br/>Query OK, 0 rows affected (0.16 sec)<br/>mysql></pre>
+			</div>
+			<p>实例分析：1、如果你不想字段为 NULL 可以设置字段的属性为 NOT NULL， 在操作数据库时如果输入该字段的数据为NULL ，就会报错。2、PRIMARY KEY关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。3、AUTO_INCREMENT定义列为自增的属性，一般用于主键，数值会自动加1。4、ENGINE 设置存储引擎，CHARSET 设置编码。
+			</p>
+			<p>2、使用 PHP 的 mysqli_query() 函数来创建已存在数据库的数据表。该函数有两个参数，在执行成功时返回 TRUE，否则返回 FALSE。</p>
+			<div class="pre-code">
+			<pre>mysqli_query(connection,query,resultmode);</pre>
+			</div>
+			<p>connection：必需。规定要使用的 MySQL 连接。query：必需，规定查询字符串，在此处插入的值为创建的数据表的详细信息。resultmode：可选。一个常量。可以是下列值中的任意一个：MYSQLI_USE_RESULT（如果需要检索大量数据，请使用这个）MYSQLI_STORE_RESULT（默认），详细代码见下：</p>
+			<div class="pre-code">
+			<pre>&lt?php<br/>$dbhost = 'localhost:3306';  // mysql服务器主机地址<br/>$dbuser = 'root';            // mysql用户名<br/>$dbpass = '123456';          // mysql用户名密码<br/>$conn = mysqli_connect($dbhost, $dbuser, $dbpass);<br/>if(! $conn )<br/>{<br/>    die('连接失败: ' . mysqli_error($conn));<br/>}<br/>echo '连接成功<br />';<br/>$sql = "CREATE TABLE runoob_tbl( ".<br/>        "runoob_id INT NOT NULL AUTO_INCREMENT, ".<br/>        "runoob_title VARCHAR(100) NOT NULL, ".<br/>        "runoob_author VARCHAR(40) NOT NULL, ".<br/>        "submission_date DATE, ".<br/>        "PRIMARY KEY ( runoob_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";<br/>mysqli_select_db( $conn, 'RUNOOB' );<br/>$retval = mysqli_query( $conn, $sql );<br/>if(! $retval )<br/>{<br/>    die('数据表创建失败: ' . mysqli_error($conn));<br/>}<br/>echo "数据表创建成功\n";<br/>mysqli_close($conn);<br/>?&gt</pre>
+			</div>
+			<p>3、在mysql>命令提示窗口中删除数据表SQL语句为 DROP TABLE：</p>
+			<div class="pre-code">
+			<pre>mysql&gt use databasename;<br/>Database changed<br/>mysql> DROP TABLE tablename<br/>Query OK, 0 rows affected (0.8 sec)<br/>mysql&gt</pre>
+			</div>
+			<p>4、PHP使用 mysqli_query 函数来删除 MySQL 数据表。该函数有两个参数，在执行成功时返回 TRUE，否则返回 FALSE。</p>
+			<div class="pre-code">
+			<pre>mysqli_query(connection,query,resultmode);</pre>
+			</div>
+			<p>connection：必需。规定要使用的 MySQL 连接。query：必需，规定查询字符串，在此处插入的值为："DROP TABLE runoob_tbl";。resultmode：可选。一个常量。可以是下列值中的任意一个：MYSQLI_USE_RESULT（如果需要检索大量数据，请使用这个）MYSQLI_STORE_RESULT（默认），详细代码参考本项目中第2条。</p>
+			<h5><b>9、MySQL 插入数据</b></h5>
+			<p>1、使用 SQL INSERT INTO 语句向 MySQL 数据表 blog_table-test 插入数据:</p>
+			<div class="pre-code">
+			<pre>mysql> use dababasename;<br/>Database changed<br/>mysql> INSERT INTO tablename<br/>     -> (table_title, table_author, submission_date)<br/>    -> VALUES<br/>    -> ("学习 closure", "Anani", NOW());<br/>Query OK, 1 rows affected, 1 warnings (0.01 sec)<br/>mysql></pre>
+			</div>
+			<p>2、使用PHP 的 mysqli_query() 函数来执行 SQL INSERT INTO命令来插入数据。该函数有两个参数，在执行成功时返回 TRUE，否则返回 FALSE。</p>
+			<div class="pre-code">
+			<pre>mysqli_query(connection,query,resultmode);</pre>
+			</div>
+			<p>connection：必需。规定要使用的 MySQL 连接。query：必需，规定查询字符串，在此处插入的值为添加数据的详细代码。resultmode：可选。一个常量。可以是下列值中的任意一个：MYSQLI_USE_RESULT（如果需要检索大量数据，请使用这个）MYSQLI_STORE_RESULT（默认）。详细代码：</p>
+			<div class="pre-code">
+			<pre>&lt?php<br/>$dbhost = 'localhost:3306';  // mysql服务器主机地址<br/>$dbuser = 'root';            // mysql用户名<br/>$dbpass = 'new password';          // mysql用户名密码<br/>$conn = mysqli_connect($dbhost, $dbuser, $dbpass);<br/>if(! $conn )<br/>{<br/>  die('连接失败: ' . mysqli_error($conn));<br/>}<br/>echo '连接成功<br />';<br/>// 设置编码，防止中文乱码<br/>mysqli_query($conn , "set names utf8");<br/><br/>$runoob_title = '学习 closue';<br/>$runoob_author = 'Anani';<br/>$submission_date = '2017-11-28';<br/><br/>$sql = "INSERT INTO blog_table_test ".<br/>        "(table_title,table_author, submission_date) ".<br/>        "VALUES ".<br/>        "('$runoob_title','$runoob_author','$submission_date')";<br/><br/>mysqli_select_db( $conn, 'blog' );<br/>$retval = mysqli_query( $conn, $sql );<br/>if(! $retval )<br/>{<br/>  die('无法插入数据: ' . mysqli_error($conn));<br/>}<br/>echo "数据插入成功\n";<br/>mysqli_close($conn);<br/>?&gt</pre>
+			</div>
+			<h5><b>10、MySQL 查询数据</b></h5>
+			<p>1、在MySQL数据库中查询数据通用的 SELECT 语法：</p>
+			<div class="pre-code">
+			<pre>SELECT column_name,column_name<br/>FROM table_name<br/>[WHERE Clause]<br/>[LIMIT N][ OFFSET M]</pre>
+			</div>
+			<p>注意：1、SELECT 命令可以读取一条或者多条记录。2、查询语句中你可以使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。3、使用 WHERE 语句来包含任何条件。4、使用 LIMIT 属性来设定返回的记录数。5、通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0。6、使用星号（*）来代替其他字段，SELECT语句会返回表的所有字段数据。例如使用 select * form tablename 语句返回该表格的所有记录。</p>
+			<p>2、使用 PHP 函数的 mysqli_query() 及 SQL SELECT 命令来获取数据。</p>
+			<p>该函数用于执行 SQL 命令，然后通过 PHP 函数 mysqli_fetch_array() 来使用或输出所有查询的数据。mysqli_fetch_array() 函数从结果集中取得一行作为关联数组(此时对应该函数的第二个参数为：MYSQL_ASSOC或对应函数：mysqli_fetch_assoc(）），或数字数组（此时对应该函数的第二个参数为：MYSQL_NUM），或二者兼有 返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false。</p>
+			<p>在我们执行完 SELECT 语句后，释放游标内存可以通过 PHP 函数 mysqli_free_result() 来实现内存的释放。其参数为查询数据执行的 mysqli_query()函数。</p>
+			<h5><b>11、MySQL WHERE 子句</b></h5>
+			<p>1、可将 WHERE 子句添加到 SELECT 语句中，实现条件地从表中选取数据，常见的比较符皆用于 WHERE 子句中，并且可以使用 AND 或者 OR 指定一个或多个条件。当然 WHERE 子句也可以运用于 SQL 的 DELETE 或者 UPDATE 命令。</p>
+			<p>例如在SQL SELECT语句使用WHERE子句来读取MySQL数据表 blog_table_test 中的数据，并设置条件返回表中 table_author 字段值为 Anani 的所有记录：</p>
+			<div class="pre-code">
+			<pre>SELECT * from blog_table_test WHERE table_author='Anani';</pre>
+			</div>
+			<p>MySQL 的 WHERE 子句的字符串比较是不区分大小写的。 你可以使用 BINARY 关键字来设定 WHERE 子句的字符串比较是区分大小写的。使用时将该关键字置于 WHERE之后再加上条件即可。</p>
+			<p>2、使用 PHP 函数的 mysqli_query() 及相同的 SQL SELECT 带上 WHERE 子句的命令来获取数据。该函数用于执行 SQL 命令，然后通过 PHP 函数 mysqli_fetch_array() 来输出所有查询的数据。</p>
+			<h5><b>12、MySQL UPDATE 查询</b></h5>
+			<p>如果我们需要修改或更新 MySQL 中的数据，我们可以使用 SQL UPDATE 命令来操作。且：1、可以同时更新一个或多个字段。2、可以在 WHERE 子句中指定任何条件。3、可以在 WHERE 子句中指定任何条件。</p>
+			<p>1、以下在 SQL UPDATE 命令使用 WHERE 子句来更新 blog_table_test 表中指定的数据：</p>
+			<div class="pre-code">
+			<pre>mysql> UPDATE blog_table_test SET table_title='study HTML DOM' WHERE table_id=1;<br/>Query OK, 1 rows affected (0.01 sec)</pre>
+			</div>
+			<p>2、PHP 中使用函数 mysqli_query() 来执行 SQL 语句，可以在 SQL UPDATE 语句中使用或者不使用 WHERE 子句。不使用 WHERE 子句将数据表的全部数据进行更新，所以要慎重。该函数与在mysql>命令提示符中执行SQL语句的效果是一样的。</p>
+			<h5><b>13、MySQL DELETE 语句</b></h5>
+			<p>在mysql中可以使用 SQL 的 DELETE FROM 命令来删除 MySQL 数据表中的记录。</p>
+			<P>1、在 SQL DELETE 命令中使用 WHERE 子句来删除 MySQL 数据表 blog_table_test 所选的数据。以下实例将删除 blog_table_test 表中 table_id 为 1的记录：</P>
+			<div class="pre-code">
+			<pre>mysql> use blog;<br/>Database changed<br/>mysql> DELETE FROM blog_table_test WHERE table_id=1;<br/>Query OK, 1 row affected (0.23 sec)</pre>
+			</div>
+			<p>2、PHP使用 mysqli_query() 函数来执行SQL语句， 你可以在 SQL DELETE 命令中使用或不使用 WHERE 子句。该函数与 mysql> 命令符执行SQL命令的效果是一样的。</p>
+			<h5><b>14、MySQL LIKE 子句</b></h5>
+			<p>SQL LIKE 子句中使用百分号 %字符来表示任意字符，类似于UNIX或正则表达式中的星号 *。如果没有使用百分号 %, LIKE 子句与等号 = 的效果是一样的。</p>
+			<p>1、下面将在 SQL SELECT 命令中使用 WHERE...LIKE 子句来从 blog_table_test 表中获取 table_title 字段中以 closure 为结尾的的所有记录：</p>
+			<div class="pre-code">
+			<pre>mysql> use blog;<br/>Database changed<br/>mysql> SELECT * from blog_table_test  WHERE table_title LIKE '%closure';</pre>
+			</div>
+			<p>2、使用PHP函数的 mysqli_query() 及相同的 SQL SELECT 带上 WHERE...LIKE 子句的命令来获取数据，然后通过 PHP 函数 mysqli_fetch_assoc() 来输出所有查询的数据。 </p>
+			<h5><b>15、MySQL UNION 操作符</b></h5>
+			<p>MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。该操作符有两个可选参数：1、删除结果集中重复的数据。默认情况下 UNION 操作符已经删除了重复数据，所以 DISTINCT 修饰符对结果没啥影响。2、返回所有结果集，包含重复数据。</p>
+			<p>下面的 SQL 语句使用 UNION ALL 从 "blog_table_test" 和 "blog_table" 表中选取所有的 Anani 的数据（包含重复的值）：</p>
+			<div class="pre-code">
+			<pre>SELECT table_title, table_author FROM blog_table_test<br/>WHERE title_author='Anani'<br/>UNION ALL<br/>SELECT table_title, author FROM blog_table<br/>WHERE table_author='Anani';</pre>
+			</div>
+			<h5><b>16、MySQL 排序</b></h5>
+			<p>若是需要对从 MySQL 表中使用 SQL SELECT 语句来读取来的数据进行排序，可以使用 MySQL 的 ORDER BY 子句来设定排序方式来进行排序，再返回搜索结果。设定排序方式时你可以：1、可以使用任何字段来作为排序的条件，从而返回排序后的查询结果。2、设定多个字段来排序。3、使用 ASC 或 DESC 关键字来设置查询结果是按升序或降序排列。 默认情况下，它是按升序排列。4、添加 WHERE...LIKE 子句来设置条件。</p>
+			<p>1、在命令提示符中使用 ORDER BY 子句来读取MySQL 数据表 blog_table_test 中的数据,并将结果按 submission_date 字段的升序排列：</p>
+			<div class="pre-code">
+			<pre>mysql> use blog;<br/>Database changed<br/>mysql> SELECT * from blog_table_test ORDER BY submission_date ASC;</pre>
+			</div>
+			<p>2、用PHP函数的 mysqli_query() 及相同的 SQL SELECT 带上 ORDER BY 子句的命令来获取数据。该函数用于执行 SQL 命令，然后通过 PHP 函数 mysqli_fetch_array() 来输出所有查询的数据。</p>
+			<h5><b>17、MySQL GROUP BY 语句</b></h5>
+			<p>GROUP BY 语句根据一个或多个列对结果集进行分组，在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。</p>
+			<p>下面的实例使用 GROUP BY 语句 将数据表按名字进行分组，并统计每个人有多少条记录：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT table_author, COUNT(*) FROM blog_table_test GROUP BY table_author;</pre>
+			</div>
+			<p>在上面的例子中我们可以使用 as 改变在结果数据表中函数占据的表头的值：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT table_author, COUNT(*) AS count FROM blog_table_test GROUP BY table_author;</pre>
+			</div>
+			<P>WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM,AVG,COUNT…）。例如将以上的数据表按名字进行分组，再统计每个人学习的次数：</P>
+			<div class="pre-code">
+			<pre>mysql> SELECT table_author, SUM(study_num) as study_count FROM  blog_table_test GROUP BY table_author WITH ROLLUP;</pre>
+			</div>
+			<p>coalesce 语法：select coalesce(a,b,c);其中如果a==null,则选择b；如果b==null,则选择c；如果a!=null,则选择a；如果a b c 都为null ，则返回为null（无意义）。例如：</p>
+			<div class="pre-code">
+			<pre>ysql> SELECT coalesce(table_author, '合计'), SUM(study_num) as study_count FROM  blog_table_test GROUP BY table_author WITH ROLLUP;</pre>
+			</div>
+			<h5><b>18、Mysql 连接的使用</b></h5>
+			<p>MySQL 的 JOIN 在两个或多个表中查询数据。JOIN 按照功能大致分为如下三类：1、NNER JOIN（可以省略 INNER，表示内连接,或等值连接）：获取两个表中字段匹配关系的记录。2、LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。3、RIGHT JOIN（右连接）：用于获取右表所有记录，即使左表没有对应匹配的记录。</p>
+			<p>1、使用MySQL的INNER JOIN连接两张表来读取blog_table_test表中所有table_author字段在blog_table表对应的table_count字段值：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT a.table_id, a.table_author, b.table_count FROM blog_table_test a INNER JOIN blog_table b ON a.table_author = b.table_author;</pre>
+			</div>
+			<p>上面的语句等同于：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT a.table_id, a.table_author, b.table_count FROM blog_table_test a , blog_table b WHERE a.table_author = b.table_author;</pre>
+			</div>
+			<p>2、左连接和右连接在另一侧没有对应的field字段值时，依旧会读取该侧数据，并设置对应的对侧空缺为NULL。</p>
+			<p>3、PHP 中使用 mysqli_query() 函数来执行 SQL 语句，你可以使用以上的相同的 SQL 语句作为 mysqli_query() 函数的参数。</p>
+			<h5><b>19、MySQL NULL 值处理</b></h5>
+			<p> MySQL 使用 SQL SELECT 命令及 WHERE 子句来读取数据表中的数据,但是当提供的查询条件字段为 NULL 时，该命令可能就无法正常工作。为了处理这种情况，MySQL提供了三大运算符:1、IS NULL: 当列的值是 NULL,此运算符返回 true。2、IS NOT NULL: 当列的值不为 NULL, 运算符返回 true。3、<=>: 比较操作符（不同于=运算符），当比较的的两个值为 NULL 时返回 true。</p>
+			<p>PHP 脚本中你可以在 if...else 语句来处理变量是否为空，并生成相应的条件语句。</p>
+			<h5><b>20、MySQL 正则表达式</b></h5>
+			<p>MySQL 支持正则表达式的匹配， MySQL中使用 REGEXP 操作符来进行正则表达式匹配。例如查找table_author字段中以'An'为开头的所有数据：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT table_author FROM blog_table_test WHERE table_author REGEXP '^An';</pre>
+			</div>
+			<h5><b>21、MySQL 事务</b></h5>
+			<p>MySQL 事务主要用于处理操作量大，复杂度高的数据。在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。事务用来管理 insert,update,delete 语句。而事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</p>
+			<p>事务是必须满足4个条件（ACID）： Atomicity（原子性）：一组事务，要么成功；要么撤回。、Consistency（稳定性）：有非法数据（外键约束之类），事务撤回。、Isolation（隔离性）：事务独立运行。一个事务处理后的结果，影响了其他事务，那么其他事务会撤回。事务的100%隔离，需要牺牲速度。、Durability（可靠性）：软、硬件崩溃后，InnoDB数据表驱动会利用日志文件重构修改。可靠性和高速度不可兼得， innodb_flush_log_at_trx_commit 选项 决定什么时候吧事务保存到日志里。</p>
+			<p>事务控制语句：1、BEGIN或START TRANSACTION；显式地开启一个事务；2、COMMIT；也可以使用COMMIT WORK，不过二者是等价的。COMMIT会提交事务，并使已对数据库进行的所有修改称为永久性的；3、ROLLBACK；有可以使用ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；4、SAVEPOINT identifier；SAVEPOINT允许在事务中创建一个保存点，一个事务中可以有多个SAVEPOINT；5、RELEASE SAVEPOINT identifier；删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；6、ROLLBACK TO identifier；把事务回滚到标记点；7、SET TRANSACTION；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。8、SET AUTOCOMMIT=0 禁止自动提交；SET AUTOCOMMIT=1 开启自动提交。</p>
+			<p>事务例子：</p>
+			<div class="pre-code">
+			<pre>mysql> use blog;<br/>Database changed<br/>mysql> CREATE TABLE table_transaction_test( id int(5)) engine=innodb;  # 创建数据表<br/>Query OK, 0 rows affected (0.04 sec)<br/>mysql> begin;  # 开始事务<br/>Query OK, 0 rows affected (0.00 sec)<br/><br/>mysql> insert into table_transaction_test value(1);<br/>Query OK, 1 rows affected (0.01 sec)<br/><br/>mysql> rollback;   # 回滚<br/>Query OK, 0 rows affected (0.00 sec)<br/><br/>mysql> commit; # 提交事务</pre>
+			</div>
+			<p>PHP中使用事务的方法与之前PHP语言操作MySQL的语句大同小异，主要步骤：1、建立连接：$conn=mysqli_connect()。2、检查连接。3、设置编码：mysqli_query($conn, "set names utf8");。4、进入指定的数据库：mysqli_select_db( $conn, 'blog' );。5、设置事务不自动提交：mysqli_query($conn, "SET AUTOCOMMIT=0");。6、开始事务：mysqli_begin_transaction($conn); 。7、事务：if(!mysqli_query($conn, "insert into table_transaction_test (id) values(1)")){mysqli_query($conn, "ROLLBACK");// 判断当执行失败时回滚}。8、提交事务：mysqli_commit($conn);9、断开连接：mysqli_close($conn);。</p>
+			<h5><b>22、MySQL ALTER命令</b></h5>
+			<p>当我们需要修改数据表名或者修改数据表字段时，就需要使用到MySQL ALTER命令。</p>
+			<p>1、如果需要修改数据表的名称，可以在 ALTER TABLE 语句中使用 RENAME 子句来实现。以下实例将数据表 old_tablename 重命名为 new_tablename：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE old_tablename RENAME TO new_tablename;</pre>
+			</div>
+			<p>2、删除，添加或修改表字段,如下命令使用了 ALTER 命令及 DROP 子句来删除创建表的 table_title 字段：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test  DROP table_title;</pre>
+			</div>
+			<p>MySQL 中使用 ADD 子句来向数据表中添加列，如下实例在表 blog_table_test 中添加 table_title 字段，并定义数据类型:</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test ADD table_title INT;</pre>
+			</div>
+			<p>修改字段类型及名称,如下命令在ALTER命令中使用 MODIFY把字段 table_title 的类型改为 CHAR(10)，可以执行以下命令:</p>
+			<div class="pre-code">
+			<pre>ysql> ALTER TABLE blog_table_test MODIFY table_title CHAR(10);</pre>
+			</div>
+			<P>使用 CHANGE 子句,在 CHANGE 关键字之后，紧跟着的是要修改的字段名，然后指定新字段名及类型。尝试如下实例：</P>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test CHANGE oldfield newfield newtype;</pre>
+			</div>
+			<p>3、ALTER TABLE 对 Null 值和默认值的影响，当你修改字段时，你可以指定是否包含值或者是否设置默认值。下例指定字段 table_title 为 NOT NULL 且默认值为100 。</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test<br/>     -> MODIFY table_title BIGINT NOT NULL DEFAULT 100;</pre>
+			</div>
+			<p>也可以使用 ALTER 来修改字段的默认值，实例：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test ALTER table_title SET DEFAULT 1000;</pre>
+			</div>
+			<p>4、使用 ALTER 命令添加和删除主键。在添加主键索引时，你需要确保该主键默认不为空（NOT NULL）。实例：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE blog_table_test MODIFY table_id INT NOT NULL;<br/>mysql> ALTER TABLE blog_table_test ADD PRIMARY KEY (table_id);</pre>
+			</div>
+			<p>5、使用ALTER 命令添加和删除索引，包含有四种方式来添加数据表的索引（关于索引在下面会有介绍）：1、ALTER TABLE tbl_name ADD PRIMARY KEY (column_list): 该语句添加一个主键，这意味着索引值必须是唯一的，且不能为NULL。2、ALTER TABLE tbl_name ADD UNIQUE index_name (column_list): 这条语句创建索引的值必须是唯一的（除了NULL外，NULL可能会出现多次）。
+			3、ALTER TABLE tbl_name ADD INDEX index_name (column_list): 添加普通索引，索引值可出现多次。4、ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list):该语句指定了索引为 FULLTEXT ，用于全文索引。</p>
+			<h5><b>23、MySQL 索引</b></h5>
+			<p>索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录。其分为单列索引：一个索引只包含单个列。和 组合索引：一个索引包含多个列。。</p>
+			<p>索引可以大大提高MySQL的检索速度，当然也有缺陷，过多的使用索引将会造成滥用,会降低更新表的速度，而且建立索引会占用磁盘空间的索引文件。</p>
+			<p>1、普通索引的创建,最基本的索引，它没有任何限制。它有以下几种创建方式：</p>
+			<p>创建索引：</p>
+			<div class="pre-code">
+			<pre>CREATE INDEX indexName ON blog_table_test(username(length)); </pre>
+			</div>
+			<p>如果是CHAR，VARCHAR类型，length可以小于字段实际长度；如果是BLOB和TEXT类型，必须指定 length。</p>
+			<p>修改表结构(添加索引):</p>
+			<div class="pre-code">
+			<pre>ALTER table tableName ADD INDEX indexName(columnName)</pre>
+			</div>
+			<p>创建表的时候直接指定:</p>
+			<div class="pre-code">
+			<pre>CREATE TABLE blog_table_test(<br/>ID INT NOT NULL,<br/>username VARCHAR(16) NOT NULL,<br/>INDEX [indexName] (username(length))<br/>);</pre>
+			</div>
+			<p>2、唯一索引：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：</p>
+			<p>创建索引:</p>
+			<div class="pre-code">
+			<pre>CREATE UNIQUE INDEX indexName ON blog_table_test(username(length)) </pre>
+			</div>
+			<p>修改表结构:</p>
+			<div class="pre-code">
+			<pre>ALTER table blog_table_test ADD UNIQUE [indexName] (username(length))</pre>
+			</div>
+			<p>创建表的时候直接指定:</p>
+			<div class="pre-code">
+			<pre>REATE TABLE blog_table_test(<br/>ID INT NOT NULL,<br/>username VARCHAR(16) NOT NULL,<br/>UNIQUE [indexName] (username(length))<br/>);  </pre>
+			</div>
+			<p>3、删除索引的语法：</p>
+			<div class="pre-code">
+			<pre>DROP INDEX [indexName] ON blog_table_test;</pre>
+			</div>
+			<p>4、显示索引信息:</p>
+			<div class="pre-code">
+			<pre>mysql> SHOW INDEX FROM table_name; \G</pre>
+			</div>
+			<h5><b>24、MySQL 临时表</b></h5>
+			<p>MySQL临时表只在当前连接可见，如果你使用PHP脚本来创建MySQL临时表，那每当PHP脚本执行完成后，该临时表也会自动销毁。若是使用MySQL客户端程序连接MySQL数据库服务器来创建临时表，那么只有在关闭客户端程序时才会销毁临时表，当然也可以手动销毁。</p>
+			<p>创建临时表的语句与创建数据表的语句基本相同，区别只在于 cerate table 语句的中间加入 temporary 。</p>
+			<h5><b>25、MySQL 复制表</b></h5>
+			<p>复制表的操作步骤：1、使用 SHOW CREATE TABLE 命令获取创建数据表(show create table tablename \g;) 语句，该语句包含了原数据表的结构，索引等。2、复制之后改变数据表的名称，在粘贴在mysql控制台执行，此时已经建立了一个克隆表。3、复制表的内容，可以使用 INSERT INTO ... SELECT 语句来实现。第三部的操作语句如下：</p>
+			<div class="pre-code">
+			<pre>mysql> INSERT INTO new_table (runoob_id,<br/>    ->                        runoob_title,<br/>    ->                        runoob_author,<br/>    ->                        submission_date)<br/>    -> SELECT runoob_id,runoob_title,<br/>    ->        runoob_author,submission_date<br/>    -> FROM blog_table_test;</pre>
+			</div>
+			<h5><b>26、MySQL 元数据</b></h5>
+			<p>在MySQL的命令提示符中，我们可以很容易的获取以上服务器信息。 但如果使用Perl或PHP等脚本语言，你就需要调用特定的接口函数来获取。例如在PHP中，你可以使用 mysqli_affected_rows( ) 函数来获取查询语句影响的记录数。</p>
+			<div class="pre-code">
+			<pre>$result_id = mysqli_query ($conn_id, $query);<br/># 如果查询失败返回<br/>$count = ($result_id ? mysqli_affected_rows ($conn_id) : 0);<br/>print ("$count 条数据被影响\n");</pre>
+			</div>
+			<p>以下实例输出 MySQL 服务器上的所有数据库：</p>
+			<div class="pre-code">
+			<pre>&lt?php<br/>$dbhost = 'localhost:3306';  // mysql服务器主机地址<br/>$dbuser = 'root';            // mysql用户名<br/>$dbpass = '123';          // mysql用户名密码<br/>$conn = mysqli_connect($dbhost, $dbuser, $dbpass);<br/>if(! $conn )<br/>{<br/>    die('连接失败: ' . mysqli_error($conn));<br/>}<br/>// 设置编码，防止中文乱码<br/>$db_list = mysqli_query($conn, 'SHOW DATABASES');<br/>while ($db = mysqli_fetch_object($db_list))<br/>{<br/>  echo $db->Database . "<br />";<br/>}<br/>mysqli_close($conn);<br/>?&gt</pre>
+			</div>
+			<p>以下命令语句可以在 MySQL 的命令提示符使用，也可以在脚本中 使用，如PHP脚本。1、SELECT VERSION( )：服务器版本信息。2、SELECT DATABASE( )：当前数据库名 (或者返回空)。3、SELECT USER( )：当前用户名。4、SHOW STATUS：服务器状态。5、SHOW VARIABLES：服务器配置变量。</p>
+			<h5><b>27、MySQL 序列使用</b></h5>
+			<p>MySQL序列是一组整数：1, 2, 3, ...，由于一张数据表只能有一个字段自增主键， 如果你想实现其他字段也实现自动增加，就可以使用MySQL序列来实现。</p>
+			<p>1、使用AUTO_INCREMENT：MySQL中最简单使用序列的方法就是使用 MySQL AUTO_INCREMENT 来定义列。AUTO_INCREMENT定义列为自增的属性，一般用于主键，数值会自动加1。</p>
+			<p>2、获取AUTO_INCREMENT值：在MySQL的客户端中你可以使用 SQL中的LAST_INSERT_ID( ) 函数来获取最后的插入表中的自增列的值。而PHP 通过 mysql_insert_id ()函数来获取执行的插入SQL语句中 AUTO_INCREMENT列的值：</p>
+			<div class="pre-code">
+			<pre>mysql_query ("INSERT INTO blog_table_test (name,date,origin)<br/>VALUES('moth','2001-09-14','windowsill')", $conn_id);<br/>$seq = mysql_insert_id ($conn_id);</pre>
+			</div>
+			<p>3、重置序列：如果删除了数据表中的多条记录，并希望对剩下数据的AUTO_INCREMENT列进行重新排列，那么你可以通过删除自增的列，然后重新添加来实现。 不过该操作要非常小心，如果在删除的同时又有新记录添加，有可能会出现数据混乱。操作如下所示：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE insect DROP filed;<br/>mysql> ALTER TABLE insect<br/>    -> ADD filed INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,<br/>    -> ADD PRIMARY KEY (filed);</pre>
+			</div>
+			<p>4、设置序列的开始值:一般情况下序列的开始值为1，但如果你需要指定一个开始值100，那我们可以通过以下语句来实现：</p>
+			<div class="pre-code">
+			<pre>mysql> CREATE TABLE blog_table_test<br/>    -> (<br/>    -> table_id INT UNSIGNED NOT NULL AUTO_INCREMENT,<br/>    -> PRIMARY KEY (table_id),<br/>    -> table_name VARCHAR(30) NOT NULL, <br/>    -> table_date DATE NOT NULL,<br/>    -> table_origin VARCHAR(30) NOT NULL<br/>)engine=innodb auto_increment=100 charset=utf8;</pre>
+			</div>
+			<p>或者：</p>
+			<div class="pre-code">
+			<pre>mysql> ALTER TABLE t AUTO_INCREMENT = 100;</pre>
+			</div>
+			<h5><b>28、MySQL 处理重复数据</b></h5>
+			<p>表中无索引及主键，则该表允许出现多条重复记录,如果想设置表中字段field_one，filed_two数据不能重复，可以设置双主键模式来设置数据的唯一性， 如果你设置了双主键，那么那个键的默认值不能为NULL，可设置为NOT NULL。例如：</p>
+			<div class="pre-code">
+			<pre>CREATE TABLE blog_table_test<br/>(<br/>   field_one CHAR(20) NOT NULL,<br/>   field_two CHAR(20) NOT NULL,<br/>   PRIMARY KEY (field_one, field_two)<br/>);</pre>
+			</div>
+			<p>如果我们设置了唯一索引，那么在插入重复数据时，SQL语句将无法执行成功,并抛出错。INSERT IGNORE INTO与INSERT INTO的区别就是INSERT IGNORE会忽略数据库中已经存在的数据，如果数据库没有数据，就插入新的数据，如果有数据的话就跳过这条数据。这样就可以保留数据库中已经存在数据，达到在间隙中插入数据的目的。</p>
+			<p>INSERT IGNORE INTO当插入数据时，在设置了记录的唯一性后，如果插入重复数据，将不返回错误，只以警告形式返回。 而REPLACE INTO into如果存在primary 或 unique相同的记录，则先删除掉。再插入新记录。</p>
+			<p>另一种设置数据的唯一性方法是添加一个UNIQUE索引。</p>
+			<p>1、统计重复数据</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT COUNT(*) as repetitions, field_one, field_two<br/>    -> FROM table_name<br/>    -> GROUP BY field_one, field_two<br/>    -> HAVING repetitions > 1;</pre>
+			</div>
+			<p>查询重复的值，请执行以下操作：1、确定哪一列包含的值可能会重复。2、在列选择列表使用COUNT(*)列出的那些列。3、在GROUP BY子句中列出的列。4、HAVING子句设置重复数大于1。</p>
+			<p>2、过滤重复数据</p>
+			<P>读取不重复的数据可以在 SELECT 语句中使用 DISTINCT 关键字来过滤重复数据:</P>
+			<div class="pre-code">
+			<pre>mysql> SELECT DISTINCT field_one, field_two<br/>    -> FROM blog_table_test;</pre>
+			</div>
+			<p>也可以使用 GROUP BY 来读取数据表中不重复的数据：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT field_one, field_two<br/>    -> FROM blog_table_test<br/>    -> GROUP BY (field_one, field_two);</pre>
+			</div>
+			<p>3、删除重复数据</p>
+			<P>可以在数据表中添加 INDEX（索引） 和 PRIMAY KEY（主键）这种简单的方法来删除表中的重复记录：</P>
+			<div class="pre-code">
+			<pre>mysql> ALTER IGNORE TABLE blod_table_test<br/>    -> ADD PRIMARY KEY (field_one, field_two);</pre>
+			</div>
+			<p>可以使用以下的SQL语句删除表中的重复记录：</p>
+			<div class="pre-code">
+			<pre>mysql> CREATE TABLE blog_table SELECT field_one, field_two<br/>    ->                  FROM blog_table_test;<br/>    ->                  GROUP BY (lfield_one, field_two);<br/>mysql> DROP TABLE blog_table_test;<br/>mysql> ALTER TABLE blog_table RENAME TO blog_table_test;</pre>
+			</div>
+			<h5><b>29、MySQL 及 SQL 注入</b></h5>
+			<p>所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。我们永远不要信任用户的输入，必须认定用户输入的数据都是不安全的，都需要对用户输入的数据进行过滤处理。例如下面的例子中没有对用户输入进行过滤：</p>
+			<div class="pre-code">
+			<pre>$name = "Qadir'; DELETE FROM users;";<br/>mysqli_query($conn, "SELECT * FROM users WHERE name='{$name}'");</pre>
+			</div>
+			<p>以上的注入语句中，我们没有对 $name 的变量进行过滤，$name 中插入了我们不需要的SQL语句，将删除 users 表中的所有数据。在PHP中的 mysqli_query() 是不允许执行多个 SQL 语句的，但是在 SQLite 和 PostgreSQL 是可以同时执行多条SQL语句的，所以我们对这些用户的数据需要进行严格的验证。</p>
+			<p>防止SQL注入，我们需要注意：1、永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和 双"-"进行转换等。2、永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。3、永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。4、不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。5、应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装。6、sql注入的检测方法一般采取辅助软件或网站平台来检测，软件一般采用sql注入检测工具jsky，网站平台就有亿思网站安全平台检测工具。MDCSOFT SCAN等。采用MDCSOFT-IPS可以有效的防御SQL注入，XSS攻击等。</p>
+			<p>1、防止SQL注入：在脚本语言，如Perl和PHP你可以对用户输入的数据进行转义从而来防止SQL注入。PHP的MySQL扩展提供了mysqli_real_escape_string()函数来转义特殊的输入字符。例：</p>
+			<div class="pre-code">
+			<pre>if (get_magic_quotes_gpc())<br/>{<br/>  $name = stripslashes($name);<br/>}<br/>$name = mysqli_real_escape_string($conn, $name);<br/>mysqli_query($conn, "SELECT * FROM users WHERE name='{$name}'");</pre>
+			</div>
+			<p>2、Like语句中的注入:ike查询时，如果用户输入的值有"_"和"%"，则会出现用户本来只是想查询"abcd_"，查询结果中却有"abcd_"、"abcde"、"abcdf"等等；在PHP脚本中我们可以使用addcslashes()函数来处理以上情况，例：</p>
+			<div class="pre-code">
+			<pre>$sub = addcslashes(mysqli_real_escape_string($conn, "%something_"), "%_");<br/>// $sub == \%something\_<br/>mysqli_query($conn, "SELECT * FROM messages WHERE subject LIKE '{$sub}%'");</pre>
+			</div>
+			<p>addcslashes() 函数在指定的字符前添加反斜杠。其使用的语法格式:addcslashes(string,characters)。两个参数中 string：必需。规定要检查的字符串。characters：可选。规定受 addcslashes() 影响的字符或字符范围。</p>
+			<h5><b>30、MySQL 导出数据</b></h5>
+			<p>1、MySQL中可以使用SELECT...INTO OUTFILE语句来简单的导出数据到文本文件上,并通过命令选项来设置数据输出的指定格式，以下实例为导出 CSV 格式：</p>
+			<div class="pre-code">
+			<pre>mysql> SELECT * FROM passwd INTO OUTFILE '/tmp/tutorials.txt'<br/>    -> FIELDS TERMINATED BY ',' ENCLOSED BY '"'<br/>    -> LINES TERMINATED BY '\r\n';</pre>
+			</div>
+			<p>SELECT ... INTO OUTFILE 语句有以下属性:1、将一个数据库的数据写入一个文件，使用SELECT ... INTO OUTFILE，将文件读回数据库，使用LOAD DATA INFILE。2、ELECT...INTO OUTFILE 'file_name'形式的SELECT可以把被选择的行写入一个文件中。该文件被创建到服务器主机上，因此您必须拥有FILE权限，才能使用此语法。3、输出不能是一个已存在的文件。防止文件数据被篡改。4、需要有一个登陆服务器的账号来检索文件。否则 SELECT ... INTO OUTFILE 不会起任何作用。5、在UNIX中，该文件被创建后是可读的，权限由MySQL服务器所拥有。</p>
+			<p>2、导出表作为原始数据:mysqldump是mysql用于转存储数据库的实用程序。它主要产生一个SQL脚本，其中包含从头重新创建数据库所必需的命令。使用mysqldump导出数据需要使用 --tab 选项来指定导出文件指定的目录，该目标必须是可写的。例如将数据表 blog_table_test 导出到 /catalogname 目录中：</p>
+			<div class="pre-code">
+			<pre>$ mysqldump -u root -p --no-create-info \<br/>            --tab=/catalogname blog blog_table_test<br/>password ******</pre>
+			</div>
+			<p>3、导出SQL格式的数据到指定文件，如下实例：</p>
+			<div class="pre-code">
+			<pre>$ mysqldump -u root -p blog blog_table_test > test.txt<br/>password ******</pre>
+			</div>
+			<p>如果你需要导出整个数据库的数据，可以使用以下命令：</p>
+			<div class="pre-code">
+			<pre>$ mysqldump -u root -p blog > database_test.txt<br/>password ******</pre>
+			</div>
+			<p>如果需要备份所有数据库，可以使用以下命令：</p>
+			<div class="pre-code">
+			<pre>$ mysqldump -u root -p --all-databases > database_test.txt<br/>password ******</pre>
+			</div>
+			<p>4、将数据表及数据库拷贝至其他主机:如果你需要将数据拷贝至其他的 MySQL 服务器上, 你可以在 mysqldump 命令中指定数据库名及数据表,如果完整备份数据库，则无需使用特定的表名称。</p>
+			<p>如果需要将备份的数据库导入到MySQL服务器中,可以使用以下命令（需要确认数据库已经创建）：</p>
+			<div class="pre-code">
+			<pre>$ mysql -u root -p database_name < test.txt<br/>password *****</pre>
+			</div>
+			<p>你也可以使用以下命令将导出的数据直接导入到远程的服务器上，但请确保两台服务器是相通的，是可以相互访问的：</p>
+			<div class="pre-code">
+			<pre>$ mysqldump -u root -p database_name \<br/>       | mysql -h other-host.com database_name</pre>
+			</div>
+			<h5><b>31、MySQL 导入数据</b></h5>
+			<p>1、使用 LOAD DATA 导入数据,以下实例中将从当前目录中读取文件 test.txt ，将该文件中的数据插入到当前数据库的 blog_table_test 表中:</p>
+			<div class="pre-code">
+			<pre>mysql> LOAD DATA LOCAL INFILE 'test.txt' INTO TABLE blog_table_test;</pre>
+			</div>
+			<p>如果指定LOCAL关键词，则表明从客户主机上按路径读取文件。如果没有指定，则文件在服务器上按路径读取文件。</p>
+			<p>我们能明确地在LOAD DATA语句中指出列值的分隔符和行尾标记，但是默认标记是定位符和换行符</p>
+			<p>两个命令的 FIELDS 和 LINES 子句的语法是一样的。两个子句都是可选的，但是如果两个同时被指定，FIELDS 子句必须出现在 LINES 子句之前。</p>
+			<p>如果用户指定一个 FIELDS 子句，它的子句 （TERMINATED BY、[OPTIONALLY] ENCLOSED BY 和 ESCAPED BY) 也是可选的，不过，用户必须至少指定它们中的一个。</p>
+			<p>LOAD DATA 默认情况下是按照数据文件中列的顺序插入数据的，如果数据文件中的列与插入表中的列不一致，则需要指定列的顺序。例如在数据文件中的列顺序是 a,b,c，但在插入表的列顺序为b,c,a，则数据导入语法如下：</p>
+			<div class="pre-code">
+			<pre>mysql> LOAD DATA LOCAL INFILE 'test.txt'<br/>    -> INTO TABLE blog_table_test (b, c, a);</pre>
+			</div>
+			<p>2、使用 mysqlimport 导入数据:mysqlimport客户端提供了LOAD DATA INFILEQL语句的一个命令行接口。mysqlimport的大多数选项直接对应LOAD DATA INFILE子句。</p>
+			<p>从文件 test.txt 中将数据导入到 blog_table_test 数据表中, 可以使用以下命令：</p>
+			<div class="pre-code">
+			<pre>$ mysqlimport -u root -p --local database_name test.txt<br/>password *****</pre>
+			</div>
+			<p>ysqlimport命令可以指定选项来设置指定格式,命令语句格式如下：</p>
+			<div class="pre-code">
+			<pre>$ mysqlimport -u root -p --local --fields-terminated-by=":" \<br/>   --lines-terminated-by="\r\n"  database_name test.txt<br/>password *****</pre>
+			</div>
+			<p>mysqlimport 语句中使用 --columns 选项来设置列的顺序：</p>
+			<div class="pre-code">
+			<pre>$ mysqlimport -u root -p --local --columns=b,c,a \<br/>    database_name test.txt<br/>password *****</pre>
+			</div>
+			<h5><b>32、注意事项</b></h5>
+			<P>1、MySQL在Windows下数据库名、表名、列名、别名都不区分大小写。 </P>
+			<p>2、数值类型括号后面的数字只是表示宽度而跟存储范围没有关系。</p>
+			<p>3、ORDER BY，GROUP BY，DISTINCT的字段需要添加在索引的后面。</p>
+			<p>4、不使用外键，高并发时容易引起死锁等问题</p>
+			<h3><span style="color: #888888;">申明</span></h3>
+			<p><span style="color: #c0c0c0;">若是文中有什么错误，欢迎大家指正批评，愿与大家在交流之中共同进步。愈激烈，愈深刻。</span></p>
+			<div class="text-warning text-right" style="width: 100%;clear: both"><p>参考资料：<a href="http://www.runoob.com/" style="color: #996d3b">菜鸟教程</a></p></div>
+		</div>
+	</section>
+	<footer>
+   	<div class="footer-page">
+        <ul class="list-inline">
+           <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+           <li><span class="vertical-line"></span></li>
+           <li><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how" style="text-decoration:none;">联系我</a></li>
+        </ul>
+    </div>
+   	<div id="buoy">
+      <a onclick="toTop()" title="回到顶部"><span class="u-icon-arr u-icon-up"></span></a>
+      <a onclick="toBottom()" title="移到底部"><span class="u-icon-arr u-icon-down"></span></a>
+  	</div>
+	</footer>
+    </body>
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      // 设置点击底部浮标到顶、底部的函数
+      function toTop() {
+         $('body,html').animate({scrollTop:0},1000);
+      }
+      function toBottom() {
+         var bottom = $("body,html").height();
+         $('body,html').animate({scrollTop:bottom},1000);
+      }
+   </script>
+</html>

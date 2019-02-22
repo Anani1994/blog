@@ -7,6 +7,7 @@ const message = {
     cnblogs: 'Cnblogs',
     item_demo: 'Project Demo',
     shop_mall: ' Shopping Site',
+    blog: 'Blog',
     blog_one: 'Blog V1.0.0',
     blog_two: 'Blog V2.0.0',
     bo_wen: 'Bowen',

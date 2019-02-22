@@ -8,6 +8,7 @@ const message = {
     cnblogs: '博客园',
     item_demo: '项目演示',
     shop_mall: '购物商城',
+    blog: '博客历史',
     blog_one: '博客壹代',
     blog_two: '博客贰代',
     bo_wen: '博文',

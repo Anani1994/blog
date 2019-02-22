@@ -9,7 +9,7 @@ const cleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = webpackMerge(webpackBaseConfig, {
     mode: 'production',
     output: {
-        // publicPath: 'anani1994.github.io/', // https://...这部分为你的服务器域名
+        publicPath: 'anani1994.github.io/', // https://...这部分为你的服务器域名
         filename: 'build/js/[name].js',
         chunkFilename: 'build/js/[id].chunk.js'
     },

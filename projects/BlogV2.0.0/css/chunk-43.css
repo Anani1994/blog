@@ -1,0 +1,28 @@
+
+.index-container {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+}
+.index-container .link-ball {
+  position: relative;
+  width: 650px;
+  height: 550px;
+}
+.index-container .link-ball a {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px;
+  color: #727273;
+}
+.index-container .link-ball a:hover {
+  -ms-transform: scale(1.5);
+      transform: scale(1.5);
+  opacity: 1;
+  font-size: 2rem;
+}
+

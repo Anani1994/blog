@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <!-- 优先使用最先版的 IE 和 chrome 内核 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 指定双核浏览器以 Webkit 内核渲染本网站 -->
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!-- SEO 优化 -->
+    <title>Anani</title>
+    <meta name="author" content="Anani,dongwhchn@163.com" />
+    <meta name="description" content="Anani的个人博客，包含一些关于HTML、CSS、JavaScript、MySQL、electron等的文章，以及一些学习中写下的笔记和遇到的问题。" />
+    <meta name="keywords" content="Anani,简历,博客园,Github,it,行者,七夕动画" />
+    <!-- 引入 font-awesome -->
+    <link rel="stylesheet" type="text/css" href="css-blog/font-css/css/font-awesome.min.css" />
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css-blog/bootstrap-4/bootstrap.min.css" />
+    <!-- IOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="photo-blog/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="shortcut icon" href="photo-blog/favicon.ico" type="image/x-icon" />
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5 元素和媒体查询 -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    /*初始化 html5 新标签的CSS：*/
+    article,aside,dialog,footer,header,section,nav,figure,menu {
+        display:block;
+    }
+    /*内容*/
+    .main-page {
+        width: 100%;
+        height: 100vh;/*vh,vw是不包含滚动条的视窗宽度，%包含了滚动条*/
+        color: #fff;
+        background-image: -webkit-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('photo-blog/blog-index/background-0.jpg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .main-page-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .tips {
+        display: none;
+    }
+    .link-ball {
+        position: relative;
+        width: 450px;
+        height: 360px;  
+    }
+    .link-ball a {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 4px;
+    }
+    .link-ball a:hover {
+        font-weight: bold;
+    }
+    /*底部*/
+    .footer-page {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .vertical-line {
+        border-style: solid;
+        border-width: 0 0 0 1px;
+        border-color: #fff;
+    }
+    /*手机样式*/
+    @media screen and (max-width: 768px) {
+        nav {
+            background-color: #414041;
+        }
+        .link-ball {
+            display: none;
+        }
+        .tips {
+            display: block;
+        }
+            .tips p {
+                text-indent: 32px;
+            }
+    }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top" role="navigation">
+        <a class="navbar-brand" href="index.html">首页</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#primary-navbar">
+            <span class="fa fa-navicon"></span>
+        </button>
+        <div id="primary-navbar" class="collapse navbar-collapse">
+           <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://anani1994.github.io/#/">前往新博客</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog-others/2018/02/resume.html">关于我</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://www.cnblogs.com/anani/">博客园</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/Anani1994">Github</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog-others/2018/02/article-list.html">往期博文</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" href="#">成长之旅</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="blog-project/2017/09/cartoon-qixi.html">七夕动画（仿）</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="blog-project/2017/10/xingzhe.html">行者公司（首创）</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <section class="main-page">
+        <div class="main-page-container">
+            <div class="tips">
+                <h3 class="text-center" style="padding-bottom: 16px;">欢迎光临</h3>
+                <p>这里是我刚建立的个人博客。在未来的时间里，我会继续更新博客和自己的学习足迹。</p>
+                <p>若是文中有什么错误，欢迎大家指正批评，愿与大家在交流之中共同进步。愈激烈，愈深刻。</p>
+            </div>
+            <div class="link-ball">
+                <a href="blog-others/2018/02/resume.html">关于我</a>
+                <a href="http://www.cnblogs.com/anani/">博客园</a>
+                <a href="https://github.com/Anani1994">Github</a>
+                <a href="blog-others/2018/02/article-list.html">往期博文</a>
+                <a href="blog-project/2017/10/xingzhe.html">行者公司</a>
+                <a href="blog-html/2017/10/html-dom.html">HTML DOM</a>
+                <a href="blog-js/2018/03/js-question-0.html">前端面试题</a>
+                <a href="blog-js/2017/10/closure.html">JS 闭包</a>
+                <a href="blog-js/2018/01/inherit.html">JS 继承</a>
+                <a href="blog-others/2018/03/mysql-study.html">学习MySQL</a>
+                <a href="blog-others/2018/02/electron.html">Electron</a>
+                <a href="blog-others/2017/10/shortcutKey-bowen.html">键盘快捷键</a>
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how">联系我</a>
+                <a href="https://weibo.com/dongwanhong?is_all=1">微博 @Anani</a>
+                <a href="http://www.cnblogs.com/anani/p/8611859.html">CSS 居中</a>
+                <a href="http://www.cnblogs.com/anani/p/8657204.html">事件流&事件委托</a>
+                <a href="http://www.cnblogs.com/anani/p/8719576.html">Flex 属性</a>
+                <a href="http://www.cnblogs.com/anani/p/8391712.html">Electron question</a>
+                <a href="http://www.cnblogs.com/anani/p/8614392.html">CSS 伪类</a>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="footer-page">
+        <ul class="nav justify-content-center">
+            <li class="navitem"><a class="nav-link text-white" href="https://weibo.com/dongwanhong?is_all=1">网站开发者 @Anani</a></li>
+            <li class="nav-item"><div class="nav-link"><span class="vertical-line"></span></div></li>
+            <li class="navitem"><a class="nav-link text-white" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how">联系我</a></li>
+        </ul>
+        <div class="text-center text-white copyright-year"></div>
+    </div>
+</footer>
+</body>
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script type="text/javascript" src="js-blog/jquery-3.2.0.min.js"></script>
+<!-- 包括所有已编译 bootstrap-4 的插件 -->
+<script src="js-blog/bootstrap-4/popper.min.js"></script>
+<script src="js-blog/bootstrap-4/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    //........................................................................................获取年份
+    var date = new Date();
+    $('.copyright-year').text('copyright@ 2018-' + date.getFullYear());
+    //........................................................................................链接球
+    // 设置半径
+    var radius = 150;
+    // 焦距
+    var focalLength = 500;
+    // 储存各链接的空间位置
+    var arr = [];
+    var linkBall = document.querySelector('.link-ball');// 球心：(linkBall.width/2,linkBall.height/2)
+    var LWidth = linkBall.offsetWidth/2;
+    var LHeight = linkBall.offsetHeight/2;
+    var LX = linkBall.getBoundingClientRect().left + linkBall.offsetWidth/2;
+    var LY = linkBall.getBoundingClientRect().top + linkBall.offsetHeight/2;
+    var linkBallA = document.querySelectorAll('.link-ball a');
+
+    function init() {
+        // 随机排序
+        var temp = [];
+        for(var i = 0; i < linkBallA.length; i++) {
+            temp.push( linkBallA[i] );
+        }
+        temp.sort(function(){
+            return Math.random()<0.5?1:-1;
+        });
+        // 创建一个文档片段保存排序后的结构
+        var docfrag = document.createDocumentFragment();
+        for(var j = 0; j < temp.length; j++) {
+            docfrag.appendChild( temp[j] );
+        }
+        // 将文档片段附加到DOM树
+        linkBall.appendChild(docfrag);
+        // 创建随机坐标，保证平均分布
+        for(var k = 1; k < linkBallA.length + 1; k++) {
+            //生成随机 θ
+            var theta = Math.acos((2*k-1)/linkBallA.length -1);
+            // 生成对应的 Φ
+            var phi = theta * Math.sqrt(linkBallA.length * Math.PI);
+            // 坐标转换
+            var x = radius * Math.sin(theta) * Math.cos(phi);
+            var y = radius * Math.sin(theta) * Math.sin(phi);
+            var z = radius * Math.cos(theta);
+            arr.push( new creatObj(linkBallA[k-1],x,y,z) );
+            // 生成随机颜色
+            linkBallA[k-1].style.color = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+            // 设置坐标
+            linkBallA[k-1].style.left = x + linkBall.offsetWidth / 2 - linkBallA[k-1].offsetWidth/2 + "px";
+            linkBallA[k-1].style.top = y + linkBall.offsetHeight / 2 - linkBallA[k-1].offsetHeight/2 + "px";
+            // 根据 z 形成一递增函数来设置透明度
+            var alpha = (z + radius) / (2 * radius);
+            linkBallA[k-1].style.opacity = alpha + 0.5;
+            // 根据 z 形成一递增函数来设置
+            var scale = focalLength / (focalLength - z);
+            linkBallA[k-1].style.fontSize = 14 * scale + "px";
+            linkBallA[k-1].style.zIndex = parseInt(scale * 100);
+        }
+    }
+    // 创建一个对象用来保存各链接的空间坐标，用于后期实现滚动
+    function creatObj(ele,x,y,z) {
+        this.ele = ele;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    // 绕x轴旋转
+    // y = ycosθ - zsinθ;
+    // z = ysinθ + zcosθ;
+    function rotateX() {
+        var newY;
+        var newZ;
+        // angleX 角度的正负值控制旋转方向，大小控制旋转速度
+        var cos = Math.cos(angleX);
+        var sin = Math.sin(angleX);
+        arr.forEach(function(val) {
+            newY = val.y * cos - val.z * sin;
+            newZ = val.z * cos + val.y * sin;
+            val.y = newY;
+            val.z = newZ;
+        });
+    }
+    // 绕y轴旋转
+    // x = xcosθ - zsinθ;
+    // z = xsinθ + zcosθ;
+    function rotateY() {
+        var newX;
+        var newZ;
+        // angleY 角度的正负值控制旋转方向，大小控制旋转速度
+        var cos = Math.cos(angleY);
+        var sin = Math.sin(angleY);
+        arr.forEach(function(val) {
+            newX = val.x * cos - val.z * sin;
+            newZ = val.z * cos + val.x * sin;
+            val.x = newX;
+            val.z = newZ;
+        });
+    }
+
+    // 初始化所有链接的位置及其它样式
+    init();
+    //添加 mousemove 事件,根据鼠标位置动态设置各链接的最新空间位置
+    var aa = document.querySelector('.main-page')
+    aa.addEventListener('mousemove',function(eve) {
+        var eve = window.enent || eve;
+        if (eve.target.nodeName !== 'SECTION') {
+            return;
+        }
+        var x = eve.clientX - LX;
+        var y = eve.clientY - LY;
+        angleX = 0.00005 * x;
+        angleY = 0.0001 * y;
+        rotateX();
+        rotateY();
+        arr.forEach(function(val) {
+            var scale = focalLength/(focalLength - val.z);
+            var alpha = (val.z+radius)/(2*radius);
+            val.ele.style.fontSize = 15 * scale + "px";
+            val.ele.style.opacity = alpha + 0.5;
+            val.ele.style.zIndex = parseInt(scale*100);
+            val.ele.style.left = val.x + LWidth - val.ele.offsetWidth/2 +"px";
+            val.ele.style.top = val.y +LHeight -val.ele.offsetHeight/2 +"px";
+        });
+    })
+});
+</script>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="keywords" content="个人简历，博客园，作品，IT,行者,七夕,github,闭包，closure，执行上下文，执行环境，作用域">
+		<meta name="author" content="Anani">
+		<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+		<!-- 引入 font-awesome -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+		<!-- 引入 Bootstrap -->
+		<link href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap.min.css" rel="stylesheet"/>
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<title>JavaScript 闭包</title>
+		<style type="text/css">
+			/*全局样式*/
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			body {
+			    display: block;
+			    margin: 0 1%;
+			    min-height: 101%;
+			    font-size: 16px;
+			    font-family: 'PingFang SC','Helvetica Neue','Helvetica','Arial',sans-serif;
+			    color: #000;
+			}
+
+			img {
+			    max-width: 100%;
+			}
+			/*home和头部元素开始*/
+			#header {
+			    padding-bottom: 5px;
+			    margin-top: 30px;
+			}
+
+			#blogTitle {
+			    height: 60px;
+			    clear: both;
+			}
+
+			    #blogTitle h1 {
+			        padding-left: 1em;
+			        font-size: 2.25em;
+			        font-weight: bold;
+			        line-height: 0;
+			    }
+
+			        #blogTitle h1 a {
+			            color: #515151;
+			        }
+
+			            #blogTitle h1 a:hover {
+			                color: #FF0000;
+			            }
+
+			    #blogTitle h2 {
+			        float: left;
+			        padding-left: 6em;
+			        font-weight: normal;
+			        font-size: 1em;
+			        line-height: 1.875;
+			        color: #757575;
+			    }
+
+				#nav {
+					background-color: #000;
+				}
+					#nav ul li a {
+						color: #FFF;
+					}
+					#nav ul li a:hover {
+						color: #f00;
+					}
+
+			/*博文的显示框样式*/
+			.bowen-content {
+				margin: 0 auto;
+				width: 95%;
+				min-height: 450px;
+			}
+
+	        .bowen {
+	            float: left;
+	            padding-top: 20px;
+	            padding-bottom: 20px;
+	            margin: 0;
+	            width: 100%;
+	            text-align: center;
+	            font-weight: bold;
+	            background-color: #ccc;
+	        }
+
+	        .bowen-title {
+	        	float: left;
+	            width: 100%;
+	            padding: 20px 0 20px 15px;
+	            margin-top: 0;
+	            font-weight: bold;
+	            border-left: 15px solid #058bf5;
+	            background-color: #dff;
+	        }
+
+	        .bowen-body {
+	        	float: left;
+	        	margin-left: 10%;
+	            width: 80%;
+	        }
+	        .bowen-body p {
+	               text-indent:7%;
+	            }
+
+	        .text-important {
+	        	color: red;
+	        	font-weight: bold;
+	        }
+
+	        .pre-border {
+	        	border: 1px solid black;
+	        }
+
+	        .demo-code {
+	        	margin-left: 10%;
+	        	width: 50%;
+	        }
+
+	        .vertical-line-code {
+	        	border-style: solid;
+	      		border-width: 0 0 0 1px;
+	      		border-color: #000;
+	        }
+
+	        /*参考资料板块*/
+	        .reference-material {
+	        	float: left;
+            	padding-top: 20px;
+           		padding-bottom: 20px;
+           		width: 100%;
+           	 	text-align: right;
+	        }
+
+	        	.reference-material .vertical-line {
+	        		border-style: solid;
+	      			border-width: 0 0 0 1px;
+	      			border-color: inherit;
+	        	}
+
+	        	.reference-material .list-inline a {
+	        		color: inherit;
+	        	}
+	        		.reference-material .list-inline a:hover {
+	        			text-decoration:none;
+	        		}
+
+			/*底部浮标*/
+			.footer-page {
+				float: left;
+            	padding-top: 20px;
+           		padding-bottom: 20px;
+           		width: 100%;
+           	 	text-align: center;
+				background-color: #494949;
+				color: #fff;
+	        }
+
+	        .list-inline a {
+	        	color: #fff;
+	        }
+	        	.list-inline a:hover {
+	        		text-decoration:none;
+	      		}
+
+	      	.vertical-line {
+	      		border-style: solid;
+	      		border-width: 0 0 0 1px;
+	      		border-color: #fff;
+	      	}
+
+	        #buoy {
+	            position: fixed;
+	            right: 0;
+	            bottom: 20px;
+	            z-index: 999;
+	            width:40px; 
+	            height:80px;
+	            background-color: rgba(181, 164, 164, 0.53);
+	        }
+
+	        .u-icon-arr {
+	            position: absolute;
+	            right: 14px;
+	            width: 25px;
+	            height: 25px;
+	            border-style: solid;
+	            border-width: 10px 10px 0 0;
+	            border-color: #fff;
+	            -webkit-transform-origin: 75% 25%;
+	            -webkit-transform: rotateZ(45deg);
+	            -webkit-transition: 100ms ease-in .1s;
+	            transition: 100ms ease-in .1s;
+	        }
+
+	        .u-icon-up {
+	            top: 10px;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(-45deg);
+	            -ms-transform: rotateZ(-45deg);
+	            transform: rotateZ(-45deg);
+	        }
+
+	        .u-icon-down {
+	            bottom: 0;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(135deg);
+	            -ms-transform: rotateZ(135deg);
+	            transform: rotateZ(135deg);
+	        }
+	         /*当使用手机设备时改变部分板块的显示样式*/
+	         @media screen and (max-width: 768px) {
+	         	#buoy {
+	         		display: none;
+	         	}
+	         	#blogTitle h1 {
+              		padding-left: 0.4em;
+           		}
+            	#blogTitle h2 {
+              		padding-left: 3.4em;
+           		}
+           		.bowen-body {
+           			width: 100%;
+           			margin-left: 0;
+           		}
+           		.bowen-content {
+           			width: 100%;
+           			margin: 0;
+           			margin-top: 20px;
+           		}
+           		.demo-code {
+           			margin: auto;
+           			width: 90%;
+           		}
+	        }
+		</style>
+    </head>
+	<body>
+	<header>
+		<div id="header">
+			<div id="blogTitle">
+				<h1><a id="Header1_HeaderTitle" href="/anani1994.github.io/blog/projects/old-blog/index.html">Anani</a></h1>
+				<h2>代码改变世界，坚持铸就未来。</h2>
+			</div>
+			<nav id="nav" class="navbar navbar-default" role="navigation">
+		        <div class="container-fluid">
+		            <div class="navbar-header">
+		               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar-collapse">
+		                  <span class="sr-only">切换导航</span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		               </button>
+		            </div>
+		            <div id="primary-navbar-collapse" class="collapse navbar-collapse">
+		               <ul class="nav navbar-nav navbar-right">
+		                   <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">首页</a></li>
+		                   <li><a href="https://github.com/Anani1994">Github</a></li>
+		                   <li><a href="http://www.cnblogs.com/anani/">博客园</a></li>
+		                   <li class="disabled"><a href="">留言板</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </nav>
+		</div>
+	</div>
+	</header>
+	<section>
+	    <div class="bowen-content">
+	    	<div><h3 class="bowen">JavaScript 闭包</h3></div>
+            <h4 class="bowen-title">概念</h4>
+            <div class="bowen-body">
+             	<p>闭包（closure）是 Javascript语言 的一个难点，也是它的特色，很多高级应用都需要依靠闭包实现。有不少的开发人员总是分不清匿名函数和闭包这两个的概念，因此经常混用。<b>匿名函数</b> 是指创建一个函数并将它赋值给变量，这种情况下创建的函数叫做匿名函数（anonymous function。），因为 function 关键字后面没有标识符。匿名函数的 name 属性是空字符串。<span class="text-important">闭包是指有权访问另一个函数作用域(当某个函数被调用时，会创建一个执行环境及相应的作用域链。）中的变量的函数。</span>换言之，闭包是指在 Javascript 中，内部函数总是可以访问其所在外部函数中申明的参数和变量，即使在其外部函数被返回（寿命终结）之后。它是一种特殊的对象，由两部分构成：函数，以及创建该函数的环境。创建闭包的常见方式，就是在一个函数内创建个另一函数。</p>
+            </div>
+            <h4 class="bowen-title">变量（variable）</h4>
+            <div class="bowen-body">
+             	<p><b>变量</b> 是用于存储信息的"容器"。要理解闭包，首先必须理解 Javascript 特殊的变量作用域。JavaScript 变量可以是局部变量或全局变量。在web页面中全局变量属于 window 对象，
+全局变量可应用于页面上的所有脚本。局部变量只能用于定义它函数内部，对于其他的函数或脚本代码是不可用的。
+全局和局部变量即便名称相同，它们也是两个不同的变量。修改其中一个，不会影响另一个的值。<span class="text-important">对此我们需要知道的是Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。而正常在函数外部却无法读取函数内的局部变量。</span></p>
+				<p><b>变量对象（variable object）</b> 是一个抽象的对象，用于储存执行环境中的变量、函数声明、函数参数。在全局作用域下变量对象的值指向全局对象，在浏览器中为 window。<span class="text-info">我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</span></p>
+            </div>
+            <h4 class="bowen-title">执行环境（execution context）</h4>
+            <div class="bowen-body">
+             	<p><b>执行环境</b> 是 Javascript 中最为重要的一个概念。<span class="text-important">执行环境（也称 执行上下文）始终是this关键字的值</span>。其定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。</p>
+             	<p>全局执行环境是最外围的一个执行环境。在Web浏览器中，全局环境被认为是 window对象，因此所有全局变量和函数都是作为window对象的属性和方法创建的。</p>
+             	<p>当 JavaScript解释器 初始化执行代码时，它首先默认进入全局执行环境，从此刻开始，函数的每次调用都会创建一个新的执行环境。Javascript 引擎以推栈的方式（后进先出）处理执行环境，栈底永远是全局环境，栈顶是当前执行的上下文。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也会随之被销毁。<span class="text-info">全局执行环境直到应用程序退出（例如关闭网页或浏览器）时才会被销毁。</span></p>
+     			<p><b>执行环境分为两个阶段：</b></p>
+     			<ul style="margin-left: 12%">
+     				<li>
+     					执行上下文初始阶段，变量对象按如下的顺序填充和:
+     					<ol style="margin-left: 5%">
+     						<li>this 赋值</li>
+     						<li>函数参数（若未传入，初始化值为 undefined）。</li>
+     						<li>函数声明（每找到一个函数声明，就在变量对象中用函数名建立一个属性，值指向该函数在内存中的地址的一个引用人，若以函数名为属性名已经存在在变量对象中，则会被覆盖）。</li>
+     						<li>变量声明（初始化值为 undefined，若命名重复则忽略）。</li>
+     						<li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-2">示例代码</button></li>
+     						<div class="modal fade" id="Modal-2" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">console.log(text);//报错</div>
+<div class="pre-border">console.log(text);//undefined
+var text;</div>
+<div class="pre-border">console.log(text);//undefined
+var text = "something";
+console.log(text)</div>
+//前者报错，因为a未定义。后二者输出都是undefined，即浏览器在执行console.log(text)<br/>时，已经知道了text是undefined，但却不知道text的值。<br/>
+<div class="pre-border">console.log(text);//function text(){}
+function text(){}//函数声明</div>
+<div class="pre-border">console.log(text);//undefined
+var text = function text(){};//函数表达式</div>
+<div class="pre-border">console.log(this)//window</div>
+以上所有的例子说明在执行函数中的代码前，已经完成了上面所列的执行上下文初始阶段的任<br/>务。</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+     					</ol>
+     				</li>
+     				<li>代码执行阶段:执行函数中的代码，给变量对象中的变量属性赋值。</li>
+ 				</ul>
+            </div>
+            <h4 class="bowen-title">this 关键字</h4>
+            <div class="bowen-body">
+            	<p>与其他语言相比，函数的 this 关键字在 JavaScript 中的表现略有不同，在绝大多数情况下，函数的调用方式决定了 this 的值。this 不能在执行期间被赋值，并且在每次函数被调用时 this 的值也可能会不同。ES5 引入了 bind方法 来设置函数的this值，而不用考虑函数如何被调用的，ES2015 引入了支持 this 词法解析的箭头函数（它在闭合的执行上下文内设置this的值）。此外，在严格模式和非严格模式之间也会有一些差别。下面主要就非严格模式下this关键字的值做下讲解。</p>
+             	<ul style="margin-left: 7%">
+             		<li>
+             			全局上下文
+             			<ol style="margin-left: 5%">
+             				<li><b>在全局执行上下文中（在任何函数体外部）。</b>无论是否在严格模式下，this 都指代全局对象。在浏览器中即 window。</li>
+         				</ol>
+             		</li>
+             		<li>
+     					函数上下文 <small class="text-info">在函数内部，this的值取决于函数被调用的方式</small>。
+     					<ol style="margin-left: 5%">
+     						<li><b>直接调用。</b>因为 this 的值不是通过调用设置的，所以 this 的值默认指向全局对象。<small class="text-info">在严格模式下，如果 this 未在执行的上下文中定义，那它将会默认为 undefined</small>。</li>
+     						<li><b>作为对象的一个方法。</b>当以对象里的方法的方式调用函数时，它们的 this 是调用该函数的对象。<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-3">示例代码</button></li>
+     						<div class="modal fade" id="Modal-3" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">var obj = {<br/>  text: 3,<br/>  f: function() {<br/>    return this.text;<br/>  }<br/>};<br/>console.log(obj.f()); // logs 3</div><br/>这样的行为，不受函数定义方式或位置的影响。<br/><div class="pre-border">var obj = {text: 3};<br/>function demo() {<br/>  return this.text;<br/>}<br/>obj.f = demo;<br/>console.log(obj.f()); // logs 3</div><br/>如果f函数不作为obj的一个属性被调用，会是什么结果呢？<br/><div class="pre-border">var obj = {<br/>  text: 3,<br/>  f: function() {<br/>    return this.text;<br/>  }<br/>};<br/>var objTwo = obj.f;<br/>console.log(objTwo()); //undefined此时this的值就是window。</div></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><b>构造函数。</b>当一个函数用作构造函数时（使用new关键字），它的 this 被绑定到正在构造的新对象。<small class="text-info">构造函数的函数名第一个字母大写（规则约定）。</small><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-4">示例代码</button></li>
+							<div class="modal fade" id="Modal-4" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">function demo(){<br/>  this.text = 3;<br/>}<br/>var demoTwo = new demo();<br/>console.log(demoTwo.text); // logs 3</div><br/>虽然构造器返回的默认值是this所指的那个对象，但它仍可以手动返回其他的对象(如果返回值<br/>不是一个对象，则返回this对象)。<br/><div class="pre-border">function demo(){<br/>  this.text = 3;<br/>  return {text:5}<br/>}<br/>var demoTwo = new demo();<br/>console.log(demoTwo.text); // logs 5</div></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><b>原型链中的 this。</b>相同的概念在定义在原型链中的方法也是一致的。如果该方法存在于一个对象的原型链上，那么 this 指向的是调用这个方法的对象，就好像该方法本来就存在于这个对象上。<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-5">示例代码</button></li>
+							<div class="modal fade" id="Modal-5" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">var obj = {<br/>  demo : function(){ <br/>    return this.textOne + this.textTwo; <br/>  }<br/>};<br/>var objTwo = Object.create(obj);<br/>objTwo.textOne = 3;<br/>objTwo.textTwo = 5;<br/>console.log(objTwo.demo()); // 8</div><br/>对象objTwo没有属于它自己的demo属性，它的demo属性继承自它的原型。最终在obj中找到demo<br/>属性的查找过程首先从objTwo.demo的引用开始，所以函数中的this指向objTwo。也就是说，因<br/>为demo是作为objTwo的方法调用的，所以它的this指向了objTwo。</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><b>call 和 apply方法。</b>如果要想把 this 的值从一个 context 传到另一个，就要用 call，或者 apply方法。<b>call()方法：</b>调用一个函数，其具有一个指定的 this 值和分别地提供的参数。<b>apply()方法：</b>其具有一个指定的 this 值和作为一个数组（或类数组的对象）提供的参数。<span class="text-danger">call() 和 apply()方法属于间接调用(indirect invocation)。当一个函数的函数体中使用了 this 关键字时，通过 call()方法 和 apply()方法调用，this 的值可以绑定到一个指定的对象上。如果传递的 this 值不是一个对象，JavaScript 将会尝试使用内部 ToObject 操作将其转换为对象。</span><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-7">示例代码</button></li>
+							<div class="modal fade" id="Modal-7" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">function demo(c, d) {<br/>  return this.a + this.b + c + d;<br/>}<br/>var obj = {a: 1, b: 3};<br/>// 第一个参数是作为‘this’使用的对象<br/>// 后续参数作为参数传递给函数调用<br/>demo.call(obj, 5, 7); // 1 + 3 + 5 + 7 = 16<br/>// 第一个参数也是作为‘this’使用的对象<br/>// 第二个参数是一个数组，数组里的元素用作函数调用中的参数<br/>demo.apply(obj, [10, 20]); // 1 + 3 + 10 + 20 = 34</div></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><b>bind 方法。</b>ECMAScript 5 引入了 Function.prototype.bind。调用 demo.bind(某个对象)会创建一个与 demo 具有相同函数体和作用域的函数，但是在这个新函数中，this 将永久地被绑定到了 bind 的第一个参数，无论这个函数是如何被调用的。<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-8">示例代码</button></li>
+							<div class="modal fade" id="Modal-8" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">function demo(){<br/>  return this.a;<br/>}<br/><br/>//this被固定到了传入的对象上<br/>var objTwo = demo.bind({a:"azerty"});<br/>console.log(objTwo()); // azerty<br/><br/>var objThree = objTwo.bind({a:'yoo'}); //bind只生效一次！<br/>console.log(objThree()); // azerty<br/><br/>var obj = {a:37, demo:demo, objTwo:objTwo, objThree:objThree};<br/>console.log(obj.demo(), obj.objTwo(), obj.objThree());<br/>// 37, azerty, azerty</div></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><b>getter 与 setter 中的 this。</b>相同的概念也适用时的函数作为一个 getter 或者 一个 setter 调用。用作 getter 或 setter 的函数都会把 this 绑定到正在设置或获取属性的对象。<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-6">示例代码</button></li>
+							<div class="modal fade" id="Modal-6" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+										</div>
+										<div class="modal-body">
+											<pre><div class="pre-border">function demo() {<br/>  return this.textOne + this.textTwo + this.textThree;<br/>}<br/>var obj = {<br/>  textOne: 1,<br/>  textTwo: 2,<br/>  textThree: 3,<br/>  get average() {<br/>    return (this.textOne + this.textTwo + this.textThree) / 3;<br/>  }<br/>};<br/>Object.defineProperty(obj, 'demo', {<br/>    get: demo, enumerable: true, configurable: true});<br/>console.log(obj.average, obj.demo); // logs 2, 6</div></pre>
+										</div>
+									</div>
+								</div>
+							</div>
+							<li><span class="text-muted"><b>箭头函数。</b><small class="text-info">箭头函数表达式的语法比函数表达式更短，并且不绑定自己的 this，arguments，super 或 new.target。这些函数表达式最适合用于非方法函数，并且它们不能用作构造函数。</small>在箭头函数中，this 是根据当前的词法作用域来决定的，就是说，箭头函数会继承外层函数调用的 this 绑定（无论this绑定到什么）。在全局作用域中，它会绑定到全局对象上。</span></li>
+							<li><b>作为一个 DOM事件处理函数。</b>当函数被用作事件处理函数时，它的 this 指向触发事件的元素（一些浏览器在使用非addEventListener的函数动态添加监听函数时不遵守这个约定）。</li>
+							<li><b>作为一个内联事件处理函数。</b>当代码被内联处理函数调用时，它的 this 指向监听器所在的 DOM元素。</li>
+ 						</ol>
+     				</li>
+         		</ul>
+            </div>
+            <h4 class="bowen-title">作用域（scope）和作用域链（scope chain）</h4>
+            <div class="bowen-body">
+             	<p>ES6 之前 JavaScript 没有块级作用域，除了全局作用域之外，只有函数可以创建作用域 
+             		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">示例代码</button>。
+             		<span class="text-info">ES6 开始新增加了一个 let，可以在{}， if， for里声明。用法同 var，但作用域限定在块级，let 声明的变量不存在变量提升。在代码块内，在let声明之前使用变量都是不可用的。</span></p>
+         		<p>每个环境能够访问的标识符集皆可称为“<b>作用域</b>”。当代码在一个环境中执行时，会创建变量对象的一个 <b>作用域链</b>。<span class="text-important">作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问，且能隔离变量，使得不同作用域下同名变量不会有冲突。</span>作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象。活动对象在最开始时只包含一个变量，即 arguments对象 （这个对象在全局环境中是不存在的）。作用域链中的下一个变量对象来自包含（外部）环境。这样一直延续到全局环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
+             	<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直到找到标识符。如果找不到标识符，通常会导致错误发生。</p>
+             	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">示例代码</h4>
+							</div>
+							<div class="modal-body">
+								<pre><div class="pre-border">(function(){<br/>  for (var i = 0; i<3; i++) {<br/>    console.log(i)//输出0，1，2<br/>  }<br/>alert(i)//弹出3<br/>})()</div><br/><p>运行以上代码，执行for循环会输出3个值，分别为0，1，2。执行到2意味着for循环结<br/>束，其他语言下i就会销毁，执行alert（i）按理说会为undefined，但在js中i会一直存在函数<br/>中，也就是说执行到alert（i）时会弹出 3。而这个3是经过for循环累加后的i。</p><div class="pre-border">(function(){<br/>  (function(){<br/>    for (var i = 0; i<3; i++) {<br/>	console.log(i)//输出0，1，2<br/>    }<br/>  })()<br/>alert(i)//报错：i is not defined<br/>})()</div><br/><p>运行以上代码,执行for循环会输出3个值，分别为0，1，2。执行到2意味着for循环结<br/>束，因为for循环是在第二个（里面）匿名函数的作用域内定义的，所以报告了一个错误，这样<br/>就很类似其他语言中的for循环中的i在执行循环后被销毁。</p></pre>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+            <h4 class="bowen-title">作用域和执行环境的关系</h4>
+            <div class="bowen-body">
+             	<p>作用域只是一个“地盘”，一个抽象的概念，其中没有变量。要通过作用域对应的执行上下文环境来获取变量的值。同一个作用域下，不同的调用会产生不同的执行上下文环境，继而产生不同的变量的值。所以，作用域中变量的值是在执行过程中产生的确定的。</p>
+             	<p>所以对于函数来说，上下文环境是在调用时创建的，而作用域却是在函数创建时就确定了。而且一个作用域下可能包含若干个上下文环境。如果要查找一个作用域下某个变量的值，就需要找到这个作用域对应的执行上下文环境，再在其中寻找变量的值。</p>
+            </div>
+            <h4 class="bowen-title">闭包（closure）</h4>
+            <div class="bowen-body">
+             	<p>闭包是一个函数和函数所声明的词法环境的结合。</p>
+             	<p>首先我们来看下面的一段代码：</p>
+            	<pre class="demo-code">1 <span class="vertical-line-code"></span> function demo(){<br/>2 <span class="vertical-line-code"></span>   var name = "Anani";<br/>3 <span class="vertical-line-code"></span>   return function displayName(){<br/>4 <span class="vertical-line-code"></span>      console.log(name);<br/>5 <span class="vertical-line-code"></span>   }<br/>6 <span class="vertical-line-code"></span> }<br/>7 <span class="vertical-line-code"></span><br/>8 <span class="vertical-line-code"></span> var demoTest = demo();<br/>9 <span class="vertical-line-code"></span> demoTest();<br/></pre>
+            	<p>运行这段代码,将会弹出字符串“Anani"，我们知道函数中的局部变量仅在函数的执行期间可用，此处 displayName 函数在执行前被从其外围函数中返回了，name 变量应该不再可用，然而因为 demoTest()是一个闭包，由 displayName 函数和闭包创建时存在的 "Anani" 字符串形成,所以它仍然可以访问 name 变量。</p>
+            	<p>要理解上面的闭包首先要对前面讲解的概念要熟悉，特别是执行环境和作用域，这是参透闭包的关键。</p>
+            	<P>当 JavaScript解释器 初始化执行代码时，它首先默认进入全局执行环境，此时全局环境是活动状态，并对其中的变量进行赋值。执行第 8 行代码时，调用 demo()，产生 demo()的执环环境，压栈，并设置为活动状态。当 demo()调用完成，按理说应该销毁 demo()的执行环境，但是调用 demo()时返回了 displayName 函数，函数可以创建一个独立的作用域，而且刚好返回的函数中有一个 name 自由变量要在 demo()的执行环境中取值，因此这里的 demo()的执行环境不会被销毁，依然存在于执行环境栈中。</P>
+            	<p>当代码执行到第 9 行时，执行 demoTest()，即执行 displayName()，创建 displayName()的执行环境，并将其设置为活动状态。因为在 displayname()中 name 是自由变量，需要向创建该函数的作用域中查找，最终在 demo()的执行环境中找到 name 的值为“Anani”。执行完第 9 行的代码后执行环境开始反向销毁。</p>
+            </div>
+            <h4 class="bowen-title">闭包的缺陷</h4>
+            <div class="bowen-body">
+             	<ul style="margin-left: 7%">
+             		<li>闭包的缺点就是常驻内存会增大内存使用量，并且使用不当很容易造成内存泄露。</li>
+             		<li>如果不是因为某些特殊任务而需要闭包，在没有必要的情况下，在其它函数中创建函数是不明智的，因为闭包对脚本性能具有负面影响，包括处理速度和内存消耗。</li>
+         		</ul>
+            </div>
+	    </div>
+	</section>
+	<section>
+		<div class="reference-material text-warning text-right">
+			<ul class="list-inline">
+				<li><b>参考资料：</b></li>
+				<li><a href="http://www.runoob.com/">菜鸟教程</a></li>
+				<li><span class="vertical-line"></span></li>
+				<li>Javascript 高级程序设计（第三版）</li>
+				<li><span class="vertical-line"></span></li>
+				<li>部分资料来源于网络</li>
+			</ul>
+		</div>
+	</section>
+	<footer id="footer">
+   	<div class="footer-page">
+      <ul class="list-inline">
+      	<li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+      	<li><span class="vertical-line"></span></li>
+      	<li><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how">联系我</a></li>
+      </ul>
+   	</div>
+   	<div id="buoy">
+      <a onclick="toTop()" title="回到顶部"><span class="u-icon-arr u-icon-up"></span></a>
+      <a onclick="toBottom()" title="移到底部"><span class="u-icon-arr u-icon-down"></span></a>
+  	</div>
+	</footer>
+    </body>
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      // 设置点击底部浮标到顶、底部的函数
+      function toTop() {
+         $('body,html').animate({scrollTop:0},1000);
+      }
+      function toBottom() {
+         var bottom = $("body,html").height();
+         $('body,html').animate({scrollTop:bottom},1000);
+      }
+   </script>
+</html>

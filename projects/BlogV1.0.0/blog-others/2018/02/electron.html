@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="keywords" content="简历，博客园，作品，IT,行者,七夕,github,HTML,DOM,Electron">
+		<meta name="author" content="Anani">
+		<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/logo-blog.jpg" sizes="32x32" />
+		<!-- 引入 font-awesome -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/font-css/css/font-awesome.min.css"/>
+		<!-- 引入 Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/bootstrap.min.css"/>
+		<!-- 引入 syntaxhighlighter -->
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="/anani1994.github.io/blog/projects/old-blog/css-blog/shThemeDefault.css"/>
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<title>Electron 项目</title>
+		<style type="text/css">
+			/*全局样式*/
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			body {
+			    display: block;
+			    margin: 0 1%;
+			    min-height: 101%;
+			    font-size: 16px;
+			    font-family: 'PingFang SC','Helvetica Neue','Helvetica','Arial',sans-serif;
+			    color: #000;
+			}
+
+			img {
+			    max-width: 100%;
+			}
+			/*home和头部元素开始*/
+			#header {
+			    padding-bottom: 5px;
+			    margin-top: 30px;
+			}
+
+			#blogTitle {
+			    height: 60px;
+			    clear: both;
+			}
+
+			    #blogTitle h1 {
+			        padding-left: 1em;
+			        font-size: 2.25em;
+			        font-weight: bold;
+			        line-height: 0;
+			    }
+
+			        #blogTitle h1 a {
+			            color: #515151;
+			        }
+
+			            #blogTitle h1 a:hover {
+			                color: #FF0000;
+			            }
+
+			    #blogTitle h2 {
+			        float: left;
+			        padding-left: 6em;
+			        font-weight: normal;
+			        font-size: 1em;
+			        line-height: 1.875;
+			        color: #757575;
+			    }
+
+				#nav {
+					background-color: #000;
+				}
+					#nav ul li a {
+						color: #FFF;
+					}
+					#nav ul li a:hover {
+						color: #f00;
+					}
+
+			/*博文的显示框样式*/
+			.bowen-content {
+				margin: 0 auto;
+				width: 95%;
+				min-height: 450px;
+			}
+
+	        .bowen {
+	            float: left;
+	            padding-top: 20px;
+	            padding-bottom: 20px;
+	            margin: 0;
+	            width: 100%;
+	            text-align: center;
+	            font-weight: bold;
+	            background-color: #ccc;
+	        }
+
+	        .bowen-title {
+	        	float: left;
+	            width: 100%;
+	            padding: 20px 0 20px 15px;
+	            margin-top: 0;
+	            font-weight: bold;
+	            border-left: 15px solid #058bf5;
+	            background-color: #dff;
+	        }
+
+	        .bowen-body {
+	        	float: left;
+	        	margin-left: 10%;
+	            width: 80%;
+	        }
+	        .bowen-body p {
+	               text-indent:7%;
+	            }
+
+			/*底部浮标*/
+			.footer-page {
+				float: left;
+            	padding-top: 20px;
+           		padding-bottom: 20px;
+           		width: 100%;
+           	 	text-align: center;
+				background-color: #494949;
+				color: #fff;
+	        }
+
+	        .list-inline a {
+	        	color: #fff;
+	        }
+	        	.list-inline a:hover {
+	        		text-decoration:none;
+	      		}
+
+	      	.vertical-line {
+	      		border-style: solid;
+	      		border-width: 0 0 0 1px;
+	      		border-color: #fff;
+	      	}
+
+	        #buoy {
+	            position: fixed;
+	            right: 0;
+	            bottom: 20px;
+	            z-index: 999;
+	            width:40px; 
+	            height:80px;
+	            background-color: rgba(181, 164, 164, 0.53);
+	        }
+
+	        .u-icon-arr {
+	            position: absolute;
+	            right: 14px;
+	            width: 25px;
+	            height: 25px;
+	            border-style: solid;
+	            border-width: 10px 10px 0 0;
+	            border-color: #fff;
+	            -webkit-transform-origin: 75% 25%;
+	            -webkit-transform: rotateZ(45deg);
+	            -webkit-transition: 100ms ease-in .1s;
+	            transition: 100ms ease-in .1s;
+	        }
+
+	        .u-icon-up {
+	            top: 10px;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(-45deg);
+	            -ms-transform: rotateZ(-45deg);
+	            transform: rotateZ(-45deg);
+	        }
+
+	        .u-icon-down {
+	            bottom: 0;
+	            cursor: pointer;
+	            -webkit-transform: rotateZ(135deg);
+	            -ms-transform: rotateZ(135deg);
+	            transform: rotateZ(135deg);
+	        }
+	         /*当使用手机设备时改变部分板块的显示样式*/
+	         @media screen and (max-width: 768px) {
+	         	#buoy {
+	         		display: none;
+	         	}
+	         	#blogTitle h1 {
+              		padding-left: 0.4em;
+           		}
+            	#blogTitle h2 {
+              		padding-left: 3.4em;
+           		}
+           		.bowen-body {
+           			width: 100%;
+           			margin-left: 0;
+           		}
+           		.bowen-content {
+           			width: 100%;
+           			margin: 0;
+           			margin-top: 20px;
+           		}
+	        }
+		</style>
+    </head>
+	<body>
+	<header>
+		<div id="header">
+			<div id="blogTitle">
+				<h1><a id="Header1_HeaderTitle" href="/anani1994.github.io/blog/projects/old-blog/index.html">Anani</a></h1>
+				<h2>代码改变世界，坚持铸就未来。</h2>
+			</div>
+			<nav id="nav" class="navbar navbar-default" role="navigation">
+		        <div class="container-fluid">
+		            <div class="navbar-header">
+		               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar-collapse">
+		                  <span class="sr-only">切换导航</span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		                  <span class="icon-bar"></span>
+		               </button>
+		            </div>
+		            <div id="primary-navbar-collapse" class="collapse navbar-collapse">
+		               <ul class="nav navbar-nav navbar-right">
+		                   <li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">首页</a></li>
+		                   <li><a href="https://github.com/Anani1994">Github</a></li>
+		                   <li><a href="http://www.cnblogs.com/anani/">博客园</a></li>
+		                   <li class="disabled"><a href="">留言板</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </nav>
+		</div>
+	</div>
+	</header>
+	<section>
+	    <div class="bowen-content">
+	    	<div><h3 class="bowen">创建你的第一个 Electron 项目</h3></div>
+            <h4 class="bowen-title">导读</h4>
+            <div class="bowen-body">
+             	<p>Electron 可以让你使用纯 JavaScript 调用丰富的原生 APIs 来创造桌面应用。你可以把它看作是专注于桌面应用而不是 web 服务器的，io.js 的一个变体。这不意味着 Electron 是绑定了 GUI 库的 JavaScript。相反，Electron 使用 web 页面作为它的 GUI，所以你能把它看作成一个被 JavaScript 控制的，精简版的 Chromium 浏览器。以下的教程会帮你开始创建一个简单的项目。<small><span class="text-muted">如果你只是想创建一个基础的 Hello World 的项目来初步了解 electron，那么可以忽略带 <span class="text-danger">*</span> 标题及其以下文本的内容。</span></small></p>
+            </div>
+            <h4 class="bowen-title">Electron 开发的环境配置</h4>
+            <div class="bowen-body">
+         		<ul>
+         			<li>
+         				<b>安装 node</b>
+         				<p>node.js 下载链接：<a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
+         				<P>根据自己的系统选择适当的安装包。</P>
+         			</li>
+         			<li>
+         				<b>安装 electron</b>
+         				<p>打开cmd，在里面输入 <code>npm install --g electron-prebuilt</code></p>
+         				<p>安装完成后运行 <code>electron -v</code> 检查是否安装成功，如果安装成功将会输出 electron 的版本号。</p>
+         			</li>
+         			<li>
+         				<b>安装 sublime text 3</b>
+         				<p>sublime text 3 下载连接：<a href="https://www.sublimetext.com/3">https://www.sublimetext.com/3</a></p>
+         			</li>
+         		</ul>
+            </div>
+            <h4 class="bowen-title">创建 Hello World 项目</h4>
+            <div class="bowen-body">
+             	<div>Electron 应用的目录结构大体上包括：package.json,main.js,index.html。</div>
+             	<div>package.json的格式和 Node 的完全一致,它的内容大概是：</div>
+             	<div>
+			   		<pre class="brush:javascript;gutter:true;toolbar:false;">
+			   			{
+							"name"    : "your-app",
+							"version" : "0.1.0",
+							"main"    : "main.js"
+						}
+					</pre>
+			   	</div>
+			    <div><b>注意：</b><span class="text-danger">如果 main 字段没有在 package.json 声明，Electron会优先加载 index.js。main.js 应该用于创建窗口和处理系统时间。</span>例如：</div>
+			    <div>
+			   		<pre class="brush:javascript;gutter:true;toolbar:false;">
+			   			const electron = require('electron');
+						const app = electron.app;//控制应用生命周期的模块
+						const BrowserWindow = electron.BrowserWindow;//创建原生浏览器窗口的模块
+
+						//保持一个对于 Window 对象的全局引用，不然，当 JavaScript 被 GC 时 Window 会被自动关闭
+						var mainWindow = null;
+
+						// 当所有窗口被关闭了，退出
+						app.on('window-all-close',function() {
+							//在 OS X 上，通常用户在明确地按下 cmd + Q 之前，应用会保持活动状态
+							if(process.platform != 'darwin') {
+								app.quit();
+							}
+						});
+
+						//当 Electron 完成了初始化并且准备创建浏览器窗口的时候，这个方法就被调用
+						app.on('ready',function() {
+							//创建浏览器窗口
+							mainWindow = new BrowserWindow({width:800,height:600});
+							//加载应用的 index.html
+							mainWindow.loadURL('file://E:/app/index.html');
+							//打开开发者工具
+							//mainWindow.openDevTools();
+							//当 window 被关闭，这个事件会被发出
+							mainWindow.on('close',function() {
+								//取消引用 window 对象，如果你的应用支持多窗口的话，通常会把多个 window 对象存放在一个数组里面
+								mainWindow = null;
+							});
+						});
+					</pre>
+			    </div>
+			    <div>最后是想要展示的 index.html：</div>
+			    <p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-electron/index.html-0.png"></p>
+            </div>
+            <h4 class="bowen-title">运行你的应用</h4>
+            <div class="bowen-body">
+             	<p>当你创建了最初的 main.js， index.html 和 package.json 这几个文件，就可以尝试在本地运行并测试。</p>
+             	<p>如果你已经用 npm 全局安装了 electron-prebuilt，只需要按照如下方式直接运行你的应用：输入 dos指令 进入你的项目所在目录，然后在输入 <code>electron .</code>开始运行。</p>
+             	<div>结果如下：</div>
+             	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-electron/app-0.png"></p>
+            </div>
+            <h4 class="bowen-title">main process 和 web page 通信 <span class="text-danger">*</span></h4>
+            <div class="bowen-body">
+             	<p>ipcMain 模块是类 EventEmitter 的实例，当在主进程中使用它的时候，它控制着由渲染进程(web page)发送过来的异步或同步消息，从渲染进程发送过来的消息将触发事件。发送消息，事件名为 <code>channel</code>。回应同步消息, 可以设置 <code>event.returnValue</code>。回应异步消息, 可以使用 <code>event.sender.send(...)</code>。</p>
+             	<div><b>Main.js 里添加代码</b></div>
+             	<div>
+			   		<pre class="brush:javascript;gutter:true;toolbar:false;">
+			   			const ipcMain = require('electron').ipcMain;
+						ipcMain.on('asynchronous-message', function(event, arg) {
+						  console.log(arg);  // prints "ping"
+						  event.sender.send('asynchronous-reply', 'pong');
+						});
+
+						ipcMain.on('synchronous-message', function(event, arg) {
+						  console.log(arg);  // prints "ping"
+						  event.returnValue = 'pong';
+						});
+					</pre>
+			   	</div>
+			   	<div><b>web page 里添加代码</b></div>
+             	<div>
+			   		<pre class="brush:javascript;gutter:true;toolbar:false;">
+			   			const ipcRenderer = require('electron').ipcRenderer;
+						//监听mian process里发出的message
+						ipcRenderer.on('asynchronous-reply', function(event, arg) {
+						  alert(arg); // 在electron中web page里的console方法不起作用，因此使用alert作为测试方法=>prints "pong"
+						});
+						ipcRenderer.send('asynchronous-message', 'ping');//在web page里向main process发出message
+					</pre>
+			   	</div>
+			   	<div>具体呈现在项目中的代码，main.js 同上面的介绍，而在web page 里的代码：</div>
+			   	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-electron/index.html-1.png"></p>
+			   	<div>成功后的界面：</div>
+			   	<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-electron/app-1.png"></p>
+            </div>
+            <h4 class="bowen-title">项目打包（两种方法）</h4>
+            <div class="bowen-body">
+             	<div>
+             		<b>1、源码显示（两种方法）</b>
+             		<div>1.1 直接用命令打包</div>
+             		<div>
+             			<pre class="brush:javascript;gutter:true;toolbar:false;">
+             				electron-packager &ltlocation of project&gt &ltname of project&gt &ltplatform&gt &ltarchitecture&gt &ltelectron version&gt &ltoptional options&gt
+             			</pre>
+             		</div>
+             		<div>
+             			<div>命令说明：</div>
+             			<p>location of project：项目所在路径。</p>
+             			<p>name of project：打包的项目名字。</p>
+             			<p>platform：确定了你要构建哪个平台的应用（Windows、Mac 还是 Linux）。</p>
+             			<p>architecture：决定了使用 x86 还是 x64 还是两个架构都用。</p>
+             			<p>electron version：electron 的版本。</p>
+             			<p>optional options：可选选项。</p>
+             		</div>
+             		<div>1.2-0 首先在项目根目录下面的 package.json的scripts 下添加如下代码(version，icon路径要改成自己的):</div>
+             		<div>
+             			<pre class="brush:javascript;gutter:true;toolbar:false;">
+             				"packager": "electron-packager ./ HelloWorld --all --out ./outApp --version 1.4.0 --overwrite --icon=./app/img/icon/icon.ico"
+             				//--all 可以换成 --platform=win32 --arch=ia32，其中 platform 是发布平台，arch=ia32 指32位windows 64位的则为x64。
+             			</pre>
+             		</div>
+             		<div>1.2-1 然后使用命令 <code>npm run-script packager</code>。最终会在你指定的目录下生成打包后的文件：</div>
+             		<p><img src="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-electron/app-2.png"></p>
+             		<div>运行对应包下的.exe文件，就可以启用我们的应用了。</div>
+             		<div><b>注意：</b><span class="text-danger">使用以上方法我们的代码就是暴露在用户电脑上的，这非常的不安全。</span></div>
+             		<br/>
+             		<b>2、打包成二进制文件（.asar）</b>
+             		<div>2-0 使用命令 <code>npm install -g asar</code> 安装 asar。</div>
+             		<div>2-1 使用命令 <code>asar pack ./app app.asar</code> 用 asar pack 打包。</div>
+             	    <br/>
+             		<div>执行完毕以后，在 ./ 下可以看到 app.asar 文件，将其复制到 ./OutApp/mclans.../resources/ 下，然后把 resources 下的 app 文件夹删除，运行 resources 上层的 appName.exe 文件可以启动应用了。</div>
+             		<br/>
+             		<div><b>最后生成的 exe 文件通常较大，可以用 UPX 工具压缩，便于分发。</b></div>
+             	</div>
+            </div>
+            <h4 class="bowen-title">注意事项</h4>
+            <div class="bowen-body">
+             	<div><b>1、jQuery/RequireJS/Meteor/AngularJS 的问题</b></div>
+             	<p>jQuery 等新版本的框架，在 Electron 中使用普通的引入的办法会引发异常，原因是 Electron 默认启用了 Node.js 的 require 模块，而这些框架为了支持 commondJS 标准，当 Window 中存在 require 时，会启用模块引入的方式。分别有以下几种解决方案：</p>
+             	<div>1-0、去掉框架中的模块引入判断代码。例如：</div>
+             	<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				//比如 jQuery 中的第一行代码中
+         				!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}
+         				//改成：
+         				!function(a,b){b(a)}
+         			</pre>
+         		</div>
+         		<div>1-1、使用 Electron 官方论坛提供的方法，改变require的写法。下面的代码各个框架通用：</div>
+         		<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				//在引入框架之前先输入下面的代码
+         				&ltscript&gt
+						window.nodeRequire = require;
+						delete window.require;
+						delete window.exports;
+						delete window.module;
+						&lt/script&gt
+         			</pre>
+         		</div>
+         		<div>1-2、禁用Node.js的require模块化引入（如果你不想使用 Node.js 模块）：</div>
+         		<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				// In the main process.
+						let win = new BrowserWindow({
+						  webPreferences: {
+						    nodeIntegration: false
+						  }
+						});
+         			</pre>
+         		</div>
+         		<div>1-3、为使 web 项目正常浏览，在引入 jquery 后进行判断：</div>
+         		<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				//置于引入 jQuery 之后
+         				&ltscript&gtif (typeof module === 'object') {window.jQuery = window.$ = module.exports;};&lt/script&gt
+         			</pre>
+         		</div>
+         		<div><b>2、关于页面跳转 的问题</b></div>
+         		<p>刚开始看到页面跳转，大家一般会想到用 <code>window.location.href = './index.html';</code> 这样的代码。结果是可以跳转，但 DOM事件 基本都会失效。到最后还是使用的 electron 提供的 ipc 接口来创建新的窗口。</p>
+         		<div>2-0、在接收到命令后创建下一个窗口（创建窗口需要时间，期间可能出现空白）：</div>
+         		<div>
+         			<pre class="brush:javascript;gutter:true;toolbar:false;">
+         				//在main.js中：：
+						const ipc = require('electron').ipcMain;
+						//进行监控，如果有new-window 发送过来，则重新创建一个窗口，文件是list.html
+						   ipc.on('new-window',function() {
+						            mainWindow.loadURL(url.format({
+						            pathname: path.join(__dirname, '/views/list.html'),
+						            protocol: 'file:',
+						            slashes: true
+						        }))
+						   })
+         			</pre>
+         		</div>
+            </div>
+	    </div>
+	</section>
+	<footer id="footer">
+   	<div class="footer-page">
+      <ul class="list-inline">
+      	<li><a href="/anani1994.github.io/blog/projects/old-blog/index.html">网站开发者：Anani</a></li>
+      	<li><span class="vertical-line"></span></li>
+      	<li><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=zqqhoKm5pq2moI6oobajr6ei4K2how" style="text-decoration:none;">联系我</a></li>
+      </ul>
+   	</div>
+   	<div id="buoy">
+      <a onclick="toTop()" title="回到顶部"><span class="u-icon-arr u-icon-up"></span></a>
+      <a onclick="toBottom()" title="移到底部"><span class="u-icon-arr u-icon-down"></span></a>
+  	</div>
+	</footer>
+    </body>
+    <!-- jQuery -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+    <!-- 包括所有已编译的 bootstrap 插件 -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/bootstrap.min.js"></script>
+    <!-- 包括所有已编译的 syntaxhighlighter 插件 -->
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shCore.js"></script>
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/shBrushJScript.js"></script>
+    <!-- 设置 syntaxhighlighter 插件 -->
+    <script type="text/javascript">
+    	SyntaxHighlighter.all();
+	</script>
+    <script type="text/javascript">
+      // 设置点击底部浮标到顶、底部的函数
+      function toTop() {
+         $('body,html').animate({scrollTop:0},1000);
+      }
+      function toBottom() {
+         var bottom = $("body,html").height();
+         $('body,html').animate({scrollTop:bottom},1000);
+      }
+   </script>
+</html>

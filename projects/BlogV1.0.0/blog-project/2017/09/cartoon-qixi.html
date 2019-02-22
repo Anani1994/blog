@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viwport" content="width=device-width,initial-scale=1.0">
+<meta name="keywords" content="七夕，情人节">
+<meta name="description" content="只愿君心似我心，定不负相思意。">
+<meta name="author" content="Anani">
+<link rel="icon" href="/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/link_logo.jpg" sizes="32x32" />
+<title>长相守</title>
+<!--加载meta IE兼容文件-->  
+<!--[if lt IE 9]>  
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>  
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>  
+<![endif]--> 
+<style type="text/css">
+    * {
+        margin: 0;padding: 0;box-sizing: border-box;
+}
+    ul,li {
+        list-style-type: none;
+}
+    #content {
+        width    : 100%;
+        height   : 100%;
+        overflow : hidden;
+        position : absolute;
+}
+    .content-wrap {
+        position: relative;
+}
+    .content-wrap > li {
+        width: 100%;
+        height: 100%;
+        color: red;
+        float: left;
+        overflow: hidden;
+        position: relative;
+}
+    li:nth-child(2) {
+        background: #9BCD9B;
+}
+    li:nth-child(3) {
+        background: yellow;
+}
+    .background-image {
+	    position: absolute;
+	    width: 100%;
+        height: 100%;
+}
+    .a-background-top {
+        width: 100%;
+        height: 71.6%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-1.jpg");
+        background-size: 100% 100%;
+}
+    .a-background-middle {
+        width: 100%;
+        height: 13.1%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-2.jpg");
+        background-size: 100% 100%;
+}
+    .a-background-bottom{
+        width: 100%;
+        height: 15.3%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-3.jpg");
+        background-size: 100% 100%; 
+}
+    .background-image-b {
+	    position:absolute;
+		width:100%;
+		height:100%;
+		background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-201.png");
+        background-size: 100% 100%;
+}
+    .background-image-b-preload {
+	    background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-202.png") no-repeat -9999px -9999px;
+}
+    .lamp-bright {
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-203.png");
+}
+    .shop {
+        position: absolute;
+        left: 29%;
+        top: 36.5%;
+        width: 39.5%;
+        height: 35.5%;
+}
+
+    .door {
+        position: absolute;
+        left: 58.5%;
+        top: 32%;
+        width: 32%;
+        height: 68%;
+        overflow: hidden;
+}
+
+    .door-left,
+    .door-right {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+}
+
+    .door-left {
+        left: 0%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/door-left.png");
+        background-size: 100% 100%;
+}
+
+    .door-right {
+        left: 50%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/door-right.png");
+        background-size: 100% 100%;
+}
+    .background-image-c {
+	    position: absolute;
+	    width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+}
+    .c-background-top {
+        width: 100%;
+        height: 71.6%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-31.png");
+        background-size: 100% 100%;
+}
+    .c-background-middle {
+        width: 100%;
+        height: 13.1%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-32.png");
+        background-size: 100% 100%;
+}
+    .c-background-bottom {
+        width: 100%;
+        height: 15.3%;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-image-33.png");
+        background-size: 100% 100%;
+}
+    .girl {
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/background-girl.png") -755px -0px no-repeat;
+        position: absolute;
+        right: 40%;
+        top: 37%;
+        width: 151px;
+        height: 291px;
+}
+    .girl-rotate {
+        -webkit-animation-name: girl-rotate;
+        -webkit-animation-duration: 850ms;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: step-start;
+        -webkit-animation-fill-mode: forwards;
+        -moz-animation-name: girl-rotate;
+        -moz-animation-duration: 850ms;
+        -moz-animation-iteration-count: 1;
+        -moz-animation-timing-function: step-start;
+        -moz-animation-fill-mode: forwards;
+		animation-name: girl-rotate;
+        animation-duration: 850ms;
+        animation-iteration-count: 1;
+        animation-timing-function: step-start;
+        animation-fill-mode: forwards;
+}
+
+    @-webkit-keyframes girl-rotate {
+        0% {
+            background-position: -604px -0px;
+        }
+        16.7% {
+            background-position: -151px -0px;
+        }
+        33.4% {
+            background-position: -906px -0px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -302px -0px;
+        }
+        83.5% {
+            background-position: -453px -0px;
+        }
+        100% {
+            background-position: -604px -0px;
+        }
+}
+
+    @-moz-keyframes girl-rotate {
+        0% {
+            /*background-position: -604px -0px;*/
+        }
+        16.7% {
+            background-position: -151px -0px;
+        }
+        33.4% {
+            background-position: -906px -0px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -302px -0px;
+        }
+        83.5% {
+            background-position: -453px -0px;
+        }
+        100% {
+            background-position: -604px -0px;
+        }
+}
+    @keyframes girl-rotate {
+        0% {
+            /*background-position: -604px -0px;*/
+        }
+        16.7% {
+            background-position: -151px -0px;
+        }
+        33.4% {
+            background-position: -906px -0px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -302px -0px;
+        }
+        83.5% {
+            background-position: -453px -0px;
+        }
+        100% {
+            background-position: -604px -0px;
+        }
+}
+    .bridge-bottom {
+        position: absolute;
+        width: 41%;
+        height: 24%;
+        left: 29.5%;
+        top: 76%;
+        overflow: hidden;
+        /*    -webkit-transform:perspective(8px) rotateX(.8deg); */
+}
+    .water {
+        width: 100%;
+        height: 100%;
+}
+    .water-1,
+    .water-2,
+    .water-3,
+    .water-4 {
+        width: 100%;
+        position: absolute;
+        height: 50%;
+		-webkit-animation-name: shake;
+        -webkit-animation-duration: 40s;
+        -webkit-animation-direction: alternate;
+        -webkit-anination-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: shake;
+        -moz-animation-duration: 40s;
+        -moz-animation-direction: alternate;
+        -moz-anination-timing-function: linear;
+        -moz-animation-iteration-count: infinite;
+		animation-name: shake;
+        animation-duration: 40s;
+        animation-direction: alternate;
+        anination-timing-function: linear;
+        animation-iteration-count: infinite;
+}
+    .water-1 {
+        width: 131px;
+        height: 15px;
+        top: 13%;
+        left: 35%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/water-1.png") -261px -0px no-repeat;
+}
+    .water-2 {
+        width: 161px;
+        height: 9px;
+        top: 30%;
+        left: 45%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/water-2.png") -693px -0px no-repeat;
+		-webkit-animation-delay: 2s;
+        -moz-animation-delay: 2s;
+		animation-delay: 2s;
+}
+    .water-3 {
+        width: 261px;
+        height: 29px;
+        top: 50%;
+        left: 15%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/water-3.png") -0px -0px no-repeat;
+		-webkit-animation-delay: 1s;
+        -moz-animation-delay: 1s;
+		animation-delay: 1s;
+}
+    .water-4 {
+        width: 301px;
+        height: 12px;
+        top: 75%;
+        left: 30%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/water-4.png") -392px -0px no-repeat;
+		-webkit-animation-delay: 3s;
+        -moz-animation-delay: 3s;
+		animation-delay: 3s;
+}
+    @-webkit-keyframes shake {
+        0%, 
+		100% {-webkit-transform: translate3d(0, 0, 0);}
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {-webkit-transform: translate3d(-30px, 0px, 0);}
+        20%,
+        40%,
+        60%,
+        80% {-webkit-transform: translate3d(30px, 0px, 0);}
+}
+    @-moz-keyframes shake {
+        0%, 
+		100% {-webkit-transform: translate3d(0, 0, 0);}
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {-webkit-transform: translate3d(-30px, 0px, 0);}
+        20%,
+        40%,
+        60%,
+        80% {-webkit-transform: translate3d(30px, 0px, 0);}
+}
+    @keyframes shake {
+        0%, 
+		100% {-webkit-transform: translate3d(0, 0, 0);}
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {-webkit-transform: translate3d(-30px, 0px, 0);}
+        20%,
+        40%,
+        60%,
+        80% {-webkit-transform: translate3d(30px, 0px, 0);}
+}
+    .stars {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+}
+    .stars > li {
+        position: absolute;
+        width: 30px;
+        height: 31px;
+        background-image: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/stars.png");
+		-webkit-animation-name: flash;
+		-webkit-animation-duration: 5s;
+        -webkit-animation-timing-function: ease-in-out;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        -moz-animation-name: flash;
+		-moz-animation-duration: 5s;
+        -moz-animation-timing-function: ease-in-out;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-direction: alternate;
+		animation-name: flash;
+		animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+}
+    @-webkit-keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+        25%,
+        75% {
+            opacity: 0;
+        }
+}
+
+    @-moz-keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+        25%,
+        75% {
+            opacity: 0;
+        }
+}
+    @keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+        25%,
+        75% {
+            opacity: 0;
+        }
+}
+    .stars1 {
+        top: 20%;
+        left: 30%;
+}
+    .stars2 {
+        top: 15%;
+        left: 20%;
+}
+    .stars3 {
+        top: 25%;
+        left: 85%;
+}
+    .stars4 {
+        top: 30%;
+        left: 70%;
+}
+    .stars5 {
+        top: 25%;
+        left: 20%;
+}
+    .stars6 {
+        top: 10%;
+        left: 65%;
+}
+ /*将雪碧图设置为背景
+ 通过CSS3动画改变background-position属性实现小男孩的走动动画效果
+ */
+    .person-boy {
+        position:absolute;
+        left:6%;
+	    top:50%;
+	    width:151px;
+	    height:291px;
+	    background:url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/person.png")  -0px -291px no-repeat;
+}
+    .slowWalk {
+	    -webkit-animation-name:slowWalk;
+        -webkit-animation-duration:950ms;
+        -webkit-animation-iteration-count:infinite;
+        -webkit-animation-timing-function:steps(1,start);
+        -moz-animation-name:slowWalk;
+        -moz-animation-duration:950ms;
+        -moz-animation-iteration-count:infinite;
+        -moz-animation-timing-function:steps(1,start);
+        animation-name:slowWalk;
+        animation-duration:950ms;
+        animation-iteration-count:infinite;
+        animation-timing-function:steps(1,start);
+}
+    @-webkit-keyframes slowWalk {
+        0% {
+            background-position: -0px -291px;
+        }
+        25% {
+            background-position: -602px -0px;
+        }
+        50% {
+            background-position: -302px -291px;
+        }
+        75% {
+            ackground-position: -151px -291px;
+        }
+        100% {
+            background-position: -0px -291px;
+        }
+}
+    @-moz-keyframes slowWalk {
+        0% {
+            background-position: -0px -291px;
+        }
+        25% {
+            background-position: -602px -0px;
+        }
+        50% {
+            background-position: -302px -291px;
+        }
+        75% {
+            background-position: -151px -291px;
+        }
+        100% {
+            background-position: -0px -291px;
+        }
+}
+    @keyframes slowWalk {
+        0% {
+            background-position: -0px -291px;
+        }
+        25% {
+            background-position: -602px -0px;
+        }
+        50% {
+            background-position: -302px -291px;
+        }
+        75% {
+            background-position: -151px -291px;
+        }
+        100% {
+            background-position: -0px -291px;
+        }
+}
+    .pauseWalk {
+        -webkit-animation-play-state: paused;
+		-moz-animation-play-state: paused;
+		animation-play-state: paused;
+}
+    .slowFlolerWalk {
+        -webkit-animation-name: person-floler-slow;
+        -webkit-animation-duration: 950ms;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: step-start;
+        -moz-animation-name: person-floler-slow;
+        -moz-animation-duration: 950ms;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: step-start;
+		animation-name: person-floler-slow;
+        animation-duration: 950ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: step-start;
+}
+    @-webkit-keyframes person-floler-slow {
+        0% {
+            background-position: -453px -0px;
+        }
+        25% {
+            background-position: -904px -0px;
+        }
+        50% {
+            background-position: -451px -0px;
+        }
+        75% {
+            background-position: -753px -0px;
+        }
+        100% {
+            background-position: -300px -0px;
+        }
+}
+   
+    @-moz-keyframes person-floler-slow {
+        0% {
+            background-position: -453px -0px;
+        }
+        25% {
+            background-position: -904px -0px;
+        }
+        50% {
+            background-position: -451px -0px;
+        }
+        75% {
+            background-position: -753px -0px;
+        }
+        100% {
+            background-position: -300px -0px;
+        }
+}
+    @keyframes person-floler-slow {
+        0% {
+            background-position: -453px -0px;
+        }
+        25% {
+            background-position: -904px -0px;
+        }
+        50% {
+            background-position: -451px -0px;
+        }
+        75% {
+            background-position: -753px -0px;
+        }
+        100% {
+            background-position: -300px -0px;
+        }
+}
+    .sun {
+        position: absolute;
+        z-index: 1;
+        top: -5.00835%;
+		right: 40%;
+        height: 33.55593%;
+        width: 14.80118%;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/sun.png") no-repeat;
+		-webkit-animation-name: sunset;
+        -webkit-animation-duration: 30s;
+        -moz-animation-name: sunset;
+        -moz-animation-duration: 30s;
+		animation-name: sunset;
+        animation-duration: 30s;
+}
+    @-webkit-keyframes sunset {
+        0% {
+		    transform: translateX(0) translateY(0);
+        }
+        100% {
+            transform: translateX(-2000px) translateY(400px);
+        }
+}
+        
+    @-moz-keyframes sunset {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+        100% {
+            transform: translateX(-2000px) translateY(400px);
+        }
+}
+    @keyframes sunset {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+        100% {
+            transform: translateX(-2000px) translateY(400px);
+        }
+}
+    .cloud {
+        position:absolute;
+        z-index:1;
+}
+    .cloud1 {
+        left: -5%;
+        top: 15%;
+		width: 13.32842%;
+        height: 16.86144%;
+		background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/cloud1.png");
+		-webkit-animation-name: smallCloud;
+        -webkit-animation-duration: 30s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: smallCloud;
+        -moz-animation-duration: 30s;
+        -moz-animation-iteration-count: infinite;
+		animation-name: smallCloud;
+        animation-duration: 30s;
+        animation-iteration-count: infinite;
+}
+    @-webkit-keyframes smallCloud {
+	    0% {
+            left: -5%;
+        }
+        100% {
+            left: 100%;
+        }
+}
+    @-webkit-keyframes smallCloud {
+	    0% {
+            left: -5%;
+        }
+        100% {
+            left: 100%;
+        }
+}
+	@keyframes smallCloud {
+	    0% {
+            left: -5%;
+        }
+        100% {
+            left: 100%;
+        }
+}
+    .cloud2 {
+	    right: -5%;
+	    width: 22.16495%;
+        height: 23.37229%;
+		background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/cloud2.png");
+		-webkit-animation-name: largeCloud;
+        -webkit-animation-duration: 60s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: largeCloud;
+        -moz-animation-duration: 60s;
+        -moz-animation-iteration-count: infinite;
+		animation-name: largeCloud;
+        animation-duration: 60s;
+        animation-iteration-count: infinite;
+}
+    @-webkit-keyframes largeCloud {
+	    0% {
+            right: -5%;
+        }
+        100% {
+            right: 100%;
+        }
+}
+    @-webkit-keyframes largeCloud {
+	    0% {
+            right: -5%;
+        }
+        100% {
+            right: 100%;
+        }
+}
+	@keyframes largeCloud {
+	    0% {
+            right: -5%;
+        }
+        100% {
+            right: 100%;
+        }
+}
+    .bird {
+        position: absolute;
+		z-index: 10;
+		top: 10%;
+		right: -91px;
+        min-width: 91px;
+        min-height: 71px;
+        background: url("/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/bird.png") -182px 0px no-repeat;
+        -webkit-animation-name: bird-slow;
+        -webkit-animation-duration: 400ms;
+        -webkit-animation-timing-function: step-start;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: bird-slow;
+        -moz-animation-duration: 400ms;
+        -moz-animation-timing-function: step-start;
+        -moz-animation-iteration-count: infinite;
+		animation-name: bird-slow;
+        animation-duration: 400ms;
+        animation-timing-function: step-start;
+        animation-iteration-count: infinite;
+}
+    @-webkit-keyframes bird-slow {
+	    0% {
+            background-position: -182px 0px;
+        }
+        50% {
+            background-position: 0px 0px;
+        }
+        75% {
+            background-position: -91px 0px;
+        }
+        100% {
+            background-position: -182px 0px;
+        }
+}
+	@-moz-keyframes bird-slow {
+        0% {
+            background-position: -182px 0px;
+        }
+        50% {
+            background-position: 0px 0px;
+        }
+        75% {
+            background-position: -91px 0px;
+        }
+        100% {
+            background-position: -182px 0px;
+        }
+}
+    @-moz-keyframes bird-slow {
+	    0% {
+            background-position: -182px 0px;
+        }
+        50% {
+            background-position: 0px 0px;
+        }
+        75% {
+            background-position: -91px 0px;
+        }
+        100% {
+            background-position: -182px 0px;
+        }
+}
+    .boyOriginal {
+        background-position: -150px -0px;
+}
+    .boy-rotate {
+       -webkit-animation-name: boy-rotate;
+       -webkit-animation-duration: 850ms;
+       -webkit-animation-iteration-count: 1;
+       -webkit-animation-timing-function: step-start;
+       -webkit-animation-fill-mode: forwards;
+       -moz-animation-name: boy-rotate;
+       -moz-animation-duration: 850ms;
+       -moz-animation-iteration-count: 1;
+       -moz-animation-timing-function: step-start;
+       -moz-animation-fill-mode: forwards;
+	   animation-name: boy-rotate;
+       animation-duration: 850ms;
+       animation-iteration-count: 1;
+       animation-timing-function: step-start;
+       animation-fill-mode: forwards;
+}
+    @-webkit-keyframes boy-rotate {
+        0% {
+            background-position: -603px -291px;
+        }
+        16.7% {
+            background-position: -150px -0px;
+        }
+        33.4% {
+            background-position: -453px -291px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -903px -291px;
+        }
+        83.5% {
+            background-position: -753px -291px;
+        }
+        100% {
+            background-position: -603px -291px;
+        }
+}
+    @-moz-keyframes boy-rotate {
+        0% {
+            /*background-position: -603px -291px;*/
+        }
+        16.7% {
+            background-position: -150px -0px;
+        }
+        33.4% {
+            background-position: -453px -291px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -903px -291px;
+        }
+        83.5% {
+            background-position: -753px -291px;
+        }
+        100% {
+            background-position: -603px -291px;
+        }
+}
+    @keyframes boy-rotate {
+        0% {
+            /*background-position: -603px -291px;*/
+        }
+        16.7% {
+            background-position: -150px -0px;
+        }
+        33.4% {
+            background-position: -453px -291px;
+        }
+        50.1% {
+            background-position: -0px -0px;
+        }
+        66.8% {
+            background-position: -903px -291px;
+        }
+        83.5% {
+            background-position: -753px -291px;
+        }
+        100% {
+            background-position: -603px -291px;
+        }
+}
+    #snowflake {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+}
+    .snowRoll {
+        position: absolute;
+        opacity: 0;
+		height: 80px;
+        -webkit-animation-name: mysnow;
+        -webkit-animation-duration: 20s;
+        -moz-animation-name: mysnow;
+        -moz-animation-duration: 20s;
+		animation-name: mysnow;
+        animation-duration: 20s;
+}
+    @-webkit-keyframes mysnow {
+        0% {
+            bottom: 100%;
+        }
+        50% {
+            -webkit-transform: rotate(1080deg);
+        }
+        100% {
+            -webkit-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+        }
+}
+    @-moz-keyframes mysnow {
+        0% {
+            bottom: 100%;
+        }
+        50% {
+            -moz-transform: rotate(1080deg);
+        }
+        100% {
+            -moz-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+        }
+}
+    @keyframes mysnow {
+        0% {
+            bottom: 100%;
+        }
+        50% {
+            transform: rotate(1080deg);
+        }
+        100% {
+            transform: rotate(0deg) translate3d(50px, 50px, 50px);
+        }
+}
+</style>
+    <script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="/anani1994.github.io/blog/projects/old-blog/js-blog/transition.js"></script>
+    <script type="text/javascript">
+	    //实现背景画面的滑动动画
+        function backgroundGlide(container){
+		    var glide = {};
+            var element = container.find(":first");
+            var slides = element.find(">");
+            var width = container.width();
+            var height = container.height();
+			glide.scrollTo = function(X,time){
+		                            element.css({
+                                        width  : (slides.length * width) + 'px',
+                                        height : height + 'px',
+					                    'transition-timing-function': 'linear',
+                                        'transition-duration': time + 'ms',
+                                        'transform': 'translate3d(-' + X + 'px,0px,0px)'
+                                    });
+				                }
+            $.each(slides, function(index) {
+                var slide = slides.eq(index); 
+                slide.css({
+                    width  : width + 'px',
+                    height : height + 'px'
+                });
+            });
+			return glide;
+		}
+    </script>
+	<script type="text/javascript">
+	    function boyWalk(){
+			var personBoy = $(".person-boy");
+			var boyHeight = personBoy.height();
+			var container = $('#content');
+			var width = container.width();
+            var height = container.height();
+			//设置小男孩的位置
+            var data = function(){
+		                    var demo = $(".a-background-middle");
+		                    return{
+			                    height: demo.height(),
+		                        top: demo.position().top
+		                    };
+		                }();
+	        var pathY = function(){
+	                        return data.top + data.height / 2;
+	                    }();
+	        personBoy.css({
+	            top : pathY - boyHeight + 25
+	        })
+			//实现小男孩相对于显示屏的滑动动画
+			function calculateCoordinate(coordinate,proportion){
+	            return (coordinate == 'x' ? width : height)*proportion;
+		    }
+			function startWalk(options,walkTime){
+			    var dfdPlay = $.Deferred();
+			    personBoy.transition(
+                   options,
+                   walkTime,
+                  'linear',
+             	   function() {dfdPlay.resolve();});
+				return dfdPlay;
+			}
+			function toCoordinate(time,coordinatex,coordinatey){
+		   	 var walkTime = time || 3000;
+			    var transferMethod = startWalk({'left': coordinatex + 'px','top': coordinatey ? coordinatey : undefined },walkTime);
+			    return transferMethod;
+     	 	}
+			//控制小孩的步伐
+			function stopWalk(){
+			    personBoy.addClass('pauseWalk');
+			}
+			function restoreWalk(){
+			    personBoy.removeClass('pauseWalk');
+			}
+			//控制进出商店的动画
+			function walkInShop(walkTime){
+			    var defer = $.Deferred();
+			    var doorObj = $('.door');
+			    var doorOffset = doorObj.offset();
+		    	var doorLeft = doorOffset.left;
+			    var personBoyOffset = personBoy.offset();
+		    	var personBoyLeft = personBoyOffset.left;
+			    var walkInShopX = (doorLeft+doorObj.width()/2)-(personBoyLeft+personBoy.width()/2);
+			    startWalk({transform: 'translateX(' + walkInShopX + 'px) scale(0.3,0.3)',opacity:0.1},walkTime);
+				startWalk().done(function(){personBoy.css('opacity','0');defer.resolve();});
+				return defer;
+			}
+			function walkOutShop(walkTime){
+	            var defer = $.Deferred();
+				var doorObj = $('.door');
+			    var doorOffset = doorObj.offset();
+		    	var doorLeft = doorOffset.left;
+			    var personBoyOffset = personBoy.offset();
+		    	var personBoyLeft = personBoyOffset.left;
+			    var walkInShopX = (doorLeft+doorObj.width()/2)-(personBoyLeft+personBoy.width()/2);
+                startWalk({transform: 'translateX(' + walkInShopX + 'px) scale(1,1)',opacity: 1}, walkTime);
+                startWalk().done(function(){defer.resolve();});
+                return defer;
+			}
+			//通过改变背景图（雪碧图）的显示位置改变显示的图完成取花
+			function takeFlower() {
+                var defer = $.Deferred();
+                setTimeout(function() {personBoy.addClass('slowFlolerWalk');defer.resolve();}, 1000);
+                return defer;
+            }
+			//
+			function walk(){
+			    personBoy.addClass('slowWalk');
+			}
+			//返回函数的方法
+         	return {
+			    walkTo: function(time,proportionX,proportionY){
+			                var coordinatex = calculateCoordinate('x', proportionX);
+          	                var coordinatey = calculateCoordinate('y', proportionY);
+         	                return toCoordinate(time,coordinatex,coordinatey);
+						},
+				setColor : function(value){
+				                personBoy.css('background-color',value);
+							},
+				toShop: function() {
+                                return walkInShop.apply(null, arguments);
+                        },
+                outShop: function() {
+                                return walkOutShop.apply(null, arguments);
+                        }, 
+				walk: function(){
+				            return walk();
+					    },
+				stopWalk: function() {
+                                stopWalk();
+                        },
+                restoreWalk: function() {
+                                restoreWalk();
+                        },
+				takeFlower: function(){
+				                return takeFlower();
+							},
+				getWidth: function() {
+                                return personBoy.width();
+                        },
+                resetOriginal: function() {
+                                this.stopWalk();
+                                personBoy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal');
+                        },
+				rotate: function(){
+				            this.restoreWalk();
+				            personBoy.addClass('boy-rotate');
+						}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+	    //实现开关门的动画
+	    function doorAction(left, right, time) {
+            var $door = $('.door');
+            var doorLeft = $('.door-left');
+            var doorRight = $('.door-right');
+            var defer = $.Deferred();
+            var count = 2;
+            // 等待开门完成
+            var complete = function() {
+                if (count == 1) {
+                    defer.resolve();
+                    return;
+                }
+                count--;
+            };
+            doorLeft.transition({'left': left}, time, complete);
+            doorRight.transition({ 'left': right}, time, complete);
+            return defer;
+        }
+        function openDoor() {
+            return doorAction('-50%', '100%', 2000);
+        }
+        function shutDoor() {
+            return doorAction('0%', '50%', 2000);
+        }
+		//实现灯明灯灭的效果
+		var lamp = {
+            elem: $('.background-image-b'),
+            bright: function() {
+                this.elem.addClass('lamp-bright')
+            },
+            dark: function() {
+                this.elem.removeClass('lamp-bright')
+            }
+        };
+		//实现门开灯明、门关灯灭的效果
+        /*
+		openDoor().then(function() {
+            lamp.bright();
+        })
+        shutDoor().then(function() {
+            lamp.dark();
+        });
+		*/
+	</script>
+</head>
+<body>
+    <div id='content'>
+        <ul class='content-wrap'>
+            <li>
+			    <div class="background-image">
+				    <div class="a-background-top"></div>
+					<div class="a-background-middle"></div>
+					<div class="a-background-bottom"></div>
+			    </div>
+				<div class="sun"></div>
+				<div class="cloud cloud1"></div>
+				<div class="cloud cloud2"></div>
+			</li>
+            <li>
+			    <div class="background-image-b"></div>
+				<div class="background-image-b-preload"></div>
+				<div class="shop">
+				    <div class="door">
+					    <div class="door-left"></div>
+						<div class="door-right"></div>
+					</div>
+					<div class="lamp"></div>
+				</div>
+				<div class="bird"></div>
+			</li>
+            <li>
+			    <div class="background-image-c">
+				    <div class="c-background-top"></div>
+					<div class="c-background-middle"></div>
+					<div class="c-background-bottom"></div>
+				</div>
+				<div class="girl"></div>
+				<div class="bridge-bottom">
+				    <div class="water">
+					    <div class="water-1"></div>
+						<div class="water-2"></div>
+						<div class="water-3"></div>
+						<div class="water-4"></div>
+					</div>
+				</div>
+				<ul class="stars">
+                    <li class="stars1"></li>
+                    <li class="stars2"></li>
+                    <li class="stars3"></li>
+                    <li class="stars4"></li>
+                    <li class="stars5"></li>
+                    <li class="stars6"></li>
+                </ul>
+				<div id="snowflake"></div>
+			</li>
+        </ul>
+		<div class="person-boy"></div>
+    </div>
+	<audio autoplay loop>
+        <source src="/anani1994.github.io/blog/projects/old-blog/music-blog/blog-qixi/circulation.wav" type="audio/wav">
+        对不起，您的浏览器不支持 audio 元素。
+    </audio>
+</body>
+	<script type="text/javascript">
+	    $(function() {
+		    var container = $("#content");
+			var snowContainer = $('#snowflake');
+			var visualWidth = container.width();
+			var visualHeight = container.height();
+		    var glide = backgroundGlide(container);
+			function scrollTo(time,proportionX){
+			    var time = time || 10000;
+				var distX = container.width()*proportionX;
+			    glide.scrollTo(distX, time);
+			}
+	        var movement = boyWalk(); 
+			//实现飞鸟动画
+			var bird = {
+                elem: $(".bird"),
+                fly: function() {this.elem.transition({right: container.width()}, 15000, 'linear');}
+            };
+			//设置小女孩的位置
+			var dataB = function() {
+                            var elem = $('.c-background-middle');
+                            return {
+				                height: elem.height(),
+                                top: elem.position().top
+					        };
+                        }();
+			var bridgeY = function(){
+			                    return dataB.top;
+			                }();
+			var girl = {
+                elem: $('.girl'),
+                getHeight: function() {
+                                return this.elem.height();
+                },
+				rotate: function() {
+                            this.elem.addClass('girl-rotate');
+                },
+                setOffset: function() {
+                                this.elem.css({left: visualWidth / 2,top: bridgeY - this.getHeight()});
+                },
+				getOffset: function() {
+                                return this.elem.offset();
+                },
+                getWidth: function() {
+                                return this.elem.width();
+                }
+            };
+            girl.setOffset();
+		   //
+		    function flowerRain(){
+		    var snowflakeURl = [
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-1.png',
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-2.png',
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-3.png',
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-4.png',
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-5.png',
+                '/anani1994.github.io/blog/projects/old-blog/photo-blog/blog-qixi/flower-6.png'
+            ]
+			function getUrlNmae(){
+			    return snowflakeURl[Math.floor(Math.random()*6)];
+			}
+			function createSnowBox(){
+			    var url = getUrlNmae();
+				return  $('<div class="snowbox" />').css({
+                            'width': 41,
+                            'height': 41,
+                            'position': 'absolute',
+                            'backgroundSize': 'cover',
+                            'zIndex': 100000,
+                            'top': '-41px',
+                            'backgroundImage': 'url(' + url + ')'
+                        }).addClass('snowRoll');
+            }
+			setInterval(function(){
+			    var startLeft = Math.random() * visualWidth - 100;
+				var startOpacity = 1;
+				var endLeft = startLeft - 100 + Math.random() * 500;
+				var endTop = visualHeight - 40;
+				var duration = visualHeight * 10 + Math.random() * 5000;
+				var randomStart = Math.random();
+				randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+				var flake = createSnowBox();
+				flake.css({left: startLeft,opacity : randomStart});
+				snowContainer.append(flake);
+				flake.transition({top: endTop,left: endLeft,opacity: 0.7}, duration, 'ease-out', function() {$(this).remove()});
+            }, 200);
+			}
+		    movement.walk();
+			movement.walkTo(6000, 0.3333333)
+            .then(function() {
+                // 第一次走路完成
+                // 开始页面滚动
+                scrollTo(15000, 1);
+            })
+			.then(function() {
+                //第二次走路
+                return movement.walkTo(15000, 0.5);
+            })
+            .then(function() {
+                //暂停走路
+                movement.stopWalk()
+            })
+            .then(function() {
+                // 开门
+                return openDoor();
+            })
+            .then(function() {
+                // 开灯
+                lamp.bright();
+            })
+			.then(function() {
+                // 恢复走路
+                movement.restoreWalk();
+            })
+            .then(function() {
+                // 进商店
+                return movement.toShop(1500);
+            })
+			.then(function(){
+                // 取花
+                return movement.takeFlower();
+            })
+			.then(function() {
+                // 飞鸟
+                bird.fly();
+            })
+			.then(function() {
+                // 出商店
+                return movement.outShop(1500);
+            })
+			.then(function(){
+                // 关门
+                shutDoor();
+            })
+			.then(function() {
+                // 灯暗
+                lamp.dark();
+            })
+			.then(function(){
+			    scrollTo(6500, 2); 
+			})
+			.then(function(){
+			    // 第一次走路到桥底边left,top
+		        return movement.walkTo(6500, 0.2);
+			})
+		    .then(function() {
+			    // 第二次走路到桥上left,top
+                return movement.walkTo(1500, 0.3, (bridgeY - girl.getHeight()) / visualHeight);
+            })
+			.then(function() {
+			    // 实际走路的比例
+                var proportionX = (girl.getOffset().left - movement.getWidth() + girl.getWidth() / 2) / visualWidth;
+				//第三次桥上直走到小女孩面前
+                return movement.walkTo(1500, proportionX);
+            })
+			.then(function() {
+                return movement.resetOriginal();
+            })
+			.then(function() {
+                return setTimeout(function() {girl.rotate();movement.rotate();}, 1000);
+            })
+			.then(function(){
+			    flowerRain();
+			});
+	    });
+	</script>
+</html>

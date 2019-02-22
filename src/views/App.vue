@@ -15,8 +15,6 @@
                     ul.navbar-nav
                         li.nav-item.active
                             a.nav-link(href="https://github.com/Anani1994") GitHub
-                        li.nav-item.active
-                            a.nav-link(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarDropdown"
@@ -25,11 +23,20 @@
                                                     aria-haspopup="true"
                                                     aria-expanded="false") {{ $t("message.item_demo") }}
                             .dropdown-menu(aria-labelledby="appNavbarDropdown")
-                                a.dropdown-item(href='http://dongwh.coding.me/blog/build/items/vue-market/index.html#/login') {{ $t("message.shop_mall") }}
-                                a.dropdown-item(href="https://anani1994.github.io/#/") {{ $t("message.blog_two") }}
-                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/blog/projects/old-blog/index.html") {{ $t("message.blog_one") }}
+                                a.dropdown-item(href='https://anani1994.github.io/anani1994.github.io/projects/vue-market/index.html') {{ $t("message.shop_mall") }}
+                        li.nav-item.dropdown
+                            a.nav-link.dropdown-toggle(href="#"
+                                                    id="appNavbarDropdown"
+                                                    role="button"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false") {{ $t("message.blog") }}
+                            .dropdown-menu(aria-labelledby="appNavbarDropdown")
+                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
+                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
+                                a.dropdown-item(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
                         li.nav-item.active
-                            a.nav-link(href="#") {{ $t("message.bo_wen") }}
+                            a.nav-link(href="https://anani1994.github.io/notebook/") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarLangDropdown"

@@ -1,0 +1,67 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+// 配合绝对定位
+.top-0 {
+    top: 0;
+}
+.left-0 {
+    left: 0;
+}
+.bottom-0 {
+    bottom: 0;
+}
+.right-0 {
+    right: 0;
+}
+
+// 绝对居中
+.position-absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.position-absolute-centerX {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.position-absolute-centerY {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// 滚动条
+// 滚动条整体样式
+.an-scrollbar::-webkit-scrollbar {
+    // 高宽分别对应横竖滚动条的尺寸
+    width: 4px;     
+    height: 4px;
+}
+// 滚动条里面小方块
+.an-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+// 滚动条里面轨道
+.an-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+// 鼠标指针放在一个元素边界范围内时所用的光标形状
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// 首行缩进
+.text-indent {
+    text-indent: 32px;
+}
+
+// 冒号
+.content-cn-colon::after {
+    content: '：';
+}

@@ -1,5 +1,5 @@
 <template lang="pug">
-    .layout.w-100.h-100.d-flex.flex-column
+    .layout.h-100
         .layout-header
             slot(name="header")
         .layout-body(v-if="scroll")

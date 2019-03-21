@@ -1,7 +1,7 @@
 <template lang="pug">
     .container.h-100.px-0.app
         layout
-            #app-nav.navbar.navbar-expand-lg.fixed-top.container.navbar-light.border-bottom(slot="header")
+            #app-nav.navbar.navbar-expand-lg.navbar-light.border-bottom(slot="header")
                 a.navbar-brand(href="/") {{ $t("message.basic_title") }}
                 button.navbar-toggler(type="button"
                                     @click="addBgColor()"
@@ -32,9 +32,9 @@
                                                     aria-haspopup="true"
                                                     aria-expanded="false") {{ $t("message.blog") }}
                             .dropdown-menu(aria-labelledby="appNavbarDropdown")
-                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
-                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
                                 a.dropdown-item(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
+                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
+                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
                         li.nav-item.active
                             a.nav-link(href="https://anani1994.github.io/notebook/") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown

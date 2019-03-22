@@ -1,4 +1,4 @@
-export default new class {
+export default class {
   /**
    * 判断是否是字符串
    * @param {*} 需要被检测的
@@ -92,4 +92,4 @@ export default new class {
     }
     return value;
   }
-}();
+};

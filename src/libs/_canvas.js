@@ -1,6 +1,6 @@
 import util from "./util";
 
-export default new class {
+export default class {
   constructor() {
     let requestAnimationFrame =
       window.requestAnimationFrame ||
@@ -488,4 +488,4 @@ export default new class {
     this.ctx.arc(x, y, radius, m, n, counterclockwise);
     this.ctx.fill();
   }
-}();
+};

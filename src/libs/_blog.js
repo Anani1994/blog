@@ -1,7 +1,7 @@
 // =============================================================== 博客钦点 ===============================================================
 import i18n from "../i18n/index";
 
-export default new class {
+export default class {
   /**
    * 设置网页标题
    * @param {string} 网页标题
@@ -60,4 +60,4 @@ export default new class {
       1000
     );
   }
-}();
+};

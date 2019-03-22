@@ -1,5 +1,5 @@
 // =============================================================== 性能优化 ===============================================================
-export default new class {
+export default class {
   /**
    * 函数节流
    * @param {function} 回调函数
@@ -34,4 +34,4 @@ export default new class {
       method.call(context, args);
     }, delay);
   }
-}();
+};

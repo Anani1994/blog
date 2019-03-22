@@ -1,62 +1,59 @@
-// =============================================================== 拷贝对象 ===============================================================
-export default new class {
-  constructor() {
-    this.extend = this.extend.bind(this);
-    this.deepClone = this.deepClone.bind(this);
-  }
-
+// =============================================================== 操作对象 ===============================================================
+export default class {
   /**
-   * 深拷贝
-   * @param source 被拷贝的对象
-   * @param target 可选的返回拷贝结果的对象
+   * @description
+   * 深拷贝一组对象的属性到目标对象
+   * @param {object} 可选的返回拷贝结果的对象
+   * @param {...object} 被拷贝的对象
    * @returns {object} deep copy `source`
    */
-  deepClone(source, target) {
-    let key;
-    let result = target;
-    if (typeof source !== "object") {
-      return source;
-    }
-    if (typeof target !== "object") {
-      result = this.isArray(source) ? [] : {};
-    }
-    for (key in source) {
-      let prop = source[key];
-      // Prevent never-ending loop
-      if (prop === result) {
-        continue;
-      }
-      if (source.hasOwnProperty(key)) {
-        if (typeof prop === "object") {
-          result[key] = this.isArray(prop) ? [] : {};
-          // arguments.callee指向拥有该arguments的函数对象，但在严格模式下会报错
-          this.deepClone(prop, result[key]);
-        } else {
-          result[key] = prop;
-        }
-      }
-    }
+  deepClone(dest = {}, ...src) {
     // 下行代码也可实现深拷贝，但是undefined、function、symbol会在转换过程中被忽略
-    // result = JSON.parse(JSON.stringify(source));
-    if (target) {
-      target = result;
-    }
-    return result;
+    // dest = JSON.parse(JSON.stringify(src));
+    const clone = (dest = {}, src) => {
+      Object.keys(src).forEach(key => {
+        let prop = src[key];
+        if (!isObject(prop)) return prop;
+        if (prop === dest) return; // 避免死循环
+        // 深拷贝实现
+        if ('object' === typeof prop) {
+          dest[key] = isArray(dest[key]) ? [] : {};
+          clone(dest[key], prop);
+        } else {
+          dest[key] = prop;
+        }
+      });
+    };
+    // 拷贝多个对象
+    src.forEach(obj => clone(dest, obj));
+    return dest;
   }
 
   /**
-   * @param {...Object} src Source object(s).
-   * @returns {Object} Reference to `source`.
+   * @description
+   * 深拷贝 => deepClone 的别名
+   * @param {object} 可选的返回拷贝结果的对象
+   * @param {...object} 被拷贝的对象
+   * @returns {object} deep copy `source`
    */
-  extend(source) {
-    let i = 0;
-    let len = arguments.length;
-    for (i; i < len; ++i) {
-      let temp = arguments[i];
-      if (temp) {
-        this.deepClone(arguments[i], source);
-      }
-    }
-    return source;
+  extend(dest, ...src) {
+    return this.deepClone(dest, ...src);
   }
-}();
+
+  /**
+   * @description
+   * 完全冻结一个对象，包括其属性对象
+   * @param {object} obj 需要被冻结的对象
+   * @returns {object} 冻结后的对象
+   */
+  constantize(obj) {
+    Object.freeze(obj);
+    Object.keys(obj).forEach(key => {
+      if ('object' === typeof obj[key]) {
+        contantize(obj[key]);
+      }
+    });
+
+    return obj;
+  }
+}

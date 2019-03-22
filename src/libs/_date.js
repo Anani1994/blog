@@ -1,5 +1,5 @@
 // =============================================================== 时间日期 ===============================================================
-export default new class {
+export default class {
   /**
    * @description 格式化时间格式
    * @Returns {string} 格式化输出当前时间(yyyy-mm-dd hh-mm-ss)
@@ -15,4 +15,4 @@ export default new class {
     let result = `${year}-${month}-${day} ${hour}-${minute}-${second}`;
     return result;
   }
-}();
+};

@@ -1,10 +1,12 @@
 <template lang="pug">
-    .container.h-100.px-0.app
+    .container.h-100.px-0
         layout
-            #app-nav.navbar.navbar-expand-lg.navbar-light.border-bottom(slot="header")
+            #app-nav.navbar.navbar-expand-lg.navbar-light.border-bottom(
+                :class="{'app-nav': isShow}"
+                slot="header")
                 a.navbar-brand(href="/") {{ $t("message.basic_title") }}
                 button.navbar-toggler(type="button"
-                                    @click="addBgColor()"
+                                    @click="isShow = !isShow"
                                     data-toggle="collapse"
                                     data-target="#appNavbar"
                                     aria-controls="appNavbar"
@@ -53,15 +55,15 @@
                                                            @click="changeLanguage('zh-CN')") 简体中文
                         li.nav-item.active
                             a.nav-link(href="#") {{ $t("message.app_setting") }}
-            .w-100.h-100(slot="body")
+            .h-100(slot="body")
                 router-view
-            .w-100.h-100(slot="footer")
+            .h-100(slot="footer")
                 canvas#app-bg.position-fixed.top-0.left-0 Sorry,There is a drawing about a clock,But your browser does not support Canvas.
                 p.m-0.py-1.text-center
                     small
                         span Copyright © 2018-2018 {{ $t("message.author") }}
                         span.border-right.mx-2
-                        span#app-footer-time
+                        span#app-footer-time(v-text="tiemNow")
 </template>
 
 <script>
@@ -69,35 +71,38 @@ export default {
     name: 'App',
     data() {
         return {
+            // 在手机模式打开顶部下拉 navbar 菜单添加背景颜色
             isShow: false,
+            // 底部显示的时间
+            tiemNow: '',
         }
     },
     methods: {
+        // 根据语言切换更换网页标题
          changeLanguage: function (lang) {
             this.$i18n.locale = lang;
-            let newTitle = this.$t("message.basic_title") + ' - ' + this.$t((`message.${this.$route.meta.title.key}`));
+            let newTitle = `${this.$t("message.basic_title")}
+                            - ${this.$t((`message.${this.$route.meta.title.key}`))}`.trim();
             window.document.title = newTitle;
-        },
-        // 在手机模式打开顶部下拉 navbar 菜单添加背景颜色
-        addBgColor: function () {
-            if (this.isShow) {
-                $('#app-nav').removeClass('app-nav');
-            } else {
-                $('#app-nav').addClass('app-nav');
-            }
-            this.isShow = !this.isShow;
         },
     },
     mounted () {
-        // 底部显示的时间
+        // 更新底部时间
         setInterval(() => { 
-            let time = this.$util.formatDate();
-            $('#app-footer-time').html(time);
+            this.tiemNow = this.$util.formatDate();
         }, 1000);
+
         // 背景动画
-        this.$nextTick(() => {
-            // this.$canvas.createStarrySky(document.querySelector('#app-bg'));
-        });
+        // this.$nextTick(() => {
+        //     this.$canvas.createStarrySky(document.querySelector('#app-bg'), {
+        //         canvasStyle: {
+        //             // 大小
+        //             width: document.body.clientWidth,
+        //             height: document.body.clientHeight,
+        //             // 颜色
+        //         },
+        //     });
+        // });
     },
 }
 </script>

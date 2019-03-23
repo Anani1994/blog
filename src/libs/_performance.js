@@ -1,5 +1,5 @@
 // =============================================================== 性能优化 ===============================================================
-export default class {
+export default {
   /**
    * 函数节流
    * @param {function} 回调函数
@@ -18,7 +18,7 @@ export default class {
         }, delay);
       }
     };
-  }
+  },
 
   /**
    * 防抖动函数
@@ -33,5 +33,5 @@ export default class {
     method.tId = setTimeout(() => {
       method.call(context, args);
     }, delay);
-  }
+  },
 };

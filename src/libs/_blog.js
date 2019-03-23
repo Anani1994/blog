@@ -1,7 +1,7 @@
 // =============================================================== 博客钦点 ===============================================================
 import i18n from "../i18n/index";
 
-export default class {
+export default {
   /**
    * 设置网页标题
    * @param {string} 网页标题
@@ -14,7 +14,7 @@ export default class {
       newTitle += " - " + (title.i18n ? vm.$t(`message.${title.key}`) : title);
     }
     window.document.title = newTitle;
-  }
+  },
 
   /**
    * 路由跳转
@@ -32,7 +32,7 @@ export default class {
       return context.$router.push(obj);
     }
     this.$router.push(obj);
-  }
+  },
 
   /**
    * created for a block named steps

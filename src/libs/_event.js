@@ -1,5 +1,5 @@
 // =============================================================== 事件处理 ===============================================================
-export default class {
+export default {
     /**
      * 添加事件及其处理程序(兼容 IE)
      * @param {dom}
@@ -15,7 +15,7 @@ export default class {
         } else {
             element["on" + type] = handler;
         }
-    }
+    },
 
     /**
      * 移除事件及其处理程序(兼容 IE)
@@ -32,7 +32,7 @@ export default class {
         } else {
             element["on" + type] = null;
         }
-    }
+    },
 
     /**
      * @params {event} 事件对象
@@ -40,7 +40,7 @@ export default class {
      */
     getEvent(event) {
         return event ? event : window.event;
-    }
+    },
 
     /**
      * @params {event} 事件对象
@@ -48,7 +48,7 @@ export default class {
      */
     getTarget(event) {
         return event.target || event.srcElement;
-    }
+    },
 
     /**
      * 阻止事件的默认行为
@@ -61,7 +61,7 @@ export default class {
         } else {
             event.returnValue = false;
         }
-    }
+    },
 
     /**
      * 取消事件冒泡
@@ -74,5 +74,5 @@ export default class {
         } else {
             event.cancelBubble = true;
         }
-    }
+    },
 }

@@ -17,15 +17,10 @@
                     ul.navbar-nav
                         li.nav-item.active
                             a.nav-link(href="https://github.com/Anani1994") GitHub
-                        li.nav-item.dropdown
-                            a.nav-link.dropdown-toggle(href="#"
-                                                    id="appNavbarDropdown"
-                                                    role="button"
-                                                    data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false") {{ $t("message.item_demo") }}
-                            .dropdown-menu(aria-labelledby="appNavbarDropdown")
-                                a.dropdown-item(href='https://anani1994.github.io/anani1994.github.io/projects/vue-market/index.html') {{ $t("message.shop_mall") }}
+                        li.nav-item.active
+                            router-link.nav-link(:to="{name: 'itemSet'}") {{ $t("message.item_demo") }}
+                        li.nav-item.active
+                            a.nav-link(href="https://anani1994.github.io/notebook/") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarDropdown"
@@ -37,8 +32,6 @@
                                 a.dropdown-item(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
                                 a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
                                 a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
-                        li.nav-item.active
-                            a.nav-link(href="https://anani1994.github.io/notebook/") {{ $t("message.bo_wen") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(href="#"
                                                     id="appNavbarLangDropdown"
@@ -67,6 +60,8 @@
 </template>
 
 <script>
+import canvas from '../libs/canvas';
+
 export default {
     name: 'App',
     data() {
@@ -80,9 +75,16 @@ export default {
     methods: {
         // 根据语言切换更换网页标题
          changeLanguage: function (lang) {
-            this.$i18n.locale = lang;
-            let newTitle = `${this.$t("message.basic_title")}
-                            - ${this.$t((`message.${this.$route.meta.title.key}`))}`.trim();
+            const { title } = this.$route.meta;
+            const { i18n, content, key } = title;
+            const { $i18n, $util } = this;
+
+            $i18n.locale = lang;
+            let newTitle = `${this.$t("message.basic_title")}`;
+            if ($util.isEmpty(content)) {
+                return window.document.title = newTitle;
+            }
+            newTitle += ` - ${i18n ? this.$t(`message.${key}`) : content}`;
             window.document.title = newTitle;
         },
     },
@@ -93,16 +95,9 @@ export default {
         }, 1000);
 
         // 背景动画
-        // this.$nextTick(() => {
-        //     this.$canvas.createStarrySky(document.querySelector('#app-bg'), {
-        //         canvasStyle: {
-        //             // 大小
-        //             width: document.body.clientWidth,
-        //             height: document.body.clientHeight,
-        //             // 颜色
-        //         },
-        //     });
-        // });
+        this.$nextTick(() => {
+            // canvas.createStarrySky(document.querySelector('#app-bg'));
+        });
     },
 }
 </script>

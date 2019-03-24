@@ -1,32 +1,26 @@
 import Vue from 'vue';
+
+// 阻止 vue 在启动时生成生产提示
+Vue.config.productionTip = false;
+
 import App from './views/App.vue';
 
 // 存储
 import store from './store/store';
 
 // 路由
-import {
-    router
-} from './router/index';
+import router from './router';
 
 // 国际化
-import i18n from './i18n/index';
+import i18n from './i18n';
 
 // 全局使用工具函数
 import util from './libs/util';
-import canvas from './libs/canvas';
 Vue.prototype.$util = util;
-Vue.prototype.$canvas = canvas;
 
 // 自定义全局组件
 import defineSubassemblies from './components/defineSubassembly.js';
 Vue.use(defineSubassemblies);
-
-// 代码高亮
-import highLight from './highlight/index';
-
-// 创建自己的 custom.less 书写通用组件样式
-import './styles/index.less';
 
 // 引入 Bootstrap 样式文件
 import 'bootstrap/scss/bootstrap.scss';
@@ -37,8 +31,8 @@ import 'bootstrap/js/dist/dropdown';
 // 引入动画
 import 'animate.css';
 
-// 启用插件
-Vue.use(highLight);
+// 创建自己的 custom.less 书写通用组件样式
+import './styles/index.less';
 
 new Vue({ // 创建 vue 实例
     // 提供一个在页面上已经存在的 DOM 元素作为 Vue 实例挂载目标

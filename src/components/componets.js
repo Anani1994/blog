@@ -1,26 +1,26 @@
 // 布局
-import Layout from './layout/Layout.vue';
+import Layout from "./layout/Layout.vue";
 // 抽屉
-import Drawer from './drawer/Drawer.vue';
+import Drawer from "./drawer/Drawer.vue";
 // 步骤条
-import Steps from './steps/components/Steps.vue';
-import Step from './steps/components/Step.vue';
+import Steps from "./steps/components/Steps.vue";
+import Step from "./steps/components/Step.vue";
 
 export default [
     {
-        name: 'Layout',
+        name: "Layout",
         component: Layout
     },
     {
-        name: 'Drawer',
+        name: "Drawer",
         component: Drawer
     },
     {
-        name: 'Steps',
+        name: "Steps",
         component: Steps
     },
     {
-        name: 'Step',
+        name: "Step",
         component: Step
-    },
+    }
 ];

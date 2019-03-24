@@ -107,6 +107,14 @@ class Util {
   }
 
   /**
+   * @param  {*} the value to check 
+   * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+   */
+  isEmpty(value) {
+    return value === '' || value === undefined || value === null;
+  }
+
+  /**
    * 该混合由阮老师出品
    * http://es6.ruanyifeng.com/#docs/class-extends#Mixin-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0
    * @description

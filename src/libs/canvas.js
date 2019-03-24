@@ -46,7 +46,7 @@ export default new class {
       // 点
       nodeStyle: {
         // 个数
-        number: 100,
+        number: 10,
         globalAlpha: 1,
         fillStyle: "#fff",
         // x方向上的速度

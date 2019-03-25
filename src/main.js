@@ -6,7 +6,7 @@ Vue.config.productionTip = false;
 import App from './views/App.vue';
 
 // 存储
-import store from './store/store';
+import store from './store';
 
 // 路由
 import router from './router';

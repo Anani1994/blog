@@ -2,13 +2,24 @@ import util from "./util";
 
 export default new class {
   constructor() {
+    this.createStarrySky = this.createStarrySky.bind(this);
+    this.start = this.start.bind(this);
+    this.createFireworks = this.createFireworks.bind(this);
+    this.move = this.move.bind(this);
+  }
+
+  requestAnimationFrame(fn) {
     let requestAnimationFrame =
       window.requestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
       window.msRequestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-    return this;
+
+    return requestAnimationFrame(fn);
+  }
+
+  cancelAnimationFrame(requestID) {
+    window.cancelAnimationFrame(requestID);
   }
   // =============================================================== 编织星空 ===============================================================
   /**
@@ -22,10 +33,11 @@ export default new class {
    * JS：
    * ```
    * let canvas = new Canvas();
-   * canvas.createStarrySky();
+   * canvas.requestAnimationFrame(canvas.createStarrySky(document.querySelector('#app-bg')).start);
    * ```
    * @parmas {dom} 对canvas(画布)的引用
    * @parmas {object} optional 配置对象
+   * 
    */
   createStarrySky(ele, defineSetting = {}) {
     this.ctx = ele.getContext("2d");
@@ -46,7 +58,7 @@ export default new class {
       // 点
       nodeStyle: {
         // 个数
-        number: 10,
+        number: 2,
         globalAlpha: 1,
         fillStyle: "#fff",
         // x方向上的速度
@@ -65,7 +77,7 @@ export default new class {
       }
     };
     // 合并默认配置与输入配置
-    this.setting = util.extend(defaultSetting, defineSetting);
+    this.setting = util.mergeParams(defaultSetting, defineSetting);
     // 初始化画布大小
     this.ele.width = this.setting.canvasStyle.width;
     this.ele.height = this.setting.canvasStyle.height;
@@ -80,8 +92,6 @@ export default new class {
     this._createNodes();
     // 创建边
     this._createEdges();
-    // 动画（在其中通过 requestAnimationFrame 循环调用自身）
-    this.requestID = window.requestAnimationFrame(this._move.bind(this));
     // ============================================
     // 添加事件随鼠标移动更新特殊点的坐标
     util.addHandler(window, "mousemove", e => {
@@ -151,7 +161,7 @@ export default new class {
     });
   }
 
-  _move() {
+  start() {
     this.nodes.forEach(item => {
       if (item.followMouse) {
         return;
@@ -182,8 +192,8 @@ export default new class {
     // 开始绘制
     this._renderStarrySky();
 
-    // come on 动起来
-    this.requestID = window.requestAnimationFrame(this._move.bind(this));
+    // this.requestAnimationFrame(this.start); 如果不使用定时器时此处需开启
+    return this;
   }
 
   _renderStarrySky() {
@@ -202,7 +212,7 @@ export default new class {
       // 计算出两点间的距离(勾股定理)
       let len = Math.sqrt(
         Math.pow(item.from.x - item.to.x, 2) +
-          Math.pow(item.from.y - item.to.y, 2)
+        Math.pow(item.from.y - item.to.y, 2)
       );
       // 给点之间设置一个参考距离
       let threshold =
@@ -282,7 +292,7 @@ export default new class {
     // 储存颗粒
     this.particulates = []; // 储存颗粒
     // 动画（在其中通过 requestAnimationFrame 循环调用自身）
-    this.requestID = window.requestAnimationFrame(this._moveUp.bind(this));
+    this.requestFireID = this.requestAnimationFrame(this.move);
     // 调整画布
     util.addHandler(
       window,
@@ -313,7 +323,7 @@ export default new class {
   }
 
   // 烟花上升
-  _moveUp() {
+  move() {
     // 改变位置
     this.fireworks.forEach(item => {
       if (item.y1 <= item.y2) {
@@ -327,11 +337,11 @@ export default new class {
 
     // 当烟花颗粒不存在时
     if (!this.fireworks.length) {
-      window.cancelAnimationFrame(this.requestID); // 取消动画
+      this.cancelAnimationFrame(this.requestFireID); // 取消动画
     }
 
     // 重复动画
-    this.requestID = window.requestAnimationFrame(this._moveUp.bind(this));
+    this.requestFireID = this.requestAnimationFrame(this.move);
   }
 
   _renderFireworks() {

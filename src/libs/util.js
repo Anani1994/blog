@@ -187,6 +187,31 @@ class Util {
     src.forEach(obj => clone(dest, obj));
     return dest;
   }
+
+  /**
+   * @description
+   * 参数是多级对象时，需要在传参时只传递需要改变的项，此函数就是为了避免直接拷贝实参对象时
+   * 如果传递的参数对象的属性少于形参，那么默认的参数对象上的属性会被抹掉的情况
+   * @param {object} formalParameter 默认参数对象
+   * @param {object} actualParameter 实参对象
+   * @returns 结合了形参和实参后的对象
+   */
+  mergeParams(formalParameter, actualParameter) {
+    const result = this.deepClone({}, formalParameter);
+
+    const clone = (result, actualParameter) => {
+      Object.keys(actualParameter).forEach(key => {
+        if (!this.isObject(actualParameter[key])) {
+          result[key] = actualParameter[key];
+        } else {
+          clone(result[key], actualParameter[key]);
+        }
+      });
+    }
+
+    clone(result, actualParameter);
+    return result;
+  }
 }
 
 const util = new Util();

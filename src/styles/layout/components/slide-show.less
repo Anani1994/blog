@@ -1,0 +1,29 @@
+.slide-container {
+  border: 1px solid;
+
+  // 组件容器
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+
+  // 箭头按钮
+  .arrow {
+    z-index: 9;
+  }
+
+  // 动画
+  .group-container {
+    transition: transform 500ms ease 0s;
+  }
+
+  // 底部的三个圆点
+  ul.dots {
+    li {
+      cursor: pointer;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #8391a5;
+    }
+  }
+}

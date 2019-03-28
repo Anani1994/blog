@@ -1,5 +1,5 @@
 // =============================================================== 时间日期 ===============================================================
-export default {
+export default new class {
   /**
    * @description 格式化时间格式
    * @Returns {string} 格式化(yyyy-mm-dd hh-mm-ss)
@@ -26,5 +26,5 @@ export default {
       .padStart(2, 0);
     let result = `${year}-${month}-${day} ${hour}-${minute}-${second}`;
     return result;
-  },
-}
+  }
+}();

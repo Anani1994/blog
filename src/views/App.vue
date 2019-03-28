@@ -76,7 +76,8 @@
 </template>
 
 <script>
-import canvas from '../libs/canvas';
+import canvas from '../libs/utils/canvas';
+import date from '../libs/utils/date';
 
 export default {
     name: 'App',
@@ -117,7 +118,7 @@ export default {
     mounted () {
         // 更新底部时间
         setInterval(() => {
-            this.tiemNow = this.$util.formatDate();
+            this.tiemNow = date.formatDate();
         }, 1000);
 
         // 检测背景动画

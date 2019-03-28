@@ -1,4 +1,4 @@
-export default {
+export default new class {
   /**
    * 对传入的值与最大值和最小值进行比较
    * @parmas {number} 传入的值
@@ -14,5 +14,5 @@ export default {
       return max;
     }
     return value;
-  },
-};
+  }
+}();

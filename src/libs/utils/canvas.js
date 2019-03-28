@@ -1,4 +1,7 @@
-import util from "./util";
+import object from "./object";
+import event from "./event";
+import perf from "./performance";
+import common from "./commom";
 
 export default new class {
   constructor() {
@@ -6,6 +9,8 @@ export default new class {
     this.start = this.start.bind(this);
     this.createFireworks = this.createFireworks.bind(this);
     this.move = this.move.bind(this);
+    this.removeMouseListrner = this.removeMouseListrner.bind(this);
+    this._getMousePos = this._getMousePos.bind(this);
   }
 
   requestAnimationFrame(fn) {
@@ -37,7 +42,7 @@ export default new class {
    * ```
    * @parmas {dom} 对canvas(画布)的引用
    * @parmas {object} optional 配置对象
-   * 
+   *
    */
   createStarrySky(ele, defineSetting = {}) {
     this.ctx = ele.getContext("2d");
@@ -77,7 +82,7 @@ export default new class {
       }
     };
     // 合并默认配置与输入配置
-    this.setting = util.mergeParams(defaultSetting, defineSetting);
+    this.setting = object.mergeParams(defaultSetting, defineSetting);
     // 初始化画布大小
     this.ele.width = this.setting.canvasStyle.width;
     this.ele.height = this.setting.canvasStyle.height;
@@ -94,21 +99,27 @@ export default new class {
     this._createEdges();
     // ============================================
     // 添加事件随鼠标移动更新特殊点的坐标
-    util.addHandler(window, "mousemove", e => {
-      let event = util.getEvent(e);
-      this.mousePos[0] = event.clientX;
-      this.mousePos[1] = event.clientY;
-    });
+    event.addHandler(window, "mousemove", this._getMousePos);
     // 调整画布
-    util.addHandler(
+    event.addHandler(
       window,
       "resize",
-      util.debounce(() => {
+      perf.debounce(() => {
         this.ele.width = this.setting.canvasStyle.width;
         this.ele.height = this.setting.canvasStyle.height;
       })
     );
     return this;
+  }
+
+  _getMousePos(e) {
+    let eve = event.getEvent(e);
+    this.mousePos[0] = eve.clientX;
+    this.mousePos[1] = eve.clientY;
+  }
+
+  removeMouseListrner() {
+    event.removeHandler(window, "mousemove", this._getMousePos);
   }
 
   /**
@@ -175,11 +186,11 @@ export default new class {
       // 超出坐标对应速度的正负号取反(避免一直超出临界值)，并对该次的坐标与临界值进行比较
       if (item.x < 0 || item.x > this.setting.canvasStyle.width) {
         item.vx *= -1;
-        item.x = util.clamp(item.x, 0, this.setting.canvasStyle.width);
+        item.x = common.clamp(item.x, 0, this.setting.canvasStyle.width);
       }
       if (item.y < 0 || item.y > this.setting.canvasStyle.height) {
         item.vy *= -1;
-        item.y = util.clamp(item.y, 0, this.setting.canvasStyle.height);
+        item.y = common.clamp(item.y, 0, this.setting.canvasStyle.height);
       }
     });
     // 跟随鼠标的点缓动：x = x + (t - x) / factor(factor 是缓动因子，t 是最终位置，x 是当前位置)
@@ -212,7 +223,7 @@ export default new class {
       // 计算出两点间的距离(勾股定理)
       let len = Math.sqrt(
         Math.pow(item.from.x - item.to.x, 2) +
-        Math.pow(item.from.y - item.to.y, 2)
+          Math.pow(item.from.y - item.to.y, 2)
       );
       // 给点之间设置一个参考距离
       let threshold =
@@ -281,7 +292,7 @@ export default new class {
         size: 100 // 爆炸后的最大半径
       }
     };
-    this.setting = util.extend(defaultSetting, defineSetting);
+    this.setting = object.extend(defaultSetting, defineSetting);
     // 初始化画布大小
     this.ele.width = clientWidth;
     this.ele.height = clientHeight;
@@ -294,10 +305,10 @@ export default new class {
     // 动画（在其中通过 requestAnimationFrame 循环调用自身）
     this.requestFireID = this.requestAnimationFrame(this.move);
     // 调整画布
-    util.addHandler(
+    event.addHandler(
       window,
       "resize",
-      util.debounce(() => {
+      perf.debounce(() => {
         this.ele.width = this.setting.canvasStyle.width;
         this.ele.height = this.setting.canvasStyle.height;
       })

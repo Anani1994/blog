@@ -3,7 +3,9 @@ import canvas from "../libs/utils/canvas";
 
 const config = {
     state: {
+        // 配置信息
         openBgAnimation: false, // 是否开启星空背景
+        // 此以下状态作中间变量
         animationId: "" // 星空背景对象计时器ID
     },
 

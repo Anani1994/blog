@@ -1,41 +1,66 @@
 <template lang="pug">
-    .slide-container.position-relative
-        button.arrow.position-absolute-centerY.btn.btn-link.ml-2(
+    .slide-container
+        button.arrow(
             type="button"
-            @click="arrowChange('left')"
+            @click="toLeft()"
         )
             font-awesome-icon(:icon="['fas', 'angle-double-left']")
-        .group-container.h-100(ref="groupContainer")
+        .slideTrack.active(
+            ref="slideTrack"
+            :style="trackStyles"
+        )
             slot
-        button.arrow.position-absolute-centerY.btn.btn-link.right-0.mr-2(
+        .slideTrackBak(
+            ref="slideTrackBak"
+            :style="trackBakStyles"
+        )
+        button.arrow(
             type="button"
-            @click="arrowChange('right')"
+            @click="toRight()"
         )
             font-awesome-icon(:icon="['fas', 'angle-double-right']")
-        ul.dots.position-absolute.bottom-0.list-inline.text-center.w-100
-            li.position-relative.list-inline-item(
-              v-for="(dot, index) in slides"
-              :key="index"
-              @click="dotChange(index)"
+        ul.dots
+            li(
+                v-for="(dot, index) in childLen"
+                :key="index"
+                @click="toDesignated(index)"
             )
 </template>
 
 <script>
+import common from "../../../libs/utils/common";
+import dom from "../../../libs/utils/dom";
 export default {
   props: {
+    index: {
+      // 当前显示图片索引
+      type: Number,
+      default: 0
+    },
+    easing: {
+      type: String,
+      default: "ease"
+    },
     loop: {
       type: Boolean,
-      default: true
+      default: false
     },
     autoplay: {
       type: Boolean,
       default: true
     },
-    speed: {
+    autoplaySpeed: {
       type: Number,
       default: 2000
     },
     arrowMode: {
+      type: String,
+      default: "always",
+      validator(value) {
+        return ["always", "never", "hover"].includes(value);
+      }
+    },
+    dotMode: {
       type: String,
       default: "always",
       validator(value) {
@@ -45,44 +70,82 @@ export default {
   },
   data() {
     return {
-      current: 0, // 当前显示图片索引
+      current: 0, // 当前显示元素的索引
       childWidth: 0, // 每个子元素的宽度
-      slides: [],
+      childLen: 0, // 实际子元素个数
+      trackWidth: 0, // 轨道宽度
+      trackOffset: 0, // 轨道偏移量
+      timer: null // 计时器
     };
   },
   methods: {
     initSlides() {
-      this.slides = this.$children;
-      // 获取子元素宽度
-      this.childWidth = this.$el.offsetWidth;
-      // 根据子元素个数设置容器宽度
-      this.$refs.groupContainer.style.width = `${this.childWidth * this.$children.length}px`;
+      this.childLen = this.$children.length;
+      this.childWidth = Number.parseInt(dom.getStyle(this.$el, "width"));
+      this.trackWidth = this.childWidth * this.childLen; // 触发监听属性 trackStyles 和 trackBakStyles，初始化轨道和动画
+      this.$children.forEach(
+        child => (child.$el.style.width = `${this.childWidth}px`)
+      );
+      this.$refs.slideTrackBak.innerHTML = this.$refs.slideTrack.innerHTML; // 复制第一轨道，以实现无缝循环
     },
-    // 箭头点击事件
-    arrowChange(direction) {
-      let offset = 0;
-      if ("left" === direction) {
-        if (this.current === this.$children.length - 1) {
-          this.current = -1;
-        }
-        offset = -this.childWidth * (this.current + 1);
-      } else {
-        if (this.current === 0) {
-          this.current = 4;
-        }
-        offset = -this.childWidth * (this.current - 1);
-      }
-      this.$refs.groupContainer.style.transform = `translate3d(${offset}px, 0px, 0px)`;
-      "left" === direction ? this.current += 1 : this.current -= 1;
+    toLeft() {
+      this.setAutoplay();
+      this.current += 1;
+      this.move();
+    },
+    toRight() {
+      this.setAutoplay();
+      this.current -= 1;
+      this.move();
+    },
+    move(offset) {
+      this.trackOffset =
+        this.childWidth * (offset || Math.abs(this.current) % this.childLen);
     },
     // 圆点点击事件
-    dotChange(index) {
-      const offset = -this.childWidth * index;
-      this.$refs.groupContainer.style.transform = `translate3d(${offset}px, 0px, 0px)`;
+    toDesignated(index) {
+      this.trackOffset = this.childWidth * index;
+      this.current = index;
+      // 重置计时器
+      this.setAutoplay();
+    },
+    setAutoplay() {
+      window.clearInterval(this.timer);
+      if (this.autoplay) {
+        this.timer = window.setInterval(() => {
+          this.toLeft();
+        }, this.autoplaySpeed);
+      }
     }
   },
   mounted() {
     this.initSlides();
+    this.setAutoplay();
+  },
+  computed: {
+    trackStyles() {
+      return {
+        width: `${this.trackWidth}px`,
+        transform: `translate3d(${-this.trackOffset}px, 0px, 0px)`,
+        transition: `transform 500ms ${this.easing}`
+      };
+    },
+    trackBakStyles() {
+      return {
+        width: `${this.trackWidth}px`,
+        transform: `translate3d(${-this.trackOffset}px, 0px, 0px)`,
+        transition: `transform 500ms ${this.easing}`
+      };
+    }
+  },
+  watch: {
+    // 当动画相关配置改变时重置动画
+    autoplay() {
+      this.setAutoplay();
+    },
+    autoplaySpeed() {
+      this.setAutoplay();
+    }
   }
 };
 </script>

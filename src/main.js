@@ -23,7 +23,7 @@ import defineSubassemblies from './components/defineSubassembly.js';
 Vue.use(defineSubassemblies);
 
 // 引入 Bootstrap 样式文件
-import 'bootstrap/scss/bootstrap.scss';
+// import 'bootstrap/scss/bootstrap.scss';
 // 按需引入 bootstrap 插件
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';

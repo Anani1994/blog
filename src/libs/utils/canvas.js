@@ -1,7 +1,7 @@
 import object from "./object";
 import event from "./event";
 import perf from "./performance";
-import common from "./commom";
+import common from "./common";
 
 export default new class {
   constructor() {

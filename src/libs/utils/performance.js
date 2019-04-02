@@ -28,10 +28,10 @@ export default new class {
    * @param {number} 延迟(ms)
    * @Returns undefined
    */
-  debounce(method, context, args, delay = 500) {
+  debounce(method, context = null, delay = 500, ...args) {
     clearTimeout(method.tId);
     method.tId = setTimeout(() => {
-      method.call(context, args);
+      method.call(context, ...args);
     }, delay);
   }
 }();

@@ -1,11 +1,15 @@
 <template lang="pug">
-    .slide-container
+    .slide-container(
+        @mouseover="handleMouseOver()"
+        @mouseout="handleMouseOut()"
+    )
         button.arrow(
             type="button"
             @click="move(1)"
+            v-show="showArrow"
         )
             font-awesome-icon(:icon="['fas', 'angle-double-left']")
-        .slideTrack.active(
+        .slideTrack(
             ref="slideTrack"
             :style="trackStyles"
             :class="[active ? '' : 'active']"
@@ -19,33 +23,34 @@
         button.arrow(
             type="button"
             @click="move(-1)"
+            v-show="showArrow"
         )
             font-awesome-icon(:icon="['fas', 'angle-double-right']")
-        ul.dots
+        ul.dots(
+            v-show="showDot"
+        )
             li(
                 v-for="(dot, index) in childLen"
                 :key="index"
                 @click="toDesignated(index)"
+                :class="{active: current === index}"
             )
 </template>
 
 <script>
 import common from "../../../libs/utils/common";
 import dom from "../../../libs/utils/dom";
+import event from "../../../libs/utils/event";
+import perf from "../../../libs/utils/performance";
 export default {
   props: {
-    index: {
-      // 当前显示图片索引
-      type: Number,
-      default: 0
-    },
     easing: {
       type: String,
       default: "ease"
     },
     loop: {
       type: Boolean,
-      default: false
+      default: true
     },
     autoplay: {
       type: Boolean,
@@ -57,7 +62,7 @@ export default {
     },
     arrowMode: {
       type: String,
-      default: "always",
+      default: "hover",
       validator(value) {
         return ["always", "never", "hover"].includes(value);
       }
@@ -66,7 +71,7 @@ export default {
       type: String,
       default: "always",
       validator(value) {
-        return ["always", "never"].includes(value);
+        return ["always", "never", "hover"].includes(value);
       }
     }
   },
@@ -80,20 +85,38 @@ export default {
       trackOffset: 0, // 轨道偏移量
       trackBakOffset: 0, // 第二轨道偏移量
       active: false, // 第二轨道在上，改变样式遮盖复位
-      timer: null // 计时器
+      timer: null, // 计时器
+      showArrow: false,
+      showDot: true,
     };
   },
   methods: {
     initSlides() {
+      this.setTrackInfo();
+      this.setTrackBak();
+    },
+    setTrackInfo() {
       this.childLen = this.$children.length;
       this.childWidth = Number.parseInt(dom.getStyle(this.$el, "width"));
       this.trackWidth = this.childWidth * this.childLen; // 触发监听属性 trackStyles 和 trackBakStyles，初始化轨道和动画
       this.$children.forEach(
         child => (child.$el.style.width = `${this.childWidth}px`)
       );
+    },
+    setTrackBak() {
       this.$refs.slideTrackBak.innerHTML = this.$refs.slideTrack.innerHTML; // 复制第一轨道，以实现无缝循环
     },
+    setOffset() {
+      if (this.active) {
+        this.trackBakOffset = this.childWidth * this.current;
+        // this.trackOffset = -this.childWidth * this.current;
+      } else {
+        this.trackOffset = this.childWidth * this.current;
+        // this.trackBakOffset = this.childWidth * this.childLen;
+      }
+    },
     move(step = 1) {
+      if (this.childLen - 1 === this.current && !this.loop) return window.clearInterval(this.timer);
       // 初始化轨道位置
       if (0 < step) {
         if (this.active) {
@@ -141,11 +164,60 @@ export default {
           this.move();
         }, this.autoplaySpeed);
       }
+    },
+    handleMouseOver() {
+      if ("hover" === this.arrowMode) {
+        this.showArrow = true;
+      }
+      if ("hover" === this.dotMode) {
+        this.showDot = true;
+      }
+    },
+    handleMouseOut() {
+      if ("hover" === this.arrowMode) {
+        this.showArrow = false;
+      }
+      if ("hover" === this.dotMode) {
+        this.showDot = false;
+      }
+    },
+    setArrow() {
+      switch (this.arrowMode) {
+        case "never": this.showArrow = false;
+          break;
+        case "always": this.showArrow = true;
+          break;
+      }
+    },
+    setDot() {
+      switch (this.dotMode) {
+        case "never": this.showDot = false;
+          break;
+        case "always": this.showDot = true;
+          break;
+      }
+    },
+    handleResize() {
+      const resize = () => {
+        this.setTrackInfo();
+        if (this.active) {
+          this.trackOffset = -this.childWidth;
+          this.trackBakOffset = this.childWidth * this.current;
+        } else {
+          this.trackOffset = this.childWidth * this.current;
+          this.trackBakOffset = -this.childWidth;
+        }
+
+      }
+      perf.debounce(resize, this);
     }
   },
   mounted() {
     this.initSlides();
     this.setAutoplay();
+    this.setArrow();
+    this.setDot();
+    event.addHandler(window, "resize", this.handleResize);
   },
   computed: {
     // 当下面对应依赖值改变时重置动画
@@ -162,7 +234,7 @@ export default {
         transform: `translate3d(${-this.trackBakOffset}px, 0px, 0px)`,
         transition: `transform 500ms ${this.easing}`
       };
-    }
+    },
   },
   watch: {
     // 当动画相关配置改变时重置动画
@@ -171,7 +243,19 @@ export default {
     },
     autoplaySpeed() {
       this.setAutoplay();
-    }
+    },
+    arrowMode() {
+      this.setArrow();
+    },
+    dotMode() {
+      this.setDot();
+    },
+    loop() {
+      this.setAutoplay();
+    },
+  },
+  beforeDestroy() {
+    event.removeHandler(window, "resize", this.handleResize);
   }
 };
 </script>

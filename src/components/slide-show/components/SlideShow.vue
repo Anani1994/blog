@@ -106,18 +106,9 @@ export default {
     setTrackBak() {
       this.$refs.slideTrackBak.innerHTML = this.$refs.slideTrack.innerHTML; // 复制第一轨道，以实现无缝循环
     },
-    setOffset() {
-      if (this.active) {
-        this.trackBakOffset = this.childWidth * this.current;
-        // this.trackOffset = -this.childWidth * this.current;
-      } else {
-        this.trackOffset = this.childWidth * this.current;
-        // this.trackBakOffset = this.childWidth * this.childLen;
-      }
-    },
     move(step = 1) {
       if (this.childLen - 1 === this.current && !this.loop) return window.clearInterval(this.timer);
-      // 初始化轨道位置
+      // 重置另一个轨道（底层轨道）的位置
       if (0 < step) {
         if (this.active) {
           this.trackOffset = -this.childWidth * step;
@@ -133,9 +124,11 @@ export default {
       }
       // 边界处理
       if ((step > 0 && this.childLen - 1 === this.current) || (step < 0 && 0 === this.current)) {
-        this.active = !this.active;
+        // 当一个轨道滑动到极点时，应当带着另一个轨道继续滑动一次，以便平滑的衔接
         this.trackOffset += this.childWidth * step;
         this.trackBakOffset += this.childWidth * step;
+        // 并在此时切换轨道
+        this.active = !this.active;
       } else {
         if (this.active) {
           this.trackBakOffset += this.childWidth * step;
@@ -145,6 +138,8 @@ export default {
       }
       this.current += step;
       if (this.current === this.childLen) this.current = 0;
+      // 当反向滑动时，索引 0 之后对应显示的图片应该是索引为 this.childLen - 1 的图片
+      // 所以此处当索引小于 0（-1）时，应当加上总的图片个数，此时就对应上了最后一张图片的索引值
       if (this.current < 0) this.current += this.childLen;
 
       this.$emit('on-change', this.current);
@@ -198,18 +193,24 @@ export default {
       }
     },
     handleResize() {
-      const resize = () => {
-        this.setTrackInfo();
-        if (this.active) {
-          this.trackOffset = -this.childWidth;
-          this.trackBakOffset = this.childWidth * this.current;
-        } else {
-          this.trackOffset = this.childWidth * this.current;
-          this.trackBakOffset = -this.childWidth;
-        }
-
+      perf.debounce(this.resetSlideShow, this);
+    },
+    resetSlideShow() {
+      // 重置轨道和子元素的样式
+      this.setTrackInfo();
+      this.$refs.slideTrackBak.childNodes.forEach(
+        child => (child.style.width = `${this.childWidth}px`)
+      );
+      // 根据当前轨道和索引重置位置
+      if (this.active) {
+        this.trackOffset = -this.childWidth;
+        this.trackBakOffset = this.childWidth * this.current;
+      } else {
+        this.trackOffset = this.childWidth * this.current;
+        this.trackBakOffset = -this.childWidth;
       }
-      perf.debounce(resize, this);
+
+      this.setAutoplay();
     }
   },
   mounted() {

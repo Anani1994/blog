@@ -1,0 +1,16 @@
+.horse-race-lamp-container {
+    overflow: hidden;
+    font-size: 0; /* 消除 inline-block 间歇 */
+    .horse-race-lamp {
+        display: inline-block;
+        font-size: 1rem; /* 恢复字体大小 */
+        @keyframes HorseRaceLamp {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+    }
+}

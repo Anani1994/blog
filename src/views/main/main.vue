@@ -1,9 +1,6 @@
 <template lang="pug">
-    slide-show(autoPlay="true")
-        slide 1
-        slide 2
-        slide 3
-        slide 4
+    HorseRaceLamp
+        div(style="background: red;width: 500px;height: 100px;")
 </template>
 
 <script>

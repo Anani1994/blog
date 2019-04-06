@@ -12,9 +12,12 @@ import {
     SlideShow,
     Slide,
 } from "./slide-show";
+// 跑马灯
+import {
+    HorseRaceLamp,
+} from "./horse-race-lamp";
 
-export default [
-    {
+export default [{
         name: "Layout",
         component: Layout
     },
@@ -37,5 +40,9 @@ export default [
     {
         name: "Slide",
         component: Slide
-    }
+    },
+    {
+        name: "HorseRaceLamp",
+        component: HorseRaceLamp
+    },
 ];

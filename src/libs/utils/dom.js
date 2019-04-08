@@ -26,14 +26,16 @@ export default new class {
    */
   getFrameRule(rule) {
     const styleSheets = document.styleSheets;
-    for (let i = 0; i < styleSheets.length; i++) {
-      for (let j = 0; j < styleSheets[i].cssRules.length; j++) {
-        if (styleSheets[i].cssRules[j].type === window.CSSRule.KEYFRAMES_RULE &&
-          styleSheets[i].cssRules[j].name === rule) {
-          return styleSheets[i].cssRules[j];
+    if (styleSheets.length) {
+      for (let i = 0; i < styleSheets.length; i++) {
+        for (let j = 0; j < styleSheets[i].cssRules.length; j++) {
+          if (styleSheets[i].cssRules[j].type === window.CSSRule.KEYFRAMES_RULE &&
+            styleSheets[i].cssRules[j].name === rule) {
+            return styleSheets[i].cssRules[j];
+          }
         }
       }
-    }
+    };
     return null;
   }
 
@@ -60,5 +62,37 @@ export default new class {
       keys,
       nums
     };
+  }
+
+  /**
+   * 删除指定动画规则
+   * @param {string} rule 动画名称
+   * @returns {boolean} 是否成功删除
+   */
+  deleteFrameRule(rule) {
+    // support to IE5-IE8
+    if (!CSSStyleSheet.prototype.deleteRule) {
+      CSSStyleSheet.prototype.deleteRule = CSSStyleSheet.prototype.removeRule;
+    }
+    // 查找规则所在位置（未考虑多个 styleSheets 存在同名动画）
+    const styleSheets = document.styleSheets;
+    let index1 = -1;
+    let index2 = -1;
+    if (styleSheets.length) {
+      for (let i = 0; i < styleSheets.length; i++) {
+        for (let j = 0; j < styleSheets[i].cssRules.length; j++) {
+          if (styleSheets[i].cssRules[j].type === window.CSSRule.KEYFRAMES_RULE &&
+            styleSheets[i].cssRules[j].name === rule) {
+            index1 = i;
+            index2 = j;
+          }
+        }
+      }
+      // 移除动画
+      if (index1 >= -1 && index2 > -1) {
+        styleSheets[index1].deleteRule(index2);
+      }
+    };
+    return true;
   }
 }();

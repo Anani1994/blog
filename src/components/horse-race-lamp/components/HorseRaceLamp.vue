@@ -115,20 +115,15 @@ export default {
     },
     getRule() {
       const slideContainerWidth = dom.getStyle(this.$el, "width");
-      const nodeList = this.$refs.horseRaceLamp.children;
-      if (nodeList.length > 1) {
-        console.warn("HorseRaceLamp should contain exactly one root element.");
-      }
-      const slideWidth = dom.getStyle(nodeList[0], "width");
+    //   const nodeList = this.$refs.horseRaceLamp.children;
+    //   if (nodeList.length > 1) {
+    //     console.warn("HorseRaceLamp should contain exactly one root element.");
+    //   }
+    //   const slideWidth = dom.getStyle(nodeList[0], "width");
+      const slideWidth = dom.getStyle(this.$refs.horseRaceLamp, "width");
       const rules = [];
-
-      if (slideWidth > slideContainerWidth) {
-        rules.push(`0% {transform: translateX(-${slideWidth});}`);
-        rules.push(`100% {transform: translateX(${slideWidth});}`);
-      } else {
-        rules.push(`0% {transform: translateX(-${slideWidth});}`);
-        rules.push(`100% {transform: translateX(${slideContainerWidth});}`);
-      }
+      rules.push(`0% {transform: translateX(-${slideWidth});}`);
+      rules.push(`100% {transform: translateX(${slideContainerWidth});}`);
 
       return rules;
     },

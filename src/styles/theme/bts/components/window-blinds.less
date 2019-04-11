@@ -1,0 +1,22 @@
+@text-c-bg-up: beige;
+@text-c-border-up: antiquewhite;
+@text-c-bg-down: darkgray;
+@text-c-border-down: #c9c7c7;
+
+.window-blinds {
+  &.string {
+    .string-wrap {
+      .string-content {
+        .string {
+          background: @text-c-bg-up;
+          border: 1px solid @text-c-border-up;
+        }
+
+        .string-bak {
+          background: @text-c-bg-down;
+          border: 1px solid @text-c-border-down;
+        }
+      }
+    }
+  }
+}

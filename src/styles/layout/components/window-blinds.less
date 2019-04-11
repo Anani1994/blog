@@ -1,0 +1,32 @@
+@text-height: 24px;
+
+.window-blinds {
+  &.string {
+    .string-wrap {
+      overflow: hidden;
+      position: relative;
+      height: @text-height;
+
+      .string-content {
+        position: absolute;
+        width: 100%;
+        height: @text-height * 2;
+        transition: all 1s ease;
+
+        &.up {
+          top: -@text-height;
+        }
+
+        &.down {
+          top: 0;
+        }
+
+        .string,
+        .string-bak {
+          height: @text-height;
+          line-height: @text-height;
+        }
+      }
+    }
+  }
+}

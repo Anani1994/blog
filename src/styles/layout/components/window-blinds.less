@@ -1,6 +1,11 @@
 @text-height: 24px;
 
 .window-blinds {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   &.string {
     .string-wrap {
       overflow: hidden;
@@ -10,22 +15,24 @@
       .string-content {
         position: absolute;
         width: 100%;
-        height: @text-height * 2;
-        transition: all 1s ease;
 
-        &.up {
-          top: -@text-height;
+        &.transition {
+          transition: all 1s ease;
         }
 
-        &.down {
-          top: 0;
-        }
-
-        .string,
-        .string-bak {
+        .string {
           height: @text-height;
           line-height: @text-height;
         }
+      }
+    }
+  }
+  &.blinds {
+    .string-wrap {
+      transition: all 1s ease;
+      transform-origin: 50% 0 0;
+      &.open {
+        transform: rotateX(89deg);
       }
     }
   }

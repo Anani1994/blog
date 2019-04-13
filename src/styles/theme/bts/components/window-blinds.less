@@ -1,22 +1,27 @@
-@text-c-bg-up: beige;
-@text-c-border-up: antiquewhite;
-@text-c-bg-down: darkgray;
-@text-c-border-down: #c9c7c7;
+@text-c-bg-up: #8c5f4a; // #795548
+@text-c-border-up: #fff;
+@text-c-bg-down: tan;
 
 .window-blinds {
   &.string {
     .string-wrap {
       .string-content {
         .string {
-          background: @text-c-bg-up;
           border: 1px solid @text-c-border-up;
-        }
-
-        .string-bak {
-          background: @text-c-bg-down;
-          border: 1px solid @text-c-border-down;
+          &:nth-child(odd) {
+            background-color: @text-c-bg-up;
+          }
+          &:nth-child(even) {
+            background-color: @text-c-bg-down;
+          }
         }
       }
+    }
+  }
+  &.blinds {
+    .string-wrap {
+      background: @text-c-bg-up;
+      border: 1px solid @text-c-border-up;
     }
   }
 }

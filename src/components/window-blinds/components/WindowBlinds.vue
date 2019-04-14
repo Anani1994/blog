@@ -1,7 +1,7 @@
 <template lang="pug">
     ul.window-blinds(
         :class="mode"
-        @click="toggleBlinds"
+        @click="toggleMove"
     )
         li.string-wrap(
             v-for="(num, index) in leafNumber"
@@ -12,7 +12,7 @@
                 class="string-content"
                 :class="transition"
             )
-                .string(v-for="(text, index) in text") {{text[index]}}
+                .string(v-for="oNum in lineNum") {{textArr[leafNumber * (lineNum - oNum) + index]}}
 </template>
 
 <script>
@@ -27,7 +27,15 @@ export default {
         text: {
             type: String,
             default: ''
-        }
+        },
+        leafNumber: {
+            type: Number,
+            default: 5, // 叶数
+        },
+        stay: {
+            type: Number,
+            default: 1000,
+        },
     },
     data() {
         return {
@@ -35,24 +43,26 @@ export default {
             i: 0,
             n: 0,
             current: 0,
-            lineNum: 3,
-            leafNumber: 5,
-            lineHeight: 24,
+            lineNum: 0,
+            lineHeight: 24, // 行高
             transition: 'transition',
             tid: null,
-            textArr: ''
+            textArr: '',
+            stop: false,
         };
     },
     mounted() {
         this.init();
         this.move();
+        console.log(this);
     },
     methods: {
         init() {
             this.textArr = common.getStringArr(poetry, 'poetry');
-            console.log(this.textArr);
-            this.textArr.length += this.textArr.length % this.lineNum;
-            this.textArr.fill();
+            const len = this.textArr.length;
+            this.textArr.length += this.textArr.length % this.leafNumber;
+            this.textArr.fill('', len);
+            this.lineNum = this.textArr.length / this.leafNumber;
         },
         toggleBlinds() {
             this.openBlids = !this.openBlids;
@@ -67,6 +77,7 @@ export default {
             return topPos;
         },
         move() {
+            if (this.stop) return;
             this.current = 0;
             this.i = 0;
             this.n++;
@@ -78,19 +89,25 @@ export default {
                     if (this.n < this.lineNum - 1) {
                         setTimeout(() => {
                             this.move();
-                        }, 1000); // 每次滑动到底时的停留时间
+                        }, this.stay); // 每次滑动到底时的停留时间
                     } else {
                         // 第一轮滑动完成的边界处理
                         setTimeout(() => {
                             this.n = 0;
                             setTimeout(() => {
                                 this.move();
-                            }, 1000);
-                        }, 1000);
+                            }, this.stay);
+                        }, this.stay); // 需要大于CSS过度的时间
                     }
                 }
             }, 500);
-        }
+        },
+        toggleMove() {
+            this.stop = !this.stop;
+            if (!this.stop) {
+                this.move();
+            }
+        },
     },
 };
 </script>

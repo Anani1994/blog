@@ -7,12 +7,14 @@
             v-for="(num, index) in leafNumber"
             :class="[{open: openBlids && 'blinds' === mode}]"
         )
+            // :style="{top: current > index ? `-${getTop(index, true)}px` : `-${getTop(index)}px`}"
+            // :class="transition"
             .string-content(
-                :style="{top: current > index ? `-${getTop(index, true)}px` : `-${getTop(index)}px`}"
-                class="string-content"
-                :class="transition"
             )
-                .string(v-for="oNum in lineNum") {{textArr[leafNumber * (lineNum - oNum) + index]}}
+                .string(
+                    v-for="oNum in lineNum"
+                    :class="[{'active': oNum === active}, {'next': (oNum === active - 1) || (active === 1 && oNum === lineNum)}, {transition: current >= index && oNum === active}]"
+                ) {{textArr[leafNumber * (lineNum - oNum) + index]}}
 </template>
 
 <script>
@@ -22,7 +24,7 @@ export default {
     props: {
         mode: {
             type: String,
-            default: 'string'
+            default: 'string-2'
         },
         text: {
             type: String,
@@ -30,12 +32,12 @@ export default {
         },
         leafNumber: {
             type: Number,
-            default: 5, // 叶数
+            default: 5 // 叶数
         },
         stay: {
             type: Number,
-            default: 1000,
-        },
+            default: 1000
+        }
     },
     data() {
         return {
@@ -49,12 +51,13 @@ export default {
             tid: null,
             textArr: '',
             stop: false,
+            active: 0,
         };
     },
     mounted() {
         this.init();
-        this.move();
-        console.log(this);
+        // this.move();
+        this.moveSlide();
     },
     methods: {
         init() {
@@ -63,6 +66,7 @@ export default {
             this.textArr.length += this.textArr.length % this.leafNumber;
             this.textArr.fill('', len);
             this.lineNum = this.textArr.length / this.leafNumber;
+            this.active = this.lineNum + 1;
         },
         toggleBlinds() {
             this.openBlids = !this.openBlids;
@@ -70,9 +74,13 @@ export default {
         getTop(index, next) {
             let topPos = '';
             if (next) {
-                topPos = (this.lineHeight * (this.lineNum - this.n - 1)).toString().replace(/-/, '');
+                topPos = (this.lineHeight * (this.lineNum - this.n - 1))
+                    .toString()
+                    .replace(/-/, '');
             } else {
-                topPos = (this.lineHeight * (this.lineNum - this.n)).toString().replace(/-/, '');
+                topPos = (this.lineHeight * (this.lineNum - this.n))
+                    .toString()
+                    .replace(/-/, '');
             }
             return topPos;
         },
@@ -108,6 +116,26 @@ export default {
                 this.move();
             }
         },
-    },
+        moveSlide() {
+            this.current = 0;
+            this.i = 0;
+            if (this.active === 1) {
+                this.active = this.lineNum;
+            } else {
+                this.active--;
+            }
+            this.tid = setInterval(() => {
+                this.i++;
+                this.current += this.i;
+                console.log(this.current);
+                if (this.current >= this.leafNumber) {
+                    clearInterval(this.tid);
+                    setTimeout(() => {
+                        this.moveSlide();
+                    }, 1000);
+                }
+            }, 1000);
+        },
+    }
 };
 </script>

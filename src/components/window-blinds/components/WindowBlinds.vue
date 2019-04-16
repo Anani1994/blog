@@ -1,19 +1,19 @@
 <template lang="pug">
     ul.window-blinds(
         :class="mode"
-        @click="toggleMove"
+        @click="'blinds' === mode ? toggleBlinds() : toggleMove()"
     )
         li.string-wrap(
             v-for="(num, index) in leafNumber"
             :class="[{open: openBlids && 'blinds' === mode}]"
         )
-            // :style="{top: current > index ? `-${getTop(index, true)}px` : `-${getTop(index)}px`}"
-            // :class="transition"
             .string-content(
+                :style="getStyle(index)"
+                :class="[{transition: mode === 'string'}]"
             )
                 .string(
                     v-for="oNum in lineNum"
-                    :class="[{'active': oNum === active}, {'next': (oNum === active - 1) || (active === 1 && oNum === lineNum)}, {transition: current >= index && oNum === active}]"
+                    :class="getStringClass(oNum, index)"
                 ) {{textArr[leafNumber * (lineNum - oNum) + index]}}
 </template>
 
@@ -24,11 +24,15 @@ export default {
     props: {
         mode: {
             type: String,
-            default: 'string-2'
+            default: 'blinds'
         },
         text: {
             type: String,
             default: ''
+        },
+        textType: {
+            type: String,
+            default: 'poetry'
         },
         leafNumber: {
             type: Number,
@@ -56,33 +60,41 @@ export default {
     },
     mounted() {
         this.init();
-        // this.move();
-        this.moveSlide();
+        if (this.mode === 'string') {
+            this.move();
+        }
+        if (this.mode === 'string-2') {
+            this.moveSlide();
+        }
     },
     methods: {
         init() {
-            this.textArr = common.getStringArr(poetry, 'poetry');
+            if (this.mode === 'blinds') {
+                this.lineNum = 1;
+                return;
+            }
+
+            this.textArr = common.getStringArr(this.text || poetry, this.textType);
+
             const len = this.textArr.length;
-            this.textArr.length += this.textArr.length % this.leafNumber;
+            if (len < this.leafNumber) {
+                this.textArr.length = this.leafNumber;
+            } else {
+                this.textArr.length += this.textArr.length % this.leafNumber;
+            }
             this.textArr.fill('', len);
+
             this.lineNum = this.textArr.length / this.leafNumber;
             this.active = this.lineNum + 1;
         },
         toggleBlinds() {
             this.openBlids = !this.openBlids;
         },
-        getTop(index, next) {
-            let topPos = '';
-            if (next) {
-                topPos = (this.lineHeight * (this.lineNum - this.n - 1))
-                    .toString()
-                    .replace(/-/, '');
-            } else {
-                topPos = (this.lineHeight * (this.lineNum - this.n))
-                    .toString()
-                    .replace(/-/, '');
+        toggleMove() {
+            this.stop = !this.stop;
+            if (!this.stop) {
+                this.move();
             }
-            return topPos;
         },
         move() {
             if (this.stop) return;
@@ -110,11 +122,30 @@ export default {
                 }
             }, 500);
         },
-        toggleMove() {
-            this.stop = !this.stop;
-            if (!this.stop) {
-                this.move();
+        getTop(index, next) {
+            let topPos = '';
+            if (next) {
+                topPos = (this.lineHeight * (this.lineNum - this.n - 1))
+                    .toString()
+                    .replace(/-/, '');
+            } else {
+                topPos = (this.lineHeight * (this.lineNum - this.n))
+                    .toString()
+                    .replace(/-/, '');
             }
+            return topPos;
+        },
+        getStyle(index) {
+            if (this.mode !== 'string') return {};
+            return { top: this.current > index ? `-${this.getTop(index, true)}px` : `-${this.getTop(index)}px` }
+        },
+        getStringClass(oNum, index) {
+            if (this.mode !== 'string-2') return [];
+            return [
+                { active: oNum === this.active },
+                { next: (oNum === this.active - 1) || (this.active === 1 && oNum === this.lineNum) },
+                { transition: this.current >= index && oNum === this.active }
+            ];
         },
         moveSlide() {
             this.current = 0;
@@ -127,14 +158,13 @@ export default {
             this.tid = setInterval(() => {
                 this.i++;
                 this.current += this.i;
-                console.log(this.current);
                 if (this.current >= this.leafNumber) {
                     clearInterval(this.tid);
                     setTimeout(() => {
                         this.moveSlide();
                     }, 1000);
                 }
-            }, 1000);
+            }, this.stay);
         },
     }
 };

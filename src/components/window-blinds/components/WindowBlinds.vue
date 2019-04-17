@@ -36,7 +36,7 @@ export default {
         },
         leafNumber: {
             type: Number,
-            default: 5 // 叶数
+            default: 15 // 叶数
         },
         stay: {
             type: Number,
@@ -80,7 +80,7 @@ export default {
             if (len < this.leafNumber) {
                 this.textArr.length = this.leafNumber;
             } else {
-                this.textArr.length += this.textArr.length % this.leafNumber;
+                this.textArr.length = Math.ceil(this.textArr.length / this.leafNumber) * this.leafNumber;
             }
             this.textArr.fill('', len);
 
@@ -137,7 +137,7 @@ export default {
         },
         getStyle(index) {
             if (this.mode !== 'string') return {};
-            return { top: this.current > index ? `-${this.getTop(index, true)}px` : `-${this.getTop(index)}px` }
+            return { top: this.current > index ? `-${this.getTop(index, true)}px` : `-${this.getTop(index)}px` };
         },
         getStringClass(oNum, index) {
             if (this.mode !== 'string-2') return [];

@@ -1,11 +1,10 @@
 <template lang="pug">
     ul.window-blinds(
         :class="mode"
-        @click="'blinds' === mode ? toggleBlinds() : toggleMove()"
     )
         li.string-wrap(
             v-for="(num, index) in leafNumber"
-            :class="[{open: openBlids && 'blinds' === mode}]"
+            :class="[{open: openBlids && !retract && 'blinds' === mode, closed: retract && 'blinds' === mode}]"
         )
             .string-content(
                 :style="getStyle(index)"
@@ -26,6 +25,14 @@ export default {
             type: String,
             default: 'blinds'
         },
+        openBlids: {
+            type: Boolean,
+            default: false
+        },
+        retract: {
+            type: Boolean,
+            default: false
+        },
         text: {
             type: String,
             default: ''
@@ -41,11 +48,14 @@ export default {
         stay: {
             type: Number,
             default: 1000
+        },
+        stop: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
         return {
-            openBlids: false,
             i: 0,
             n: 0,
             current: 0,
@@ -54,9 +64,16 @@ export default {
             transition: 'transition',
             tid: null,
             textArr: '',
-            stop: false,
             active: 0,
         };
+    },
+    watch: {
+        stop(newValue) {
+            if (this.mode !== 'string') return;
+            if (!this.newValue) {
+                this.move();
+            }
+        }
     },
     mounted() {
         this.init();
@@ -86,15 +103,6 @@ export default {
 
             this.lineNum = this.textArr.length / this.leafNumber;
             this.active = this.lineNum + 1;
-        },
-        toggleBlinds() {
-            this.openBlids = !this.openBlids;
-        },
-        toggleMove() {
-            this.stop = !this.stop;
-            if (!this.stop) {
-                this.move();
-            }
         },
         move() {
             if (this.stop) return;
@@ -166,6 +174,6 @@ export default {
                 }
             }, this.stay);
         },
-    }
+    },
 };
 </script>

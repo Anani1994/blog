@@ -10,10 +10,13 @@
 | 属性 | 说明 | 类型 | 默认值 |
 | :-- | :-- | :-- | :-- |
 | mode | 百叶窗的模式：blinds（窗帘），string（与百叶窗贴切的文字轮播，非无缝），string-2（无缝的类百叶窗文字轮播） | String | blinds |
+| openBlids | 百叶窗的 blinds 模式下是否打开窗帘 | Boolean | false |
+| retract | 百叶窗的 blinds 模式下是否收起百叶窗 | Boolean | false |
 | leafNumber | 每一帘的行数 | Number | 5 |
 | text | 文字轮播的内容，在非 blinds 模式下有效 | String | 《一棵开花的树》 |
 | textType | 文字的类型：string（将以符号分隔），poetry（以空格分隔），在非 blinds 模式下有效 | String | poetry |
 | stay | 动画执行的时间，单位为毫秒，在非 blinds 模式下有效 | Number | 1000 |
+| stop | 是否暂停滑动（string 模式） | Boolean | false |
 
 ## 原理
  * **blinds 模式**

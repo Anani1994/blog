@@ -1,26 +1,45 @@
 import Vue from 'vue';
+import i18n from '../i18n';
 import VueRouter from 'vue-router';
-import {
-    routers
-} from './router';
+import routes from './routes';
 import util from '../libs/util';
 
-// 全局注册
+// 注册
 Vue.use(VueRouter);
 
 // 路由配置
 const routerConfig = {
     // mode: history,
-    routes: routers
+    routes,
 };
 
-// 创建 router 实例，然后传 `routes` 配置
-export const router = new VueRouter(routerConfig);
+// 传 `routes` 配置创建 router 实例
+const router = new VueRouter(routerConfig);
+
+/**
+ * 设置网页标题
+ * @param {string} 网页标题
+ * @param {object} vue实例
+ * @Returns undefined
+ */
+function title(title, vm) {
+    let newTitle = `码良的博客`;
+    if (title) {
+        const { i18n, content, key } = title;
+        if (i18n) {
+            newTitle = vm.$t('message.basic_title');
+        }
+        if (!util.isEmpty(content)) {
+            newTitle += ` - ${i18n ? vm.$t(`message.${key}`) : content}`;
+        }
+    }
+    window.document.title = newTitle;
+}
 
 // 路由全局前置守卫
 router.beforeEach((to, from, next) => {
     // util.LoadingBar.start();
-    util.title(to.meta.title, router.app);
+    title(to.meta.title, router.app);
     next();
 });
 
@@ -29,3 +48,5 @@ router.afterEach((to) => {
     // util.LoadingBar.finish();
     window.scrollTo(0, 0);
 });
+
+export default router;

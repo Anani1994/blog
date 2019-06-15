@@ -1,0 +1,66 @@
+.slide-container {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  // 组件容器
+  width: 50%;
+  height: 50%;
+  min-height: 200px;
+  min-width: 300px;
+  overflow: hidden;
+  position: relative;
+  .slideTrack, .slideTrackBak {
+    position: absolute;
+    height: 100%;
+    &.active {
+      z-index: 2;
+    }
+    .slide {
+      display: inline-block;
+      height: 100%;
+    }
+  }
+  // 箭头按钮
+  .arrow {
+    z-index: 3;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-width: 0;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    &:first-of-type {
+      left: .5rem;
+    }
+    &:last-of-type {
+      right: .5rem;
+    }
+  }
+
+  // 底部的三个圆点
+  ul.dots {
+    z-index: 3;
+    position: absolute;
+    bottom: .5rem;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    li {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: .5rem;
+      }
+      &:hover, &.active {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

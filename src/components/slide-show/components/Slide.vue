@@ -1,10 +1,9 @@
 <template lang="pug">
-    div
-        WindowBlinds
+    .slide
+        slot
 </template>
 
 <script>
 export default {
-
-};
+}
 </script>

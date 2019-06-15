@@ -1,0 +1,32 @@
+@step-color:                  @white;
+@detail-color:                @gray-600;
+@step-active:                 @blue;
+@step-done:                   @teal;
+@step-todo:                   @gray-600 !important;
+
+ul.steps {
+    li {
+        .content {
+            .detail {
+                color: @detail-color;
+            }
+        }
+        &::before {
+            color: @step-color;
+            background-color: @step-done;
+        }
+        &:not(:last-child)::after {
+            background-color: @step-done;
+        }
+        &.active::before {
+            background-color: @step-active;
+        }
+        &.active::after {
+            background-color: @step-todo;
+        }
+        &.active ~ li::before,
+        &.active ~ li::after {
+            background-color: @step-todo;
+        }
+    }
+}

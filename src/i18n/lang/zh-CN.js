@@ -14,12 +14,6 @@ const message = {
     bo_wen: '博文',
     language: '语言',
     app_setting: '设置',
-    // others: '其它',
-    // slide nav
-    article_type: '分类',
-    article_label: '标签',
-    article_date: '存档',
-    article_search: '搜索'
 };
 
 export default message;

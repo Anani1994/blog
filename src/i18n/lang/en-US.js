@@ -13,12 +13,6 @@ const message = {
     bo_wen: 'Bowen',
     language: 'Language',
     app_setting: 'setting',
-    // others: 'Others',
-    // slide nav
-    article_type: 'Classification',
-    article_label:'Label',
-    article_date: 'History',
-    article_search: 'Search'
 };
 
 export default message;

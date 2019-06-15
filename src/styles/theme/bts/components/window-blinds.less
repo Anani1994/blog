@@ -1,0 +1,23 @@
+.window-blinds {
+  &.string, &.string-2 {
+    .string-wrap {
+      .string-content {
+        .string {
+          border: 1px solid @text-c-border-up;
+          &:nth-child(odd) {
+            background-color: @text-c-bg-up;
+          }
+          &:nth-child(even) {
+            background-color: @text-c-bg-down;
+          }
+        }
+      }
+    }
+  }
+  &.blinds {
+    .string-wrap {
+      background: @text-c-bg-up;
+      border: 1px solid @text-c-border-up;
+    }
+  }
+}

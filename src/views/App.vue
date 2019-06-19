@@ -24,19 +24,19 @@
                             router-link.nav-link(:to="{name: 'itemSet'}") {{ $t("message.item_demo") }}
                         li.nav-item.active
                             a.nav-link(href="https://anani1994.github.io/notebook/") {{ $t("message.bo_wen") }}
-                        li.nav-item.dropdown
-                            a.nav-link.dropdown-toggle(
-                                href="#"
-                                id="appNavbarDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            ) {{ $t("message.blog") }}
-                            .dropdown-menu(aria-labelledby="appNavbarDropdown")
-                                a.dropdown-item(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
-                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
-                                a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
+                        //- li.nav-item.dropdown
+                        //-     a.nav-link.dropdown-toggle(
+                        //-         href="#"
+                        //-         id="appNavbarDropdown"
+                        //-         role="button"
+                        //-         data-toggle="dropdown"
+                        //-         aria-haspopup="true"
+                        //-         aria-expanded="false"
+                        //-     ) {{ $t("message.blog") }}
+                        //-     .dropdown-menu(aria-labelledby="appNavbarDropdown")
+                        //-         a.dropdown-item(href="http://www.cnblogs.com/anani/") {{ $t("message.cnblogs") }}
+                        //-         a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV1.0.0/index.html") {{ $t("message.blog_one") }}
+                        //-         a.dropdown-item(href="https://anani1994.github.io/anani1994.github.io/projects/BlogV2.0.0/index.html") {{ $t("message.blog_two") }}
                         li.nav-item.dropdown
                             a.nav-link.dropdown-toggle(
                                 href="#"
@@ -76,7 +76,6 @@
 </template>
 
 <script>
-import canvas from '../libs/utils/canvas';
 import date from '../libs/utils/date';
 
 export default {
@@ -87,19 +86,34 @@ export default {
             isShow: false,
             // 底部显示的时间
             tiemNow: '',
+        };
+    },
+    computed: {
+        setBgAnimationContainer: function() {
+            return this.$store.state.config.openBgAnimation;
         }
+    },
+    mounted() {
+        // 更新底部时间
+        setInterval(() => {
+            this.tiemNow = date.formatDate();
+        }, 1000);
+
+        // 检测背景动画
+        this.toggleBgAnimation();
     },
     methods: {
         // 根据语言切换更换网页标题
-         changeLanguage: function (lang) {
+        changeLanguage: function (lang) {
             const { title } = this.$route.meta;
             const { i18n, content, key } = title;
             const { $i18n, $util } = this;
 
             $i18n.locale = lang;
-            let newTitle = `${this.$t("message.basic_title")}`;
+            let newTitle = `${this.$t('message.basic_title')}`;
             if ($util.isEmpty(content)) {
-                return window.document.title = newTitle;
+                const ret = window.document.title = newTitle;
+                return ret;
             }
             newTitle += ` - ${i18n ? this.$t(`message.${key}`) : content}`;
             window.document.title = newTitle;
@@ -110,19 +124,5 @@ export default {
             this.$store.commit('toggleBgAnimation');
         },
     },
-    computed: {
-        setBgAnimationContainer: function() {
-            return this.$store.state.config.openBgAnimation;
-        }
-    },
-    mounted () {
-        // 更新底部时间
-        setInterval(() => {
-            this.tiemNow = date.formatDate();
-        }, 1000);
-
-        // 检测背景动画
-        this.toggleBgAnimation();
-    },
-}
+};
 </script>

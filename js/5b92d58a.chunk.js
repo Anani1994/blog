@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{180:function(t,e,s){"use strict";s.r(e);var i=function(){var t=this.$createElement;return(this._self._c||t)("p",{staticClass:"mt-3 pl-3"},[this._v("等等吧，会有的。")])};i._withStripped=!0;var n=s(0),l=Object(n.a)({},i,[],!1,null,null,null);l.options.__file="src/views/itemset/ItemSet.vue";e.default=l.exports}}]);

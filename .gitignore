@@ -18,6 +18,6 @@ yarn-error.log*
 
 # production
 # index.html
-# /build
+/build
 # /projects
 /dist

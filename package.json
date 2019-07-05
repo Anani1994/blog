@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "homepage": "https://github.com/Anani1994/anani1994.github.io",
+  "homepage": "https://github.com/Anani1994/BlogV3.0.0",
   "description": "Personal Blog",
   "main": "./src/main.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --base ./dist --open --inline --hot --compress --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.prod.config.js",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages --dist build  --dest build  --branch gh-pages --dotfiles=true --add=true"
+    "deploy": "gh-pages -d build"
   },
   "author": "Anani",
   "license": "MIT",

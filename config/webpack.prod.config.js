@@ -2,7 +2,6 @@
 const path = require('path');
 const webpackBaseConfig = require('./webpack.base.config');
 const webpackMerge = require('webpack-merge');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 // 用于清除目录内容
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // 用于分离 CSS
@@ -14,8 +13,8 @@ module.exports = webpackMerge(webpackBaseConfig, {
     mode: 'production',
     output: {
         // publicPath: 'anani1994.github.io/BlogV3.0.0', // https://...这部分为你的服务器域名
-        filename: 'build/js/[name].js',
-        chunkFilename: 'build/js/[contenthash:8].chunk.js'
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[contenthash:8].chunk.js'
     },
     optimization: {
         minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
@@ -24,7 +23,12 @@ module.exports = webpackMerge(webpackBaseConfig, {
         rules: [{
             test: /\.css$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../'
+                    }
+                },
                 // 处理 css
                 'css-loader',
                 // 浏览器兼容问题
@@ -34,7 +38,10 @@ module.exports = webpackMerge(webpackBaseConfig, {
         {
             test: /\.(scss)$/,
             use: [{
-                loader: MiniCssExtractPlugin.loader
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                    publicPath: '../'
+                }
             }, {
                 loader: 'css-loader',
             }, {
@@ -57,7 +64,12 @@ module.exports = webpackMerge(webpackBaseConfig, {
             test: /\.less$/,
             // loader 由下往上依次开始处理
             use: [
-                MiniCssExtractPlugin.loader,
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../'
+                    }
+                },
                 'css-loader',
                 'postcss-loader',
                 'less-loader'
@@ -69,16 +81,11 @@ module.exports = webpackMerge(webpackBaseConfig, {
         new CleanWebpackPlugin(['build/*'], {
             root: path.resolve(__dirname, '../')
         }),
-        new HTMLWebpackPlugin({ // 创建 .html 并自动引入打包后的文件
-            filename: 'build/index.html',
-            template: 'index.html',
-            inject: true, // 参照最初创建的 .html 来生成 .html
-        }),
         // Options similar to the same options in webpackOptions.output
         // both options are optional
         new MiniCssExtractPlugin({
-            filename: 'build/css/[name].css',
-            chunkFilename: 'build/css/[contenthash:8].chunk.css'
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[contenthash:8].chunk.css'
         })
     ]
 });
